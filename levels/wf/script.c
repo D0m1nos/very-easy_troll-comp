@@ -76,9 +76,9 @@ const LevelScript level_wf_entry[] = {
 	/* Fast64 end persistent block [level commands] */
 
 	AREA(1, wf_area_1),
-		WARP_NODE(0x0A, LEVEL_WF, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_CASTLE, 0x01, 0x34, WARP_NO_CHECKPOINT),
-		WARP_NODE(0xF1, LEVEL_WF, 0x01, 0x0A, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xF1, LEVEL_CASTLE, 0x01, 0x66, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_THWOMP, 28, 1214, 6, 0, 0, 0, 0x00000000, bhvThwomp3),
 		OBJECT(MODEL_WOODEN_SIGNPOST, 172, 100, -19, 0, -90, 0, (169 << 16), bhvMessagePanel),
 		OBJECT(MODEL_EXCLAMATION_BOX, 2168, 563, 302, 0, 0, 0, (15 << 16), bhvExclamationBox),
