@@ -14,10 +14,10 @@ struct ObjectHitbox sExclamationBoxHitbox = {
     /* damageOrCoinValue: */ 0,
     /* health:            */ 1,
     /* numLootCoins:      */ 0,
-    /* radius:            */ 40,
-    /* height:            */ 30,
-    /* hurtboxRadius:     */ 40,
-    /* hurtboxHeight:     */ 30,
+    /* radius:            */ 80,
+    /* height:            */ 60,
+    /* hurtboxRadius:     */ 80,
+    /* hurtboxHeight:     */ 60,
 };
 
 struct ExclamationBoxContents sExclamationBoxContents[] = {
@@ -142,7 +142,8 @@ void exclamation_box_act_explode(void) {
     exclamation_box_spawn_contents(sExclamationBoxContents, o->oBehParams2ndByte);
     spawn_mist_particles_variable(0, 0, 46.0f);
     spawn_triangle_break_particles(20, MODEL_CARTOON_STAR, 0.3f, o->oAnimState);
-    create_sound_spawner(SOUND_GENERAL_BREAK_BOX);
+    // create_sound_spawner(SOUND_GENERAL_BREAK_BOX);
+    create_sound_spawner(SOUND_GENERAL_LAUGH);
     if (o->oBehParams2ndByte < EXCLAMATION_BOX_BP_COINS_1) {
         o->oAction = EXCLAMATION_BOX_ACT_WAIT_FOR_RESPAWN;
         cur_obj_hide();

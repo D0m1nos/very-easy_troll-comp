@@ -2793,15 +2793,9 @@ sound_ref .sound_general_grand_star
 sound_ref .sound_general_grand_star_jump
 sound_ref .sound_general_boat_rock
 sound_ref .sound_general_vanish_sfx
-sound_ref .sound_menu_enter_hole
-sound_ref .sound_general_red_coin
-sound_ref .sound_general_birds_fly_away
-sound_ref .sound_general_right_answer
-sound_ref .sound_general_metal_pound
-sound_ref .sound_general_boing1
-sound_ref .sound_general_boing2
-sound_ref .sound_general_yoshi_walk
-sound_ref .sound_general_enemy_alert1
+sound_ref .sound_general_laugh
+sound_ref .sound_general_oink
+sound_ref .sound_general_scream
 
 .sound_general_activate_cap_switch:
 chan_setbank 5
@@ -8068,3 +8062,33 @@ envelope_line 1000 32700
 envelope_line 10 16000
 envelope_line 200 32760
 envelope_goto 3
+
+.sound_general_laugh:
+chan_setbank 5
+chan_setinstr 16
+chan_setlayer 0, .layer_1337
+chan_end
+
+.layer_1337:
+layer_note1 39, 0xFF, 127
+layer_end
+
+.sound_general_oink:
+chan_setbank 5
+chan_setinstr 17
+chan_setlayer 0, .layer_1339
+chan_end
+
+.layer_1339:
+layer_note1 39, 0xFF, 127
+layer_end
+
+.sound_general_scream:
+chan_setbank 5
+chan_setinstr 18
+chan_setlayer 0, .layer_1340
+chan_end
+
+.layer_1340:
+layer_note1 39, 0xFF, 127
+layer_end

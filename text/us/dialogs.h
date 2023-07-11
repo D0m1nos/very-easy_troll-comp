@@ -2082,18 +2082,42 @@ something.\n\
 Press [B] again to throw\n\
 something you're holding."))
 
-DEFINE_DIALOG(DIALOG_168, 1, 5, 30, 200, _("\
-Hey! Knock it off! That's\n\
-the second time you've\n\
-nailed me. Now you're\n\
-asking for it, linguine\n\
-breath!"))
+DEFINE_DIALOG(DIALOG_168, 1, 1, 30, 200, _("\
+hahahaa\n\
+very lon\n\
+g dialog\n\
+eeeeeee\n\
+s\n\
+.\n\
+\n\
+\n\
+\n\
+\n\
+\n\
+\n\
+\n\
+\n\
+\n\
+\n\
+\n\
+almost done\n\
+\n\
+\n\
+\n\
+\n\
+\n\
+\n\
+\n\
+\n\
+maybe\n\
+\n\
+\n\
+\n\
+ok done"))
 
 DEFINE_DIALOG(DIALOG_169, 1, 4, 30, 200, _("\
-Keep out!\n\
-That means you!\n\
-Arrgghh!\n\
+test test test\n\
+lolllll\n\
+aaaa\n\
 \n\
-Anyone entering this cave\n\
-without permission will\n\
-meet certain disaster."))
+"))

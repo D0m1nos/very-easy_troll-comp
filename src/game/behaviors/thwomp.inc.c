@@ -22,7 +22,7 @@ void grindel_thwomp_act_falling(void) {
 void grindel_thwomp_act_land(void) {
     if (o->oTimer == 0 && o->oDistanceToMario < 1500.0f) {
         cur_obj_shake_screen(SHAKE_POS_SMALL);
-        cur_obj_play_sound_2(SOUND_OBJ_THWOMP);
+        cur_obj_play_sound_2(SOUND_GENERAL_OINK);
     }
     if (o->oTimer >= 10) {
         o->oAction = GRINDEL_THWOMP_ACT_ON_GROUND;
@@ -30,6 +30,7 @@ void grindel_thwomp_act_land(void) {
 }
 
 void grindel_thwomp_act_floating(void) {
+    o->oAction = GRINDEL_THWOMP_ACT_FALLING;
     if (o->oTimer == 0) {
         o->oThwompRandomTimer = random_float() * 30.0f + 10.0f;
     }
@@ -39,7 +40,7 @@ void grindel_thwomp_act_floating(void) {
 }
 
 void grindel_thwomp_act_rising(void) {
-    if (o->oBehParams2ndByte + 40 < o->oTimer) {
+    if (o->oBehParams2ndByte + 20 < o->oTimer) {
         o->oAction = GRINDEL_THWOMP_ACT_FLOATING;
         o->oPosY += 5.0f;
     } else {
