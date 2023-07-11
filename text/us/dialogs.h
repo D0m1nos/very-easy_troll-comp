@@ -2071,16 +2071,10 @@ so come back later.\n\
 //--Koopa the Quick"))
 
 DEFINE_DIALOG(DIALOG_167, 1, 4, 30, 200, _("\
-Princess Toadstool's\n\
-castle is just ahead.\n\
+hello this is my first \n\
+hack, ... etc etc...\n\
 \n\
-\n\
-Press [A] to jump, [Z] to\n\
-crouch, and [B] to punch,\n\
-read a sign, or grab\n\
-something.\n\
-Press [B] again to throw\n\
-something you're holding."))
+have fun"))
 
 DEFINE_DIALOG(DIALOG_168, 1, 1, 30, 200, _("\
 hahahaa\n\
