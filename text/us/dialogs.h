@@ -2065,12 +2065,12 @@ from running around\n\
 this post."))
 
 DEFINE_DIALOG(DIALOG_166, 1, 1, 30, 200, _("\
-Crazy? \n\
+ Crazy? \n\
 I Was Crazy Once.\n\
 They Locked Me In A Room.\n\
 A Rubber Room.\n\
 A Rubber Room With Rats.\n\
-And Rats Make Me Crazy"))
+And Rats Make Me Crazy\n"))
 
 DEFINE_DIALOG(DIALOG_167, 1, 4, 30, 200, _("\
 hello this is my first \n\

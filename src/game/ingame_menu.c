@@ -1007,6 +1007,139 @@ void handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *dialog, s8 l
     gLastDialogLineNum = lineNum;
 }
 
+void handle_dialog_text_and_pages_INFINITE(s8 colorMode, struct DialogEntry *dialog, s8 lowerBound) {
+    u8 strChar;
+    s16 colorLoop;
+    ColorRGBA rgbaColors = { 0x00, 0x00, 0x00, 0x00 };
+    u8 customColor = 0;
+    u8 diffTmp = 0;
+    u8 *str = segmented_to_virtual(dialog->str);
+    s8 lineNum = 1;
+    s8 totalLines;
+    s8 pageState = DIALOG_PAGE_STATE_NONE;
+    UNUSED s8 mark = DIALOG_MARK_NONE; // unused in US and EU
+    s8 xMatrix = 1;
+    s8 linesPerBox = dialog->linesPerBox;
+    s16 strIdx;
+    s16 linePos = 0;
+
+    if (gDialogBoxState == DIALOG_STATE_HORIZONTAL) {
+        // If scrolling, consider the number of lines for both
+        // the current page and the page being scrolled to.
+        totalLines = linesPerBox * 2 + 1;
+    } else {
+        totalLines = linesPerBox + 1;
+    }
+
+    gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
+    strIdx = gDialogTextPos;
+
+    if (gDialogBoxState == DIALOG_STATE_HORIZONTAL) {
+        create_dl_translation_matrix(MENU_MTX_NOPUSH, 0, (f32) gDialogScrollOffsetY, 0);
+    }
+
+    create_dl_translation_matrix(MENU_MTX_PUSH, X_VAL3, 2 - lineNum * Y_VAL3, 0);
+
+    while (pageState == DIALOG_PAGE_STATE_NONE) {
+        if (customColor == 1) {
+            gDPSetEnvColor(gDisplayListHead++, rgbaColors[0], rgbaColors[1], rgbaColors[2], rgbaColors[3]);
+        } else {
+            change_and_flash_dialog_text_color_lines(colorMode, lineNum, &customColor);
+        }
+        strChar = str[strIdx];
+
+        switch (strChar) {
+            case DIALOG_CHAR_TERMINATOR:
+                strIdx = 0;
+                break;
+            case DIALOG_CHAR_COLOR:
+                customColor = 1;
+                strIdx++;
+                for (colorLoop = (strIdx + 8); strIdx < colorLoop; ++strIdx) {
+                    diffTmp = 0;
+                    if ((str[strIdx] >= 0x24) && (str[strIdx] <= 0x29)) {
+                        diffTmp = 0x1A;
+                    } else if (str[strIdx] >= 0x10) {
+                        customColor = 2;
+                        strIdx = (colorLoop - 8);
+                        for (diffTmp = 0; diffTmp < 8; ++diffTmp) {
+                            if (str[strIdx + diffTmp] != 0x9F) {
+                                break;
+                            }
+                        }
+                        if (diffTmp == 8) {
+                            strIdx += diffTmp;
+                        }
+                        break;
+                    }
+                    if (((8 - (colorLoop - strIdx)) % 2) == 0) {
+                        rgbaColors[(8 - (colorLoop - strIdx)) / 2] = (((str[strIdx] - diffTmp) & 0x0F) << 4);
+                    } else {
+                        rgbaColors[(8 - (colorLoop - strIdx)) / 2] += ((str[strIdx] - diffTmp) & 0x0F);
+                    }
+                }
+                strIdx--;
+                break;
+            case DIALOG_CHAR_NEWLINE:
+                lineNum++;
+                handle_dialog_scroll_page_state(lineNum, totalLines, &pageState, &xMatrix, &linePos);
+                break;
+            case DIALOG_CHAR_DAKUTEN:
+                mark = DIALOG_MARK_DAKUTEN;
+                break;
+            case DIALOG_CHAR_PERIOD_OR_HANDAKUTEN:
+                mark = DIALOG_MARK_HANDAKUTEN;
+                break;
+            case DIALOG_CHAR_SPACE:
+                xMatrix++;
+                linePos++;
+                break;
+            case DIALOG_CHAR_SLASH:
+                xMatrix += 2;
+                linePos += 2;
+                break;
+            case DIALOG_CHAR_MULTI_THE:
+                render_multi_text_string_lines(STRING_THE, lineNum, &linePos, linesPerBox, xMatrix, lowerBound);
+                xMatrix = 1;
+                break;
+            case DIALOG_CHAR_MULTI_YOU:
+                render_multi_text_string_lines(STRING_YOU, lineNum, &linePos, linesPerBox, xMatrix, lowerBound);
+                xMatrix = 1;
+                break;
+            case DIALOG_CHAR_STAR_COUNT:
+                render_star_count_dialog_text(&xMatrix, &linePos);
+                break;
+            default: // any other character
+                if ((lineNum >= lowerBound) && (lineNum <= (lowerBound + linesPerBox))) {
+                    if (linePos || xMatrix != 1) {
+                        create_dl_translation_matrix(
+                            MENU_MTX_NOPUSH, (f32)(gDialogCharWidths[DIALOG_CHAR_SPACE] * (xMatrix - 1)), 0, 0);
+                    }
+
+                    render_generic_char(strChar);
+                    create_dl_translation_matrix(MENU_MTX_NOPUSH, (f32)(gDialogCharWidths[strChar]), 0, 0);
+                    xMatrix = 1;
+                    linePos++;
+                }
+        }
+
+
+        strIdx++;
+    }
+
+    gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
+
+    if (gDialogBoxState == DIALOG_STATE_VERTICAL) {
+        if (pageState == DIALOG_PAGE_STATE_END) {
+            gLastDialogPageStrPos = -1;
+        } else {
+            gLastDialogPageStrPos = strIdx;
+        }
+    }
+
+    gLastDialogLineNum = lineNum;
+}
+
 #define X_VAL4_1 56
 #define X_VAL4_2 47
 #define Y_VAL4_1  2
@@ -1235,7 +1368,12 @@ void render_dialog_entries(void) {
                   ensure_nonnegative(DIAG_VAL3 + dialog->leftOffset),
 #endif
                   ensure_nonnegative(240 + ((dialog->linesPerBox * 80) / DIAG_VAL4) - dialog->width));
-    handle_dialog_text_and_pages(0, dialog, lowerBound);
+    
+    if(gDialogID == 166){
+        handle_dialog_text_and_pages_INFINITE(0, dialog, lowerBound);
+    } else {
+        handle_dialog_text_and_pages(0, dialog, lowerBound);
+    }
 
     if (gLastDialogPageStrPos == -1 && gLastDialogResponse == 1) {
         render_dialog_triangle_choice();
