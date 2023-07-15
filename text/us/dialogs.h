@@ -2064,11 +2064,13 @@ get dizzy and pass out\n\
 from running around\n\
 this post."))
 
-DEFINE_DIALOG(DIALOG_166, 1, 4, 30, 200, _("\
-I'll be back soon.\n\
-I'm out training now,\n\
-so come back later.\n\
-//--Koopa the Quick"))
+DEFINE_DIALOG(DIALOG_166, 1, 1, 30, 200, _("\
+Crazy? \n\
+I Was Crazy Once.\n\
+They Locked Me In A Room.\n\
+A Rubber Room.\n\
+A Rubber Room With Rats.\n\
+And Rats Make Me Crazy"))
 
 DEFINE_DIALOG(DIALOG_167, 1, 4, 30, 200, _("\
 hello this is my first \n\
