@@ -14,10 +14,10 @@ struct ObjectHitbox sExclamationBoxHitbox = {
     /* damageOrCoinValue: */ 0,
     /* health:            */ 1,
     /* numLootCoins:      */ 0,
-    /* radius:            */ 80,
-    /* height:            */ 60,
-    /* hurtboxRadius:     */ 80,
-    /* hurtboxHeight:     */ 60,
+    /* radius:            */ 200,
+    /* height:            */ 150,
+    /* hurtboxRadius:     */ 200,
+    /* hurtboxHeight:     */ 150,
 };
 
 struct ExclamationBoxContents sExclamationBoxContents[] = {
