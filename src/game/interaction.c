@@ -728,9 +728,14 @@ void reset_mario_pitch(struct MarioState *m) {
 }
 
 u32 interact_coin(struct MarioState *m, UNUSED u32 interactType, struct Object *obj) {
-    m->numCoins += obj->oDamageOrCoinValue;
-    m->healCounter += 4 * obj->oDamageOrCoinValue;
-    // m->hurtCounter += 4 * obj->oDamageOrCoinValue;
+    if(obj->oDamageOrCoinValue < 0){
+        m->hurtCounter += 4 * (obj->oDamageOrCoinValue * -1);
+        play_sound(SOUND_GENERAL_COLLECT_1UP, m->marioObj->header.gfx.cameraToObject);
+    } else {
+        m->numCoins += obj->oDamageOrCoinValue;
+        m->healCounter += 4 * obj->oDamageOrCoinValue;
+    }
+    
 #ifdef BREATH_METER
     m->breathCounter += (4 * obj->oDamageOrCoinValue);
 #endif

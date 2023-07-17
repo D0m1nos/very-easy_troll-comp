@@ -88,7 +88,7 @@ const LevelScript level_wf_entry[] = {
 		OBJECT(MODEL_EXCLAMATION_BOX, 2727, 313, 21, 0, 0, 0, (4 << 16), bhvExclamationBox),
 		OBJECT(MODEL_YELLOW_COIN, 1012, 68, -37, 0, 90, 0, 0x00000000, bhvYellowCoin),
 		OBJECT(MODEL_YELLOW_COIN, 1112, 68, -37, 0, 90, 0, 0x00000000, bhvYellowCoin),
-		OBJECT(MODEL_1UP, 1212, 68, -37, 0, 90, 0, 0x00000000, bhv1Up),
+		OBJECT(MODEL_YELLOW_COIN, 1212, 68, -37, 0, 90, 0, 0x00000000, bhvEvilYellowCoin),
 		OBJECT(MODEL_YELLOW_COIN, 1312, 68, -37, 0, 90, 0, 0x00000000, bhvYellowCoin),
 		OBJECT(MODEL_NONE, 0, 200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		MARIO_POS(0x01, 0, 0, 200, 0),
