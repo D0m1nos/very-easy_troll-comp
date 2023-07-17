@@ -25,7 +25,7 @@ struct ExclamationBoxContents sExclamationBoxContents[] = {
     { EXCLAMATION_BOX_BP_METAL_CAP,        0, 0, MODEL_MARIOS_METAL_CAP, bhvMetalCap              },
     { EXCLAMATION_BOX_BP_VANISH_CAP,       0, 0, MODEL_MARIOS_CAP,       bhvVanishCap             },
     { EXCLAMATION_BOX_BP_KOOPA_SHELL,      0, 0, MODEL_KOOPA_SHELL,      bhvKoopaShell            },
-    { EXCLAMATION_BOX_BP_COINS_1,          0, 0, MODEL_YELLOW_COIN,      bhvSingleCoinGetsSpawned },
+    { EXCLAMATION_BOX_BP_COINS_1,          0, 0, MODEL_METAL_BOX,        bhvPushableMetalBox      },
     { EXCLAMATION_BOX_BP_COINS_3,          0, 0, MODEL_NONE,             bhvThreeCoinsSpawn       },
     { EXCLAMATION_BOX_BP_COINS_10,         0, 0, MODEL_NONE,             bhvTenCoinsSpawn         },
     { EXCLAMATION_BOX_BP_1UP_WALKING,      0, 0, MODEL_1UP,              bhv1upWalking            },
@@ -125,10 +125,12 @@ void exclamation_box_spawn_contents(struct ExclamationBoxContents *contentsList,
     while (contentsList->id != EXCLAMATION_BOX_BP_NULL) {
         if (boxType == contentsList->id) {
             contentsObj = spawn_object(o, contentsList->model, contentsList->behavior);
-            contentsObj->oVelY = 20.0f;
-            contentsObj->oForwardVel = 3.0f;
-            contentsObj->oMoveAngleYaw = gMarioObject->oMoveAngleYaw;
-            OR_BPARAM1(o->oBehParams, contentsList->behParams);
+            if(contentsList->model != MODEL_METAL_BOX){
+                contentsObj->oVelY = 20.0f;
+                contentsObj->oForwardVel = 3.0f;
+                contentsObj->oMoveAngleYaw = gMarioObject->oMoveAngleYaw;
+                OR_BPARAM1(o->oBehParams, contentsList->behParams);
+            }
             if (contentsList->model == MODEL_STAR) {
                 o->oFlags |= OBJ_FLAG_PERSISTENT_RESPAWN;
             }
