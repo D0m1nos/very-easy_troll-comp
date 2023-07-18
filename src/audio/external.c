@@ -297,6 +297,8 @@ u8 sBackgroundMusicDefaultVolume[] = {
     65,  // SEQ_MENU_FILE_SELECT
     0,   // SEQ_EVENT_CUTSCENE_LAKITU (not in JP)
     80,  // SEQ_SAND_CANYON
+    80,  // SEQ_GARDEN_GRIDLOCK
+    80,  // SEQ_REMINESCENCE
 };
 
 STATIC_ASSERT(ARRAY_COUNT(sBackgroundMusicDefaultVolume) == SEQ_COUNT,
