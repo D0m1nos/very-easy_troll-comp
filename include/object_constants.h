@@ -2712,4 +2712,12 @@ enum gCutsceneObjSpawns {
     CUTSCENE_OBJ_2_END_BIRDS_1
 };
 
+enum oActionsChallenge {
+    CHALLENGE_NULL,
+    CHALLENGE_START,
+    CHALLENGE_ROUND_1,
+    CHALLENGE_ROUND_2,
+    CHALLENGE_END
+};
+
 #endif // OBJECT_CONSTANTS_H

@@ -66,6 +66,7 @@ const LevelScript level_castle_inside_entry[] = {
 		WARP_NODE(0x12, LEVEL_CASTLE, 0x01, 0x12, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_WOODEN_SIGNPOST, 23, 100, 11, 0, -90, 0, (167 << 16), bhvMessagePanel),
 		OBJECT(MODEL_TOAD, 399, 100, -111, 0, 70, 0, (166 << 24), bhvToadMessage),
+		OBJECT(MODEL_1UP, 19, 292, -244, 0, 0, 0, 0x00000000, bhvChallenge),
 		OBJECT(MODEL_NONE, -356, 200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		MARIO_POS(0x01, 0, -356, 200, 0),
 		OBJECT(MODEL_BITS_WARP_PIPE, 393, 100, 188, 0, 0, 0, (0x03 << 16), bhvWarpPipe),
@@ -73,7 +74,7 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_NONE, 392, 365, 188, 0, 90, 0, (0x12 << 16), bhvPaintingDeathWarp),
 		TERRAIN(castle_inside_area_1_collision),
 		MACRO_OBJECTS(castle_inside_area_1_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_REMINESCENCE),
+		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_SNOW),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
