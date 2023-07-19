@@ -15,6 +15,8 @@
 #include "save_file.h"
 #include "rumble_init.h"
 
+#include "print.h"
+
 #include "config.h"
 
 void play_flip_sounds(struct MarioState *m, s16 frame1, s16 frame2, s16 frame3) {
@@ -909,6 +911,10 @@ s32 act_steep_jump(struct MarioState *m) {
 s32 act_ground_pound(struct MarioState *m) {
     u32 stepResult;
     f32 yOffset;
+
+    if(m->actionTimer < 30){
+        print_text(20, 20, "TEST");
+    }
 
     play_sound_if_no_flag(m, SOUND_ACTION_THROW, MARIO_ACTION_SOUND_PLAYED);
     if (m->actionState == 0) {

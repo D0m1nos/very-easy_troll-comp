@@ -3,7 +3,8 @@
 const GeoLayout castle_inside_area_1_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
-		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 28, 100, -37, castle_inside_dl_Plane_mesh_layer_1),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 1965, 117, 1693, 0, -14, 0, castle_inside_dl_Cube_mesh_layer_1),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 28, 100, -37, castle_inside_dl_Plane_002_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
@@ -14,7 +15,7 @@ const GeoLayout castle_inside_area_1[] = {
 		GEO_OPEN_NODE(),
 			GEO_NODE_ORTHO(100.0000),
 			GEO_OPEN_NODE(),
-				GEO_BACKGROUND(BACKGROUND_PURPLE_SKY, geo_skybox_main),
+				GEO_BACKGROUND(BACKGROUND_SNOW_MOUNTAINS, geo_skybox_main),
 			GEO_CLOSE_NODE(),
 		GEO_CLOSE_NODE(),
 		GEO_ZBUFFER(1),
@@ -25,7 +26,7 @@ const GeoLayout castle_inside_area_1[] = {
 				GEO_OPEN_NODE(),
 					GEO_BRANCH(1, castle_inside_area_1_geo),
 					GEO_RENDER_OBJ(),
-					GEO_ASM(ENVFX_MODE_NONE, geo_envfx_main),
+					GEO_ASM(ENVFX_SNOW_NORMAL, geo_envfx_main),
 				GEO_CLOSE_NODE(),
 			GEO_CLOSE_NODE(),
 		GEO_CLOSE_NODE(),
