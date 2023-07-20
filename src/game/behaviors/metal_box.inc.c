@@ -12,6 +12,8 @@ struct ObjectHitbox sMetalBoxHitbox = {
     /* hurtboxHeight:     */ 300,
 };
 
+int elevatorTimer = 0;
+
 s32 check_if_moving_over_floor(f32 maxDist, f32 offset) {
     struct Surface *floor;
     f32 xPos = o->oPosX + sins(o->oMoveAngleYaw) * offset;
@@ -38,4 +40,41 @@ void bhv_pushable_loop(void) {
     }
 
     cur_obj_move_using_fvel_and_gravity();
+}
+
+void bhv_pushable_elevator_loop(void) {
+    obj_set_hitbox(o, &sMetalBoxHitbox);
+
+    // METAL_BOX_NULL,
+    // METAL_BOX_MARIO_ON_TOP,
+    // METAL_BOX_GOING_UP,
+    // METAL_BOX_STOP
+
+    switch(o->oAction){
+        case METAL_BOX_NULL:
+            if (gMarioObject->platform == o) {
+                o->oAction = METAL_BOX_MARIO_ON_TOP;
+                elevatorTimer = 0;
+            }
+            break;
+        case METAL_BOX_MARIO_ON_TOP:
+            elevatorTimer++;
+            if(elevatorTimer >= 60){
+                o->oAction = METAL_BOX_GOING_UP;
+            }
+            break;
+        case METAL_BOX_GOING_UP:
+            // 768 -> 2140 -- 1372
+            o->oVelY = 10.0f;
+            o->oPosY += o->oVelY;
+            if(o->oPosY >= 2140){
+                o->oPosY = 2140;
+                o->oAction = METAL_BOX_STOP;
+            }
+            break;
+        case METAL_BOX_STOP:
+            o->oVelY = 0.0f;
+            o->oPosY = 2140;
+            break;
+    }
 }

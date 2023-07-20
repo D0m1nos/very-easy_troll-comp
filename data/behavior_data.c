@@ -1846,6 +1846,18 @@ const BehaviorScript bhvPushableMetalBox[] = {
     END_LOOP(),
 };
 
+const BehaviorScript bhvPushableMetalBoxElevator[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    LOAD_COLLISION_DATA(metal_box_seg8_collision_08024C28),
+    SET_FLOAT(oCollisionDistance, 500),
+    SET_HOME(),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pushable_elevator_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
 const BehaviorScript bhvHeaveHo[] = {
     BEGIN(OBJ_LIST_GENACTOR),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_HOLDABLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
@@ -6116,15 +6128,15 @@ const BehaviorScript bhvIntroScene[] = {
     END_LOOP(),
 };
 
-const BehaviorScript bhvChallenge[] = {
+const BehaviorScript bhvQuicksandTransporter[] = {
     BEGIN(OBJ_LIST_GENACTOR),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     BILLBOARD(),
     SET_HITBOX_WITH_OFFSET(/*Radius*/ 500, /*Height*/ 100, /*Downwards offset*/ 0),
     SET_FLOAT(oGraphYOffset, 30),
-    CALL_NATIVE(bhv_challenge_init),
+    CALL_NATIVE(bhv_quicksand_transporter_init),
     BEGIN_LOOP(),
         SET_INT(oIntangibleTimer, 0),
-        CALL_NATIVE(bhv_challenge_loop),
+        CALL_NATIVE(bhv_quicksand_transporter_loop),
     END_LOOP(),
 };

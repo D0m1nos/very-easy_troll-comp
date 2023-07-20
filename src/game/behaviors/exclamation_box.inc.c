@@ -14,9 +14,9 @@ struct ObjectHitbox sExclamationBoxHitbox = {
     /* damageOrCoinValue: */ 0,
     /* health:            */ 1,
     /* numLootCoins:      */ 0,
-    /* radius:            */ 200,
+    /* radius:            */ 150,
     /* height:            */ 150,
-    /* hurtboxRadius:     */ 200,
+    /* hurtboxRadius:     */ 150,
     /* hurtboxHeight:     */ 150,
 };
 
@@ -26,7 +26,7 @@ struct ExclamationBoxContents sExclamationBoxContents[] = {
     { EXCLAMATION_BOX_BP_VANISH_CAP,       0, 0, MODEL_MARIOS_CAP,       bhvVanishCap             },
     { EXCLAMATION_BOX_BP_KOOPA_SHELL,      0, 0, MODEL_KOOPA_SHELL,      bhvKoopaShell            },
     { EXCLAMATION_BOX_BP_COINS_1,          0, 0, MODEL_METAL_BOX,        bhvPushableMetalBox      },
-    { EXCLAMATION_BOX_BP_COINS_3,          0, 0, MODEL_NONE,             bhvThreeCoinsSpawn       },
+    { EXCLAMATION_BOX_BP_COINS_3,          0, 0, MODEL_METAL_BOX,        bhvPushableMetalBoxElevator       },
     { EXCLAMATION_BOX_BP_COINS_10,         0, 0, MODEL_NONE,             bhvTenCoinsSpawn         },
     { EXCLAMATION_BOX_BP_1UP_WALKING,      0, 0, MODEL_1UP,              bhv1upWalking            },
     { EXCLAMATION_BOX_BP_STAR_1,           0, 0, MODEL_STAR,             bhvSpawnedStar           },

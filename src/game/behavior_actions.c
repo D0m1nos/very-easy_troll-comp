@@ -64,7 +64,7 @@
 #include "behaviors/warp.inc.c"
 #include "behaviors/white_puff_explode.inc.c"
 
-#include "behaviors/challenge.inc.c"
+#include "behaviors/quicksand_transporter.inc.c"
 
 // not in behavior file
 static struct SpawnParticlesInfo sMistParticles = {
