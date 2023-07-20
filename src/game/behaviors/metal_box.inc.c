@@ -67,14 +67,14 @@ void bhv_pushable_elevator_loop(void) {
             // 768 -> 2140 -- 1372
             o->oVelY = 10.0f;
             o->oPosY += o->oVelY;
-            if(o->oPosY >= 2140){
-                o->oPosY = 2140;
+            if(o->oPosY >= 1800.0f){
+                o->oPosY = 1800.0f;
                 o->oAction = METAL_BOX_STOP;
             }
             break;
         case METAL_BOX_STOP:
             o->oVelY = 0.0f;
-            o->oPosY = 2140;
+            o->oPosY = 1800.0f;
             break;
     }
 }

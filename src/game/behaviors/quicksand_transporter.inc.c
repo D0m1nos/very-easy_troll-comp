@@ -1,14 +1,28 @@
-void bhv_quicksand_transporter_push_back(void){
+char text[30];
 
+void bhv_quicksand_transporter_push_back(void){
+    
     // set mario to idle state every frame to prevent escape
     set_mario_action(&gMarioStates[0], ACT_IDLE, 0);
 
-    if(o->oTimer == 0){ // first frame -> raise mario 100.0f, make him face forwards
-        gMarioStates[0].pos[1] += 100.0f;
+    if(o->oTimer == 0){ // first frame -> raise mario, make him face forwards
+        gMarioStates[0].pos[1] += 250.0f;
         gMarioStates[0].faceAngle[0] = 0;
         gMarioStates[0].faceAngle[1] = 16384;
         gMarioStates[0].faceAngle[2] = 0;
-    } else if(o->oTimer <= 120){ // push mario back for 4 seconds
+    } else if(o->oTimer <= (30 * 3)){
+        gMarioStates[0].vel[0] = 0.0f;
+        gMarioStates[0].vel[1] = 0.0f;
+        gMarioStates[0].vel[2] = 0.0f;
+        gMarioStates[0].forwardVel = 0.0f;
+
+        if(o->oTimer%30==0){
+            sprintf(text, "%d", 4-(o->oTimer/30));
+            //TODO: play sound clock ticking
+        }
+
+        print_text(220,110,text);
+    } else if(o->oTimer <= (30 * 8)){ // push mario back for 4 seconds
         gMarioStates[0].vel[0] = -50.0f;
         gMarioStates[0].vel[1] = 0.0f;
         gMarioStates[0].vel[2] = 0.0f;
@@ -36,16 +50,6 @@ void bhv_quicksand_transporter_push_down(void){
     } else {
         o->oAction = QUICKSAND_TRANSPORTER_END;
     }
-
-    
-
-    // char ax[30], ay[30], az[30];
-    // sprintf(ax, "%d", gMarioStates[0].faceAngle[0]);
-    // print_text(50, 80, ax);
-    // sprintf(ay, "%d", gMarioStates[0].faceAngle[1]);
-    // print_text(50, 60, ay);
-    // sprintf(az, "%d", gMarioStates[0].faceAngle[2]);
-    // print_text(50, 40, az);
     
 }
 
@@ -69,7 +73,8 @@ void bhv_quicksand_transporter_loop(void){
             bhv_quicksand_transporter_push_down();
             break;
         case QUICKSAND_TRANSPORTER_END:
-            o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
+            // o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
+            o->oAction = QUICKSAND_TRANSPORTER_NULL;
             // obj_mark_for_deletion(o);
             break;
     }
