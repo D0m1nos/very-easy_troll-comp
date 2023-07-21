@@ -546,5 +546,8 @@ extern const BehaviorScript bhvQuicksandTransporter[];
 extern const BehaviorScript bhvPushableMetalBoxElevator[];
 extern const BehaviorScript bhvEvilYellowCoinWithChild[];
 extern const BehaviorScript bhvPushableMetalBoxChild[];
+extern const BehaviorScript bhvChallengeArena[];
+extern const BehaviorScript bhvNothing[];
+extern const BehaviorScript bhvChallengeDone[];
 
 #endif // BEHAVIOR_DATA_H

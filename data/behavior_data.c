@@ -6164,3 +6164,33 @@ const BehaviorScript bhvQuicksandTransporter[] = {
         CALL_NATIVE(bhv_quicksand_transporter_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvChallengeArena[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    BILLBOARD(),
+    SET_HITBOX_WITH_OFFSET(/*Radius*/ 1000, /*Height*/ 500, /*Downwards offset*/ 0),
+    SET_FLOAT(oGraphYOffset, 30),
+    CALL_NATIVE(bhv_challenge_arena_init),
+    BEGIN_LOOP(),
+        SET_INT(oIntangibleTimer, 0),
+        CALL_NATIVE(bhv_challenge_arena_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvNothing[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    BREAK(),
+};
+
+const BehaviorScript bhvChallengeDone[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    BILLBOARD(),
+    SET_HITBOX_WITH_OFFSET(/*Radius*/ 50, /*Height*/ 50, /*Downwards offset*/ 0),
+    SET_FLOAT(oGraphYOffset, 30),
+    BEGIN_LOOP(),
+        SET_INT(oIntangibleTimer, 0),
+        CALL_NATIVE(bhv_challenge_done_loop),
+    END_LOOP(),
+}

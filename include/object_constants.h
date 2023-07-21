@@ -2726,4 +2726,14 @@ enum oActionsMetalBox {
     METAL_BOX_STOP
 };
 
+enum oActionsChallengeArena {
+    CHALLENGE_NULL,
+    CHALLENGE_ROUND_1,
+    CHALLENGE_ROUND_2,
+    CHALLENGE_ROUND_3,
+    CHALLENGE_ROUND_4,
+    CHALLENGE_ROUND_5,
+    CHALLENGE_END
+};
+
 #endif // OBJECT_CONSTANTS_H
