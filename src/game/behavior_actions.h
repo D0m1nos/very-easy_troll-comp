@@ -562,6 +562,9 @@ void bhv_challenge_arena_loop(void);
 void timer(u32 limit, u32 currentTime);
 void bhv_challenge_arena_round_1(void);
 void bhv_challenge_arena_round_2(void);
+void bhv_challenge_arena_round_3(void);
+void bhv_challenge_arena_round_4(void);
+void bhv_challenge_arena_round_5(void);
 void bhv_challenge_done_loop(void);
 
 Gfx *geo_move_mario_part_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx);

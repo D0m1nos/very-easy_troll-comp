@@ -45,7 +45,7 @@
 #define MODEL_ID_COUNT 256
 
 // Number of supported areas per level.
-#define AREA_COUNT 8
+#define AREA_COUNT 9
 
 // Makes signs and NPCs easier to talk to.
 // #define EASIER_DIALOG_TRIGGER

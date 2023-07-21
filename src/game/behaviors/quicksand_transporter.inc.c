@@ -1,4 +1,5 @@
 char text[30];
+u8 soundPlayed = 0;
 
 void bhv_quicksand_transporter_push_back(void){
     
@@ -19,11 +20,16 @@ void bhv_quicksand_transporter_push_back(void){
         if(o->oTimer%30==0){
             sprintf(text, "%d", 4-(o->oTimer/30));
             //TODO: play sound clock ticking
+            play_sound(SOUND_GENERAL_BIG_CLOCK, gGlobalSoundSource);
             //TODO: play sound mario screaming
         }
 
         print_text(220,110,text);
     } else if(o->oTimer <= (30 * 8)){ // push mario back for 4 seconds
+        if(soundPlayed == 0){
+            play_sound(SOUND_GENERAL_SCREAM, gGlobalSoundSource);
+            soundPlayed = 1;
+        }
         gMarioStates[0].vel[0] = -50.0f;
         gMarioStates[0].vel[1] = 0.0f;
         gMarioStates[0].vel[2] = 0.0f;
