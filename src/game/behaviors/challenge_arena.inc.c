@@ -4,7 +4,8 @@
 
 char time[40];
 char text_time[30] = "TIME: ";
-char test[100], test2[100], test3[100];
+char test[100], test2[100], test3[100], test4[100];
+u8 marioStopped = 0;
 
 void timer(u32 limit, u32 currentTime){
     if(currentTime % 30 == 0){
@@ -42,8 +43,13 @@ void bhv_challenge_arena_round_1(void){
 }
 
 void bhv_challenge_arena_round_2(void){
-    timer(20, o->oTimer);
-    print_text(30, 30, "2/5 BLJ");
+    if(gMarioStates[0].challengeRound == 2){
+        timer(20, o->oTimer);
+        print_text(30, 30, "2/5 BLJ");
+    } else if (gMarioStates[0].challengeRound == 6){
+        timer(30, o->oTimer);
+        print_text(30, 30, "2/5 ACTUALLY CAN YOU BOMB CLIP");
+    }
 }
 
 void bhv_challenge_arena_round_3(void){
@@ -68,8 +74,14 @@ void bhv_challenge_arena_init(void){
 
 void bhv_challenge_arena_loop(void){
 
-    // sprintf(test, "%d", gMarioStates[0].challengeRound);
-    // print_text(30, 80, test);
+    sprintf(test, "%f", gMarioStates[0].forwardVel);
+    print_text(30, 140, test);
+    sprintf(test, "%f", gMarioStates[0].vel[0]);
+    print_text(30, 120, test);
+    sprintf(test, "%f", gMarioStates[0].vel[1]);
+    print_text(30, 100, test);
+    sprintf(test, "%f", gMarioStates[0].vel[2]);
+    print_text(30, 80, test);
 
     switch(gMarioStates[0].challengeRound){
         case 2:
@@ -90,6 +102,7 @@ void bhv_challenge_arena_loop(void){
         case CHALLENGE_NULL:
             if (obj_check_if_collided_with_object(o, gMarioObject) == 1){
                 gMarioStates[0].challengeRound = 1;
+                marioStopped = 0;
                 o->oAction = CHALLENGE_ROUND_1;
             }
             break;
@@ -122,8 +135,15 @@ void bhv_challenge_arena_loop(void){
 void bhv_challenge_done_loop(void) {
     if(obj_check_if_collided_with_object(o, gMarioObject) == 1){
         gMarioStates[0].challengeRound = o->oBehParams2ndByte;
-        if(o->oBehParams2ndByte != 0 && gMarioStates[0].challengeRound != o->oBehParams2ndByte){
-            play_sound(SOUND_GENERAL2_RIGHT_ANSWER, gGlobalSoundSource);
+        if(o->oBehParams2ndByte != 0 && o->oBehParams2ndByte != 6 && gMarioStates[0].challengeRound != o->oBehParams2ndByte){
+            play_sound(SOUND_GENERAL2_RIGHT_ANSWER, gGlobalSoundSource); //TODO: fix
+        }
+        if(marioStopped == 0 && o->oBehParams2ndByte == 6){
+            marioStopped = 1;
+            gMarioStates[0].forwardVel = 0.0f; //TODO: testare di più
+            gMarioStates[0].vel[0] = 0.0f;
+            gMarioStates[0].vel[1] = 0.0f;
+            gMarioStates[0].vel[2] = 0.0f;
         }
         // obj_mark_for_deletion(o);
     }

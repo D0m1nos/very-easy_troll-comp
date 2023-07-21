@@ -3,11 +3,11 @@
 const GeoLayout wf_area_4_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
-		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 4101, 398, 270, wf_dl_Cube_015_mesh_layer_1),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 1478, -28, 368, 0, -6, 0, wf_dl_Cylinder_005_mesh_layer_1),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_ALPHA, 1484, -28, 368, 0, -6, 0, wf_dl_Cylinder_010_mesh_layer_4),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 1264, 85, 382, 60, -90, -90, wf_dl_Cylinder_011_mesh_layer_1),
-		GEO_TRANSLATE_NODE_WITH_DL(LAYER_TRANSPARENT, -120, -7871, 277, wf_dl_Plane_004_mesh_layer_5),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 11156, 8009, 368, 0, -6, 0, wf_dl_Cylinder_012_mesh_layer_1),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_ALPHA, 11163, 8009, 368, 0, -6, 0, wf_dl_Cylinder_013_mesh_layer_4),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
@@ -25,7 +25,7 @@ const GeoLayout wf_area_4[] = {
 		GEO_OPEN_NODE(),
 			GEO_CAMERA_FRUSTUM_WITH_FUNC(45.0000, 100, 30000, geo_camera_fov),
 			GEO_OPEN_NODE(),
-				GEO_CAMERA(CAMERA_MODE_8_DIRECTIONS, 82205, 0, 22430, 82205, -100, 22430, geo_camera_main),
+				GEO_CAMERA(CAMERA_MODE_8_DIRECTIONS, 76573, 0, 22430, 76573, -100, 22430, geo_camera_main),
 				GEO_OPEN_NODE(),
 					GEO_BRANCH(1, wf_area_4_geo),
 					GEO_RENDER_OBJ(),
@@ -35,7 +35,6 @@ const GeoLayout wf_area_4[] = {
 		GEO_CLOSE_NODE(),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, wf_dl_material_revert_render_settings),
 		GEO_DISPLAY_LIST(LAYER_ALPHA, wf_dl_material_revert_render_settings),
-		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, wf_dl_material_revert_render_settings),
 	GEO_CLOSE_NODE(),
 	GEO_END(),
 };

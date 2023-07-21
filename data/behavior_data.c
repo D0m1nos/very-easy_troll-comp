@@ -4049,6 +4049,14 @@ const BehaviorScript bhvRespawner[] = {
     END_LOOP(),
 };
 
+// const BehaviorScript bhvInfiniteRespawner[] = {
+//     BEGIN(OBJ_LIST_DEFAULT),
+//     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+//     BEGIN_LOOP(),
+//         CALL_NATIVE(bhv_infinite_respawner_loop),
+//     END_LOOP(),
+// };
+
 const BehaviorScript bhvSmallBully[] = {
     BEGIN(OBJ_LIST_GENACTOR),
     OR_INT(oFlags, (OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
@@ -6187,7 +6195,7 @@ const BehaviorScript bhvChallengeDone[] = {
     BEGIN(OBJ_LIST_GENACTOR),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     BILLBOARD(),
-    SET_HITBOX_WITH_OFFSET(/*Radius*/ 150, /*Height*/ 150, /*Downwards offset*/ 0),
+    SET_HITBOX_WITH_OFFSET(/*Radius*/ 300, /*Height*/ 150, /*Downwards offset*/ 0),
     SET_FLOAT(oGraphYOffset, 30),
     BEGIN_LOOP(),
         SET_INT(oIntangibleTimer, 0),

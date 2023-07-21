@@ -35,7 +35,7 @@ void bobomb_act_explode(void) {
         explosion->oGraphYOffset += 100.0f;
 
         bobomb_spawn_coin();
-        create_respawner(MODEL_BLACK_BOBOMB, bhvBobomb, 3000);
+        create_respawner(MODEL_BLACK_BOBOMB, bhvBobomb, 30);
 
         o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
     }
