@@ -23,29 +23,42 @@ void timer(u32 limit, u32 currentTime){
     print_text(90, 50, time);
 }
 
+void survive_timer(u32 limit, u32 currentTime){
+    if(currentTime % 30 == 0){
+        sprintf(time, "%d", (limit-5)-(currentTime/30));
+    }
+
+    if(currentTime >= (limit*30)){
+        sprintf(time, "%d", "DONE");
+    }
+
+    print_text(30, 50, text_time);
+    print_text(90, 50, time);
+}
+
 void bhv_challenge_arena_round_1(void){
-    timer(10, o->oTimer);
+    timer(7, o->oTimer);
     print_text(30, 30, "1/5 PICK A PIPE");
 }
 
 void bhv_challenge_arena_round_2(void){
-    timer(7, o->oTimer);
-    print_text(30, 30, "2/5 NON SO");
+    timer(20, o->oTimer);
+    print_text(30, 30, "2/5 BLJ");
 }
 
 void bhv_challenge_arena_round_3(void){
-    timer(7, o->oTimer);
-    print_text(30, 30, "3/5 NON SO");
+    survive_timer(20, o->oTimer);
+    print_text(30, 30, "3/5 SURVIVE");
 }
 
 void bhv_challenge_arena_round_4(void){
     timer(7, o->oTimer);
-    print_text(30, 30, "4/5 NON SO");
+    print_text(30, 30, "4/5 PLATFORMING");
 }
 
 void bhv_challenge_arena_round_5(void){
     timer(7, o->oTimer);
-    print_text(30, 30, "5/5 NON SO");
+    print_text(30, 30, "5/5 DEFEAT WHOMP");
 }
 
 
@@ -55,8 +68,8 @@ void bhv_challenge_arena_init(void){
 
 void bhv_challenge_arena_loop(void){
 
-    sprintf(test, "%d", gMarioStates[0].challengeRound);
-    print_text(30, 80, test);
+    // sprintf(test, "%d", gMarioStates[0].challengeRound);
+    // print_text(30, 80, test);
 
     switch(gMarioStates[0].challengeRound){
         case 2:
@@ -109,9 +122,9 @@ void bhv_challenge_arena_loop(void){
 void bhv_challenge_done_loop(void) {
     if(obj_check_if_collided_with_object(o, gMarioObject) == 1){
         gMarioStates[0].challengeRound = o->oBehParams2ndByte;
-        if(o->oBehParams2ndByte != 0){
+        if(o->oBehParams2ndByte != 0 && gMarioStates[0].challengeRound != o->oBehParams2ndByte){
             play_sound(SOUND_GENERAL2_RIGHT_ANSWER, gGlobalSoundSource);
         }
-        obj_mark_for_deletion(o);
+        // obj_mark_for_deletion(o);
     }
 }
