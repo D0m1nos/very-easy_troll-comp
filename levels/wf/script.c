@@ -174,7 +174,7 @@ const LevelScript level_wf_entry[] = {
 		OBJECT(MODEL_NONE, 8, 109, 55, 0, 0, 0, 0x00000000, bhvChallengeArena),
 		OBJECT(MODEL_NONE, 0, 200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		MARIO_POS(0x01, 0, -82205, 0, -22430),
-		OBJECT(MODEL_BITS_WARP_PIPE, 1262, 19, 133, 0, 0, 0, (0xB1 << 16), bhvWarpPipe),
+		OBJECT(MODEL_BITS_WARP_PIPE, 3894, 19, 193, 0, 0, 0, (0xB1 << 16), bhvWarpPipe),
 		TERRAIN(wf_area_4_collision),
 		MACRO_OBJECTS(wf_area_4_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_BRAWL_BREAKS),
