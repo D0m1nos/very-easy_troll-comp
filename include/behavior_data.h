@@ -544,5 +544,7 @@ extern const BehaviorScript bhvIntroScene[];
 extern const BehaviorScript bhvUnusedFakeStar[];
 extern const BehaviorScript bhvQuicksandTransporter[];
 extern const BehaviorScript bhvPushableMetalBoxElevator[];
+extern const BehaviorScript bhvEvilYellowCoinWithChild[];
+extern const BehaviorScript bhvPushableMetalBoxChild[];
 
 #endif // BEHAVIOR_DATA_H

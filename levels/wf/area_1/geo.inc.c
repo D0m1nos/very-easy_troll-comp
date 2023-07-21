@@ -6,7 +6,7 @@ const GeoLayout wf_area_1_geo[] = {
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 809, 74, -214, 0, 0, -4, wf_dl_Cube_mesh_layer_1),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, -2238, 15, -37, wf_dl_Cube_001_mesh_layer_1),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 4807, 310, -37, wf_dl_Cube_002_mesh_layer_1),
-		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 4333, 2140, -37, wf_dl_Cube_003_mesh_layer_1),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 4333, 2074, -37, wf_dl_Cube_003_mesh_layer_1),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 28, 17, -37, 0, 10, 0, wf_dl_Cylinder_mesh_layer_1),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 4831, 634, -7, wf_dl_Cylinder_001_mesh_layer_1),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 4831, 694, -7, wf_dl_Cylinder_002_mesh_layer_1),

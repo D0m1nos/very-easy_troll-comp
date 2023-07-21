@@ -67,14 +67,28 @@ void bhv_pushable_elevator_loop(void) {
             // 768 -> 2140 -- 1372
             o->oVelY = 10.0f;
             o->oPosY += o->oVelY;
-            if(o->oPosY >= 1800.0f){
-                o->oPosY = 1800.0f;
+            if(o->oPosY >= 1850.0f){
+                o->oPosY = 1850.0f;
                 o->oAction = METAL_BOX_STOP;
             }
             break;
         case METAL_BOX_STOP:
             o->oVelY = 0.0f;
-            o->oPosY = 1800.0f;
+            o->oPosY = 1850.0f;
             break;
     }
+}
+
+void bhv_pushable_child_loop(void){
+    obj_set_hitbox(o, &sMetalBoxHitbox);
+
+    if(obj_check_if_collided_with_object(o->parentObj, gMarioObject) == 1){
+        o->oPosX += 400.0f;
+    }
+}
+
+void bhv_pushable_child_init(void){
+    obj_set_hitbox(o, &sMetalBoxHitbox);
+    
+    o->oPosY -= (o->oBehParams2ndByte * 10.0f);
 }

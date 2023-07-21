@@ -554,6 +554,9 @@ void bhv_quicksand_transporter_init(void);
 void bhv_quicksand_transporter_push_back(void);
 void bhv_quicksand_transporter_push_down(void);
 void bhv_pushable_elevator_loop(void);
+void bhv_yellow_coin_child_init(void);
+void bhv_pushable_child_loop(void);
+void bhv_pushable_child_init(void);
 
 Gfx *geo_move_mario_part_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx);
 

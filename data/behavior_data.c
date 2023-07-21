@@ -996,11 +996,22 @@ const BehaviorScript bhvYellowCoin[] = {
 
 const BehaviorScript bhvEvilYellowCoin[] = {
     BEGIN(OBJ_LIST_LEVEL),
-    // Yellow coin - common:
     BILLBOARD(),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     CALL_NATIVE(bhv_init_room),
     CALL_NATIVE(bhv_yellow_coin_init),
+    SET_INT(oDamageOrCoinValue, -100),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_yellow_coin_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvEvilYellowCoinWithChild[] = {
+    BEGIN(OBJ_LIST_LEVEL),
+    BILLBOARD(),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_init_room),
+    CALL_NATIVE(bhv_yellow_coin_child_init),
     SET_INT(oDamageOrCoinValue, -100),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_yellow_coin_loop),
@@ -1854,6 +1865,19 @@ const BehaviorScript bhvPushableMetalBoxElevator[] = {
     SET_HOME(),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_pushable_elevator_loop),
+        CALL_NATIVE(load_object_collision_model),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvPushableMetalBoxChild[] = {
+    BEGIN(OBJ_LIST_SURFACE),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    LOAD_COLLISION_DATA(metal_box_seg8_collision_08024C28),
+    SET_FLOAT(oCollisionDistance, 500),
+    CALL_NATIVE(bhv_pushable_child_init),
+    SET_HOME(),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_pushable_child_loop),
         CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
@@ -6132,7 +6156,7 @@ const BehaviorScript bhvQuicksandTransporter[] = {
     BEGIN(OBJ_LIST_GENACTOR),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     BILLBOARD(),
-    SET_HITBOX_WITH_OFFSET(/*Radius*/ 500, /*Height*/ 100, /*Downwards offset*/ 0),
+    SET_HITBOX_WITH_OFFSET(/*Radius*/ 1000, /*Height*/ 130, /*Downwards offset*/ 0),
     SET_FLOAT(oGraphYOffset, 30),
     CALL_NATIVE(bhv_quicksand_transporter_init),
     BEGIN_LOOP(),

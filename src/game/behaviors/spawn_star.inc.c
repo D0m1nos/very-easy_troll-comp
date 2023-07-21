@@ -32,6 +32,21 @@ void bhv_collect_star_init(void) {
 void bhv_collect_star_loop(void) {
     o->oFaceAngleYaw += 0x800;
 
+    // char text[40];
+    // sprintf(text, "%f", dist_between_objects(o, gMarioObject));
+    // print_text(50, 80, text);
+    // char text2[40];
+    // sprintf(text2, "%f", lateral_dist_between_objects(o, gMarioObject));
+    // print_text(50, 60, text2);
+    
+
+    if(dist_between_objects(o, gMarioObject) <= 500.0f){
+        o->oPosY -= 40.0f;
+        if(o->oPosY <= 400.0f){
+            o->oPosY = 400.0f;
+        }
+    }
+
     if (o->oInteractStatus & INT_STATUS_INTERACTED) {
         obj_mark_for_deletion(o);
         o->oInteractStatus = INT_STATUS_NONE;

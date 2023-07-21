@@ -19,6 +19,7 @@ void bhv_quicksand_transporter_push_back(void){
         if(o->oTimer%30==0){
             sprintf(text, "%d", 4-(o->oTimer/30));
             //TODO: play sound clock ticking
+            //TODO: play sound mario screaming
         }
 
         print_text(220,110,text);
