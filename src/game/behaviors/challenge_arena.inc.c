@@ -61,7 +61,7 @@ void bhv_challenge_arena_round_3(void){
 }
 
 void bhv_challenge_arena_round_4(void){
-    timer(7, o->oTimer);
+    timer(60, o->oTimer);
     print_text(30, 30, "4/5 PLATFORMING");
 }
 
@@ -79,12 +79,12 @@ void bhv_challenge_arena_loop(void){
 
     // sprintf(test, "%f", gMarioStates[0].forwardVel);
     // print_text(30, 140, test);
-    sprintf(test, "%f", gMarioStates[0].pos[0]);
-    print_text(30, 120, test);
-    sprintf(test, "%f", gMarioStates[0].pos[1]);
-    print_text(30, 100, test);
-    sprintf(test, "%f", gMarioStates[0].pos[2]);
-    print_text(30, 80, test);
+    // sprintf(test, "%f", gMarioStates[0].pos[0]);
+    // print_text(30, 120, test);
+    // sprintf(test, "%f", gMarioStates[0].pos[1]);
+    // print_text(30, 100, test);
+    // sprintf(test, "%f", gMarioStates[0].pos[2]);
+    // print_text(30, 80, test);
 
     switch(gMarioStates[0].challengeRound){
         case 2:

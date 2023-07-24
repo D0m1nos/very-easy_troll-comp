@@ -567,6 +567,7 @@ void bhv_challenge_arena_round_4(void);
 void bhv_challenge_arena_round_5(void);
 void bhv_challenge_done_loop(void);
 void bhv_survival_loop(void);
+void bhv_actually_rotating_platform_loop(void);
 // void bhv_infinite_respawner_loop(void);
 // void create_infinite_respawner(ModelID32 model, const BehaviorScript *behToSpawn, s32 minSpawnDist);
 

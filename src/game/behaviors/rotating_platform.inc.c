@@ -38,6 +38,37 @@ void bhv_rotating_platform_loop(void) {
         o->oCollisionDistance = sWFRotatingPlatformData[o->oBehParams2ndByte].collisionDistance;
         cur_obj_scale(sWFRotatingPlatformData[o->oBehParams2ndByte].scale * 0.01f);
     }
+    
+    o->oAngleVelYaw = speed << 4;
+    if(dist_between_objects(o, gMarioObject) <= 375.0f){
+        o->oFaceAngleYaw -= o->oAngleVelYaw;
+    } else {
+        o->oFaceAngleYaw += o->oAngleVelYaw;
+    }
+    
+}
+
+u8 rotating = 0;
+
+void bhv_actually_rotating_platform_init(void) {
+    rotating = 0;
+}
+
+void bhv_actually_rotating_platform_loop(void) {
+    s8 speed = GET_BPARAM1(o->oBehParams);
+    if (o->oTimer == 0) {
+        obj_set_collision_data(o, sWFRotatingPlatformData[o->oBehParams2ndByte].collisionData);
+        o->oCollisionDistance = sWFRotatingPlatformData[o->oBehParams2ndByte].collisionDistance;
+        cur_obj_scale(sWFRotatingPlatformData[o->oBehParams2ndByte].scale * 0.01f);
+    }
     o->oAngleVelYaw = speed << 4;
     o->oFaceAngleYaw += o->oAngleVelYaw;
+    if(dist_between_objects(o, gMarioObject) <= 300.0f){
+        rotating = 1;
+    }
+
+    if(rotating == 1){
+        o->oFaceAngleRoll += o->oAngleVelYaw;
+    }
+    
 }

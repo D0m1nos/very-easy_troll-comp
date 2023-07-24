@@ -1178,6 +1178,7 @@ s32 obj_check_if_collided_with_object(struct Object *obj1, struct Object *obj2) 
     s32 i;
     for (i = 0; i < obj1->numCollidedObjs; i++) {
         if (obj1->collidedObjs[i] == obj2) {
+            // print_text(100,100,"YEP");
             return TRUE;
         }
     }
