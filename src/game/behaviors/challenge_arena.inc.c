@@ -1,11 +1,8 @@
-// struct challenge{
-
-// }
-
 char time[40];
 char text_time[30] = "TIME: ";
 char test[100], test2[100], test3[100], test4[100];
 u8 marioStopped = 0;
+u8 previousAction;
 
 void timer(u32 limit, u32 currentTime){
     if(currentTime % 30 == 0){
@@ -48,7 +45,7 @@ void bhv_challenge_arena_round_2(void){
         print_text(30, 30, "2/5 BLJ");
     } else if (gMarioStates[0].challengeRound == 6){
         timer(30, o->oTimer);
-        print_text(30, 30, "2/5 ACTUALLY CAN YOU BOMB CLIP");
+        print_text(30, 30, "ACTUALLY CAN YOU BOMB CLIP");
     }
 }
 
@@ -125,26 +122,25 @@ void bhv_challenge_arena_loop(void){
             break;
     }
 
-    
+    if(previousAction != o->oAction){
+        play_sound(SOUND_GENERAL2_RIGHT_ANSWER, gGlobalSoundSource);
+    }
+
+    previousAction = o->oAction;
 }
-
-// void bhv_challenge_done_init(void) {
-
-// }
 
 void bhv_challenge_done_loop(void) {
     if(obj_check_if_collided_with_object(o, gMarioObject) == 1){
         gMarioStates[0].challengeRound = o->oBehParams2ndByte;
-        if(o->oBehParams2ndByte != 0 && o->oBehParams2ndByte != 6 && gMarioStates[0].challengeRound != o->oBehParams2ndByte){
-            play_sound(SOUND_GENERAL2_RIGHT_ANSWER, gGlobalSoundSource); //TODO: fix
-        }
+
         if(marioStopped == 0 && o->oBehParams2ndByte == 6){
             marioStopped = 1;
-            gMarioStates[0].forwardVel = 0.0f; //TODO: testare di più
+            gMarioStates[0].forwardVel = 0.0f;
             gMarioStates[0].vel[0] = 0.0f;
             gMarioStates[0].vel[1] = 0.0f;
             gMarioStates[0].vel[2] = 0.0f;
         }
+
         // obj_mark_for_deletion(o);
     }
 }
