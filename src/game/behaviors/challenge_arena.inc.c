@@ -45,7 +45,8 @@ void bhv_challenge_arena_round_2(void){
         print_text(30, 30, "2/5 BLJ");
     } else if (gMarioStates[0].challengeRound == 6){
         timer(30, o->oTimer);
-        print_text(30, 30, "ACTUALLY CAN YOU BOMB CLIP");
+        print_text(30, 30, "ACTUALLY CAN YOU BOMB");
+        print_text(30, 10, "CLIP");
     }
 }
 
