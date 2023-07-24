@@ -549,5 +549,6 @@ extern const BehaviorScript bhvPushableMetalBoxChild[];
 extern const BehaviorScript bhvChallengeArena[];
 extern const BehaviorScript bhvNothing[];
 extern const BehaviorScript bhvChallengeDone[];
+extern const BehaviorScript bhvChallengeSurvival[];
 
 #endif // BEHAVIOR_DATA_H

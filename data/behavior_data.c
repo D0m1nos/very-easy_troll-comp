@@ -6202,3 +6202,10 @@ const BehaviorScript bhvChallengeDone[] = {
         CALL_NATIVE(bhv_challenge_done_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvChallengeSurvival[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_survival_loop),
+    END_LOOP(),
+};

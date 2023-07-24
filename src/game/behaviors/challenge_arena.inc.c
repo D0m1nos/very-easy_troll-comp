@@ -1,5 +1,5 @@
 char time[40];
-char text_time[30] = "TIME: ";
+char text_time[30] = "TIME: ", text_done[30] = "DONE";
 char test[100], test2[100], test3[100], test4[100];
 u8 marioStopped = 0;
 u8 previousAction;
@@ -26,12 +26,17 @@ void survive_timer(u32 limit, u32 currentTime){
         sprintf(time, "%d", (limit-5)-(currentTime/30));
     }
 
-    if(currentTime >= (limit*30)){
-        sprintf(time, "%d", "DONE");
+    if(currentTime == (limit*30)){
+        spawn_object_relative(0xB1, 0, 0, 0, o, MODEL_BITS_WARP_PIPE, bhvWarpPipe);
     }
 
     print_text(30, 50, text_time);
-    print_text(90, 50, time);
+    if(currentTime <= (limit*30)){
+        print_text(90, 50, time);
+    } else {
+        print_text(90, 50, text_done);
+    }
+    
 }
 
 void bhv_challenge_arena_round_1(void){
@@ -72,13 +77,13 @@ void bhv_challenge_arena_init(void){
 
 void bhv_challenge_arena_loop(void){
 
-    sprintf(test, "%f", gMarioStates[0].forwardVel);
-    print_text(30, 140, test);
-    sprintf(test, "%f", gMarioStates[0].vel[0]);
+    // sprintf(test, "%f", gMarioStates[0].forwardVel);
+    // print_text(30, 140, test);
+    sprintf(test, "%f", gMarioStates[0].pos[0]);
     print_text(30, 120, test);
-    sprintf(test, "%f", gMarioStates[0].vel[1]);
+    sprintf(test, "%f", gMarioStates[0].pos[1]);
     print_text(30, 100, test);
-    sprintf(test, "%f", gMarioStates[0].vel[2]);
+    sprintf(test, "%f", gMarioStates[0].pos[2]);
     print_text(30, 80, test);
 
     switch(gMarioStates[0].challengeRound){
@@ -143,5 +148,31 @@ void bhv_challenge_done_loop(void) {
         }
 
         // obj_mark_for_deletion(o);
+    }
+}
+
+void bhv_survival_loop(void) {
+    f32 randomPosX, randomPosZ;
+    struct Object *enemy;
+    if(o->oTimer < (30*10)){
+        if(o->oTimer % 30 == 0){
+            randomPosX = random_float() * 3303.0f - 335.0f; // da -335 a +3303
+            randomPosZ = random_float() * 2315.0f - 1585.0f; // da -1585 a +2315
+            enemy = spawn_object(o, MODEL_GOOMBA, bhvGoomba);
+            
+            enemy->oPosX = randomPosX;
+            enemy->oPosY = o->oPosY;
+            enemy->oPosZ = randomPosZ;
+        }
+    } else if(o->oTimer < (30*20)) {
+        if(o->oTimer % 30 == 0){
+            randomPosX = random_float() * 3303.0f - 335.0f; // da -335 a +3303
+            randomPosZ = random_float() * 2315.0f - 1585.0f; // da -1585 a +2315
+            enemy = spawn_object(o, MODEL_CHUCKYA, bhvChuckya);
+            
+            enemy->oPosX = randomPosX;
+            enemy->oPosY = o->oPosY;
+            enemy->oPosZ = randomPosZ;
+        }
     }
 }

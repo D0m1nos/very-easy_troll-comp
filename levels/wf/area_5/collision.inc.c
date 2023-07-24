@@ -1,6 +1,6 @@
 const Collision wf_area_5_collision[] = {
 	COL_INIT(),
-	COL_VERTEX_INIT(59),
+	COL_VERTEX_INIT(55),
 	COL_VERTEX(1478, -74, -1889),
 	COL_VERTEX(1478, 19, -1889),
 	COL_VERTEX(2699, 19, -1531),
@@ -56,10 +56,6 @@ const Collision wf_area_5_collision[] = {
 	COL_VERTEX(899, 199, 2340),
 	COL_VERTEX(-75, 199, 1714),
 	COL_VERTEX(258, 199, -1531),
-	COL_VERTEX(-1986, -7871, -2923),
-	COL_VERTEX(-1987, -7871, 3477),
-	COL_VERTEX(4666, -7871, 3477),
-	COL_VERTEX(4666, -7871, -2923),
 	COL_TRI_INIT(SURFACE_DEFAULT, 106),
 	COL_TRI(0, 1, 2),
 	COL_TRI(0, 2, 3),
@@ -167,9 +163,6 @@ const Collision wf_area_5_collision[] = {
 	COL_TRI(1, 54, 49),
 	COL_TRI(26, 25, 44),
 	COL_TRI(26, 44, 53),
-	COL_TRI_INIT(SURFACE_DEATH_PLANE, 2),
-	COL_TRI(55, 56, 57),
-	COL_TRI(55, 57, 58),
 	COL_TRI_STOP(),
 	COL_END()
 };

@@ -310,8 +310,18 @@ void huge_goomba_weakly_attacked(void) {
 /**
  * Update function for goomba.
  */
+
+// char test5[100], test6[100], test7[100], test8[100];
+
 void bhv_goomba_update(void) {
     // PARTIAL_UPDATE
+
+    // sprintf(test5, "%f", o->oPosX);
+    // print_text(180, 140, test5);
+    // sprintf(test6, "%f", o->oPosY);
+    // print_text(180, 120, test6);
+    // sprintf(test7, "%f", o->oPosZ);
+    // print_text(180, 100, test7);
 
     f32 animSpeed;
 
@@ -319,7 +329,7 @@ void bhv_goomba_update(void) {
         // If this goomba has a spawner and mario moved away from the spawner, unload
         if (o->parentObj != o) {
             if (o->parentObj->oAction == GOOMBA_TRIPLET_SPAWNER_ACT_UNLOADED) {
-                obj_mark_for_deletion(o);
+                // obj_mark_for_deletion(o);
             }
         }
 
@@ -361,7 +371,7 @@ void bhv_goomba_update(void) {
         if (obj_handle_attacks(&sGoombaHitbox, GOOMBA_ACT_ATTACKED_MARIO,
                                sGoombaAttackHandlers[o->oGoombaSize & 0x1])
                                && (o->oAction != GOOMBA_ACT_ATTACKED_MARIO)) {
-            mark_goomba_as_dead();
+            // mark_goomba_as_dead();
         }
 
         cur_obj_move_standard(-78);
