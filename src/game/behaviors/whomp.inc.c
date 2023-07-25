@@ -16,23 +16,35 @@ void whomp_play_sfx_from_pound_animation(void) {
     }
 }
 
+struct Object *fire1, *fire2, *fire3;
+u8 spawnedFireSpitters = 0;
+
 void whomp_init(void) {
     cur_obj_init_animation_with_accel_and_sound(0, 1.0f);
     cur_obj_set_pos_to_home();
 
     if (o->oBehParams2ndByte != 0) {
+        if(spawnedFireSpitters == 0){
+            spawnedFireSpitters = 1;
+            fire1 = spawn_object(o, MODEL_BOWLING_BALL, bhvFireSpitter);
+            fire1->oPosY += 200.0f;
+            fire2 = spawn_object(o, MODEL_BOWLING_BALL, bhvFireSpitter);
+            fire2->oPosY += 200.0f;
+            // fire3 = spawn_object(o, MODEL_BOWLING_BALL, bhvFireSpitter);
+        }
+        
         gSecondCameraFocus = o;
         cur_obj_scale(2.0f);
         if (o->oSubAction == 0) {
             if (o->oDistanceToMario < 600.0f) {
                 o->oSubAction++;
-                seq_player_lower_volume(SEQ_PLAYER_LEVEL, 60, 40);
+                // seq_player_lower_volume(SEQ_PLAYER_LEVEL, 60, 40);
             } else {
                 cur_obj_set_pos_to_home();
                 o->oHealth = 3;
             }
-        } else if (cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP, 
-            DIALOG_FLAG_TURN_TO_MARIO, CUTSCENE_DIALOG, DIALOG_114)) {
+        } else /* if (cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP, 
+            DIALOG_FLAG_TURN_TO_MARIO, CUTSCENE_DIALOG, DIALOG_114)) */ {
             o->oAction = 2;
         }
     } else if (o->oDistanceToMario < 500.0f) {
@@ -71,13 +83,13 @@ void whomp_patrol(void) {
 #endif
 
     cur_obj_init_animation_with_accel_and_sound(0, 1.0f);
-    o->oForwardVel = 3.0f;
+    o->oForwardVel = 6.0f;
 
     if (distWalked > patrolDist) {
         o->oAction = 7;
     } else if (marioAngle < 0x2000) {
         if (o->oDistanceToMario < 1500.0f) {
-            o->oForwardVel = 9.0f;
+            o->oForwardVel = 15.0f;
             cur_obj_init_animation_with_accel_and_sound(0, 3.0f);
         }
         if (o->oDistanceToMario < 300.0f) {
@@ -90,14 +102,14 @@ void whomp_patrol(void) {
 
 void king_whomp_chase(void) {
     cur_obj_init_animation_with_accel_and_sound(0, 1.0f);
-    o->oForwardVel = 3.0f;
+    o->oForwardVel = 9.0f;
     cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x200);
 
     if (o->oTimer > 30) {
         s16 marioAngle = abs_angle_diff(o->oAngleToMario, o->oMoveAngleYaw);
         if (marioAngle < 0x2000) {
             if (o->oDistanceToMario < 1500.0f) {
-                o->oForwardVel = 9.0f;
+                o->oForwardVel = 15.0f;
                 cur_obj_init_animation_with_accel_and_sound(0, 3.0f);
             }
             if (o->oDistanceToMario < 300.0f) {
@@ -122,15 +134,20 @@ void whomp_prepare_jump(void) {
     }
 }
 
+s32 lastYaw;
+
 void whomp_jump(void) {
     if (o->oTimer == 0) {
         o->oVelY = 40.0f;
+        lastYaw = o->oFaceAngleYaw;
     }
 
     if (o->oTimer >= 8) {
         o->oAngleVelPitch += 0x100;
         o->oFaceAnglePitch += o->oAngleVelPitch;
+        o->oFaceAngleYaw += (o->oAngleVelPitch * 20);
         if (o->oFaceAnglePitch > 0x4000) {
+            o->oFaceAngleYaw = lastYaw;
             o->oAngleVelPitch = 0;
             o->oFaceAnglePitch = 0x4000;
             o->oAction = 5;
@@ -152,6 +169,7 @@ void whomp_land(void) {
 }
 
 void king_whomp_on_ground(void) {
+    // struct Object *fiol;
     if (o->oSubAction == 0) {
         if (cur_obj_is_mario_ground_pounding_platform()) {
             Vec3f pos;
@@ -161,6 +179,24 @@ void king_whomp_on_ground(void) {
             if (o->oHealth == 0) {
                 o->oAction = 8;
             } else {
+                // fiol = spawn_object(o, MODEL_FLYGUY, bhvFlyGuy);
+                // fiol->oPosX = o->oPosX+600;
+                // fiol->oPosY = o->oPosY+100;
+                // fiol->oPosZ = o->oPosZ-600;
+                // fiol->oFaceAnglePitch = 0;
+
+                // fiol = spawn_object(o, MODEL_FLYGUY, bhvFlyGuy);
+                // fiol->oPosX = o->oPosX-600;
+                // fiol->oPosY = o->oPosY+100;
+                // fiol->oPosZ = o->oPosZ+600;
+                // fiol->oFaceAnglePitch = 0;
+
+                // fiol = spawn_object(o, MODEL_FLYGUY, bhvFlyGuy);
+                // fiol->oPosX = o->oPosX;
+                // fiol->oPosY = o->oPosY+100;
+                // fiol->oPosZ = o->oPosZ-600;
+                // fiol->oFaceAnglePitch = 0;
+
                 vec3f_copy(pos, &o->oPosVec);
                 vec3f_copy(&o->oPosVec, &gMarioObject->oPosVec);
                 spawn_mist_particles_variable(0, 0, 100.0f);
@@ -189,11 +225,11 @@ void whomp_on_ground(void) {
     if (o->oSubAction == 0) {
         if (gMarioObject->platform == o) {
             if (cur_obj_is_mario_ground_pounding_platform()) {
-                o->oNumLootCoins = 5;
-                obj_spawn_loot_yellow_coins(o, 5, 20.0f);
+                // o->oNumLootCoins = 5;
+                // obj_spawn_loot_yellow_coins(o, 5, 20.0f);
                 o->oAction = 8;
             } else {
-                cur_obj_spawn_loot_coin_at_mario_pos();
+                // cur_obj_spawn_loot_coin_at_mario_pos();
                 o->oSubAction++;
             }
         }
@@ -214,7 +250,7 @@ void whomp_on_ground_general(void) {
         } else {
             whomp_on_ground();
         }
-        if (o->oTimer > 100 || (gMarioState->action == ACT_SQUISHED && o->oTimer > 30)) {
+        if (o->oTimer > 30 || (gMarioState->action == ACT_SQUISHED && o->oTimer > 30)) {
             o->oSubAction = 10;
         }
     } else if (o->oFaceAnglePitch > 0) {
@@ -233,8 +269,8 @@ void whomp_on_ground_general(void) {
 
 void whomp_die(void) {
     if (o->oBehParams2ndByte != 0) {
-        if (cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP, 
-            DIALOG_FLAG_TEXT_DEFAULT, CUTSCENE_DIALOG, DIALOG_115)) {
+        // if (cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP, 
+        //     DIALOG_FLAG_TEXT_DEFAULT, CUTSCENE_DIALOG, DIALOG_115)) {
             obj_set_angle(o, 0, 0, 0);
             cur_obj_hide();
             cur_obj_become_intangible();
@@ -242,10 +278,11 @@ void whomp_die(void) {
             spawn_triangle_break_particles(20, MODEL_DIRT_ANIMATION, 3.0f, 4);
             cur_obj_shake_screen(SHAKE_POS_SMALL);
             o->oPosY += 100.0f;
-            spawn_default_star(180.0f, 3880.0f, 340.0f);
+            spawn_object_relative(0xB1, 0, 0, 0, o, MODEL_BITS_WARP_PIPE, bhvWarpPipe);
+            // spawn_default_star(180.0f, 3880.0f, 340.0f);
             cur_obj_play_sound_2(SOUND_OBJ_KING_WHOMP_DEATH);
             o->oAction = 9;
-        }
+        // }
     } else {
         spawn_mist_particles_variable(0, 0, 100.0f);
         spawn_triangle_break_particles(20, MODEL_DIRT_ANIMATION, 3.0f, 4);
@@ -257,7 +294,7 @@ void whomp_die(void) {
 
 void king_whomp_stop_music(void) {
     if (o->oTimer == 60) {
-        stop_background_music(SEQUENCE_ARGS(4, SEQ_EVENT_BOSS));
+        // stop_background_music(SEQUENCE_ARGS(4, SEQ_EVENT_BOSS));
     }
 }
 
@@ -273,6 +310,9 @@ ObjActionFunc sWhompActions[] = {
     king_whomp_stop_music,
 };
 
+char hp[10];
+s32 angle = 0;
+
 void bhv_whomp_loop(void) {
     cur_obj_update_floor_and_walls();
     cur_obj_call_action_function(sWhompActions);
@@ -284,5 +324,17 @@ void bhv_whomp_loop(void) {
             cur_obj_hide_if_mario_far_away_y(1000.0f);
         }
         load_object_collision_model();
+    }
+    
+    if(o->oBehParams2ndByte != 0){
+        angle += 2000;
+        fire1->oPosX = fire1->parentObj->oPosX + 375.0f * sins(angle);
+        fire1->oPosZ = (fire1->parentObj->oPosZ-100.0f) + 350.0f * coss(angle);
+        fire2->oPosX = fire1->parentObj->oPosX + 375.0f * sins(angle-16384);
+        fire2->oPosZ = (fire1->parentObj->oPosZ-100.0f) + 350.0f * coss(angle-16384);
+
+        print_text(30, 50, "HP: ");
+        sprintf(hp, "%d", o->oHealth);
+        print_text(60, 50, hp);
     }
 }
