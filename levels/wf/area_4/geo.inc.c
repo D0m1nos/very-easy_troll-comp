@@ -5,9 +5,9 @@ const GeoLayout wf_area_4_geo[] = {
 	GEO_OPEN_NODE(),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 1478, -28, 368, 0, -6, 0, wf_dl_Cylinder_005_mesh_layer_1),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_ALPHA, 1484, -28, 368, 0, -6, 0, wf_dl_Cylinder_010_mesh_layer_4),
-		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 1261, 107, 382, 52, -90, -90, wf_dl_Cylinder_011_mesh_layer_1),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 1261, 107, 382, 60, -90, -90, wf_dl_Cylinder_011_mesh_layer_1),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 11156, 8009, 368, 0, -6, 0, wf_dl_Cylinder_012_mesh_layer_1),
-		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_ALPHA, 11163, 8009, 368, 0, -6, 0, wf_dl_Cylinder_013_mesh_layer_4),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_ALPHA, 11163, 8009, 369, 0, -6, 0, wf_dl_Cylinder_013_mesh_layer_4),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };

@@ -33,10 +33,10 @@ void bhv_collect_star_loop(void) {
     o->oFaceAngleYaw += 0x800;
 
     // char text[40];
-    // sprintf(text, "%f", dist_between_objects(o, gMarioObject));
+    // sprintf(text, "%f", gCamera->pos[0]);
     // print_text(50, 80, text);
     // char text2[40];
-    // sprintf(text2, "%f", lateral_dist_between_objects(o, gMarioObject));
+    // sprintf(text2, "%f", gCamera->pos[2]);
     // print_text(50, 60, text2);
     
 

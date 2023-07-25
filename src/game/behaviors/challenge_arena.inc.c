@@ -129,6 +129,8 @@ void bhv_challenge_arena_loop(void){
     }
 
     if(previousAction != o->oAction){
+        gMarioStates[0].healCounter = 31;
+        gMarioStates[0].hurtCounter = 0;
         play_sound(SOUND_GENERAL2_RIGHT_ANSWER, gGlobalSoundSource);
     }
 
