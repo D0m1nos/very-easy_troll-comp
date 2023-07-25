@@ -49,6 +49,7 @@ void bhv_rotating_platform_loop(void) {
 }
 
 u8 rotating = 0;
+// char test123[40], test124[40], test125[50];
 
 void bhv_actually_rotating_platform_init(void) {
     rotating = 0;
@@ -68,7 +69,17 @@ void bhv_actually_rotating_platform_loop(void) {
     }
 
     if(rotating == 1){
-        o->oFaceAngleRoll += o->oAngleVelYaw;
+        o->oFaceAngleRoll += (o->oAngleVelYaw / 2);
     }
+
+    if(o->oFaceAngleRoll >= 65000){
+        rotating = 0;
+        o->oFaceAngleRoll = 0;
+    }
+
+    // sprintf(test123, "%d", o->oFaceAngleRoll);
+    // print_text(180,180,test123);
+    // sprintf(test124, "%d", rotating);
+    // print_text(180,160,test124);
     
 }

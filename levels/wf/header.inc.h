@@ -147,7 +147,7 @@ extern Vtx wf_dl_Cube_020_mesh_layer_1_vtx_0[20];
 extern Gfx wf_dl_Cube_020_mesh_layer_1_tri_0[];
 extern Vtx wf_dl_Cube_020_mesh_layer_1_vtx_1[4];
 extern Gfx wf_dl_Cube_020_mesh_layer_1_tri_1[];
-extern Vtx wf_dl_Cube_021_mesh_layer_1_vtx_0[123];
+extern Vtx wf_dl_Cube_021_mesh_layer_1_vtx_0[124];
 extern Gfx wf_dl_Cube_021_mesh_layer_1_tri_0[];
 extern Vtx wf_dl_Cylinder_007_mesh_layer_1_vtx_0[182];
 extern Gfx wf_dl_Cylinder_007_mesh_layer_1_tri_0[];
