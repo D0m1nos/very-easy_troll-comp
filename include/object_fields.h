@@ -527,6 +527,7 @@
 
 /* Fire Spitter */
 #define /*0x0F4*/ oFireSpitterScaleVel OBJECT_FIELD_F32(0x1B)
+#define /*0x0F4*/ oFireSpitterActive   OBJECT_FIELD_F32(0x1B)
 
 /* Blue Fish */
 #define /*0x0F4*/ oBlueFishRandomVel   OBJECT_FIELD_F32(0x1B)

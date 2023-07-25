@@ -3316,7 +3316,7 @@ const BehaviorScript bhvScuttlebugSpawn[] = {
 const BehaviorScript bhvWhompKingBoss[] = {
     BEGIN(OBJ_LIST_SURFACE),
     SET_INT(oBehParams2ndByte, WHOMP_BP_KING),
-    SET_INT(oHealth, 3),
+    SET_INT(oHealth, 4),
     GOTO(bhvSmallWhomp + 1 + 1),
 };
 

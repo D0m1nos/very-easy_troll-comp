@@ -16,21 +16,38 @@ void whomp_play_sfx_from_pound_animation(void) {
     }
 }
 
-struct Object *fire1, *fire2, *fire3;
+struct Object *fire1, *fire2, *fire3, *fire4;
 u8 spawnedFireSpitters = 0;
 
 void whomp_init(void) {
+    f32 heightFromGround = 300.0f;
+
     cur_obj_init_animation_with_accel_and_sound(0, 1.0f);
     cur_obj_set_pos_to_home();
 
     if (o->oBehParams2ndByte != 0) {
         if(spawnedFireSpitters == 0){
             spawnedFireSpitters = 1;
+            
             fire1 = spawn_object(o, MODEL_BOWLING_BALL, bhvFireSpitter);
-            fire1->oPosY += 200.0f;
+            fire1->oPosY += heightFromGround;
+            fire1->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
+            fire1->oFireSpitterActive = 0;
+
             fire2 = spawn_object(o, MODEL_BOWLING_BALL, bhvFireSpitter);
-            fire2->oPosY += 200.0f;
-            // fire3 = spawn_object(o, MODEL_BOWLING_BALL, bhvFireSpitter);
+            fire2->oPosY = fire1->oPosY;
+            fire2->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
+            fire2->oFireSpitterActive = 0;
+
+            fire3 = spawn_object(o, MODEL_BOWLING_BALL, bhvFireSpitter);
+            fire3->oPosY = fire1->oPosY;
+            fire3->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
+            fire3->oFireSpitterActive = 0;
+
+            fire4 = spawn_object(o, MODEL_BOWLING_BALL, bhvFireSpitter);
+            fire4->oPosY = fire1->oPosY;
+            fire4->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
+            fire4->oFireSpitterActive = 0;
         }
         
         gSecondCameraFocus = o;
@@ -41,7 +58,7 @@ void whomp_init(void) {
                 // seq_player_lower_volume(SEQ_PLAYER_LEVEL, 60, 40);
             } else {
                 cur_obj_set_pos_to_home();
-                o->oHealth = 3;
+                o->oHealth = 4;
             }
         } else /* if (cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP, 
             DIALOG_FLAG_TURN_TO_MARIO, CUTSCENE_DIALOG, DIALOG_114)) */ {
@@ -169,7 +186,10 @@ void whomp_land(void) {
 }
 
 void king_whomp_on_ground(void) {
-    // struct Object *fiol;
+    struct Object *fiol;
+    s32 i;
+    f32 heightOffset = 100.0f, XZoffset = 600.0f;
+
     if (o->oSubAction == 0) {
         if (cur_obj_is_mario_ground_pounding_platform()) {
             Vec3f pos;
@@ -179,24 +199,27 @@ void king_whomp_on_ground(void) {
             if (o->oHealth == 0) {
                 o->oAction = 8;
             } else {
-                // fiol = spawn_object(o, MODEL_FLYGUY, bhvFlyGuy);
-                // fiol->oPosX = o->oPosX+600;
-                // fiol->oPosY = o->oPosY+100;
-                // fiol->oPosZ = o->oPosZ-600;
-                // fiol->oFaceAnglePitch = 0;
-
-                // fiol = spawn_object(o, MODEL_FLYGUY, bhvFlyGuy);
-                // fiol->oPosX = o->oPosX-600;
-                // fiol->oPosY = o->oPosY+100;
-                // fiol->oPosZ = o->oPosZ+600;
-                // fiol->oFaceAnglePitch = 0;
-
-                // fiol = spawn_object(o, MODEL_FLYGUY, bhvFlyGuy);
-                // fiol->oPosX = o->oPosX;
-                // fiol->oPosY = o->oPosY+100;
-                // fiol->oPosZ = o->oPosZ-600;
-                // fiol->oFaceAnglePitch = 0;
-
+                if(o->oHealth == 1){
+                    for(i = 0; i < 3; i++){
+                        fiol = spawn_object(o, MODEL_WHOMP, bhvSmallWhomp);
+                        fiol->oPosY = o->oPosY+heightOffset;
+                        fiol->oFaceAnglePitch = 0;
+                        switch(i){
+                            case 0:
+                                fiol->oPosX = o->oPosX+XZoffset;
+                                fiol->oPosZ = o->oPosZ-XZoffset;
+                                break;
+                            case 1:
+                                fiol->oPosX = o->oPosX-XZoffset;
+                                fiol->oPosZ = o->oPosZ+XZoffset;
+                                break;
+                            case 2:
+                                fiol->oPosX = o->oPosX;
+                                fiol->oPosZ = o->oPosZ-XZoffset;
+                                break;
+                        }
+                    }
+                }
                 vec3f_copy(pos, &o->oPosVec);
                 vec3f_copy(&o->oPosVec, &gMarioObject->oPosVec);
                 spawn_mist_particles_variable(0, 0, 100.0f);
@@ -327,11 +350,43 @@ void bhv_whomp_loop(void) {
     }
     
     if(o->oBehParams2ndByte != 0){
-        angle += 2000;
+        angle += 1500;
+
+        // 0
         fire1->oPosX = fire1->parentObj->oPosX + 375.0f * sins(angle);
         fire1->oPosZ = (fire1->parentObj->oPosZ-100.0f) + 350.0f * coss(angle);
-        fire2->oPosX = fire1->parentObj->oPosX + 375.0f * sins(angle-16384);
-        fire2->oPosZ = (fire1->parentObj->oPosZ-100.0f) + 350.0f * coss(angle-16384);
+
+        // 16384
+        fire2->oPosX = fire2->parentObj->oPosX + 375.0f * sins(angle-16384);
+        fire2->oPosZ = (fire2->parentObj->oPosZ-100.0f) + 350.0f * coss(angle-16384);
+
+        // 32768
+        fire3->oPosX = fire3->parentObj->oPosX + 375.0f * sins(angle-32768);
+        fire3->oPosZ = (fire3->parentObj->oPosZ-100.0f) + 350.0f * coss(angle-32768);
+
+        // 49152
+        fire4->oPosX = fire4->parentObj->oPosX + 375.0f * sins(angle-49152);
+        fire4->oPosZ = (fire4->parentObj->oPosZ-100.0f) + 350.0f * coss(angle-49152);
+
+        if(o->oHealth <= 3){
+            fire1->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
+            fire1->oFireSpitterActive = 1;
+        }
+
+        if(o->oHealth <= 2){
+            fire3->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
+            fire3->oFireSpitterActive = 1;
+            fire3->oPosY = fire1->oPosY;
+        }
+
+        if(o->oHealth <= 1){
+            fire2->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
+            fire2->oFireSpitterActive = 1;
+            fire2->oPosY = fire1->oPosY;
+            fire4->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
+            fire4->oFireSpitterActive = 1;
+            fire4->oPosY = fire1->oPosY;
+        }
 
         print_text(30, 50, "HP: ");
         sprintf(hp, "%d", o->oHealth);
