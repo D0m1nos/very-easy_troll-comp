@@ -3,7 +3,7 @@
 const GeoLayout wf_area_6_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
-		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 15536, 4838, 367, wf_dl_Cube_015_mesh_layer_1),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 15300, 4838, 367, wf_dl_Cube_015_mesh_layer_1),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 4594, -339, 434, wf_dl_Cube_016_mesh_layer_1),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 6016, -339, 434, wf_dl_Cube_017_mesh_layer_1),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 7298, -339, 434, wf_dl_Cube_018_mesh_layer_1),

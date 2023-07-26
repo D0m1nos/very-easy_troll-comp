@@ -194,6 +194,8 @@ void king_whomp_on_ground(void) {
         if (cur_obj_is_mario_ground_pounding_platform()) {
             Vec3f pos;
             o->oHealth--;
+            gMarioStates[0].healCounter += 4;
+            // gMarioStates[0].hurtCounter -= 4;
             cur_obj_play_sound_2(SOUND_OBJ2_WHOMP_SOUND_SHORT);
             cur_obj_play_sound_2(SOUND_OBJ_KING_WHOMP_DEATH);
             if (o->oHealth == 0) {
@@ -273,7 +275,7 @@ void whomp_on_ground_general(void) {
         } else {
             whomp_on_ground();
         }
-        if (o->oTimer > 30 || (gMarioState->action == ACT_SQUISHED && o->oTimer > 30)) {
+        if (o->oTimer > 60 || (gMarioState->action == ACT_SQUISHED && o->oTimer > 30)) {
             o->oSubAction = 10;
         }
     } else if (o->oFaceAnglePitch > 0) {
@@ -391,5 +393,11 @@ void bhv_whomp_loop(void) {
         print_text(30, 50, "HP: ");
         sprintf(hp, "%d", o->oHealth);
         print_text(60, 50, hp);
+
+        char dfsfdfd[100], fefe[100];
+        sprintf(dfsfdfd, "%d", gMarioStates[0].healCounter);
+        print_text(60, 180, dfsfdfd);
+        sprintf(fefe, "%d", gMarioStates[0].hurtCounter);
+        print_text(60, 160, fefe);
     }
 }
