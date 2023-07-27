@@ -18,38 +18,39 @@ void whomp_play_sfx_from_pound_animation(void) {
 
 struct Object *fire1, *fire2, *fire3, *fire4;
 u8 spawnedFireSpitters = 0;
+f32 fireHeight;
+
+void whomp_king_init(void) {
+    f32 heightFromGround = 300.0f;
+    if (o->oBehParams2ndByte != 0) {
+        fire1 = spawn_object(o, MODEL_BOWLING_BALL, bhvFireSpitter);
+        fire1->oPosY += heightFromGround;
+        fire1->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
+        fire1->oFireSpitterActive = 0;
+        fireHeight = fire1->oPosY;
+
+        fire2 = spawn_object(o, MODEL_BOWLING_BALL, bhvFireSpitter);
+        fire2->oPosY = fire1->oPosY;
+        fire2->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
+        fire2->oFireSpitterActive = 0;
+
+        fire3 = spawn_object(o, MODEL_BOWLING_BALL, bhvFireSpitter);
+        fire3->oPosY = fire1->oPosY;
+        fire3->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
+        fire3->oFireSpitterActive = 0;
+
+        fire4 = spawn_object(o, MODEL_BOWLING_BALL, bhvFireSpitter);
+        fire4->oPosY = fire1->oPosY;
+        fire4->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
+        fire4->oFireSpitterActive = 0;
+    }
+}
 
 void whomp_init(void) {
-    f32 heightFromGround = 300.0f;
-
     cur_obj_init_animation_with_accel_and_sound(0, 1.0f);
     cur_obj_set_pos_to_home();
 
-    if (o->oBehParams2ndByte != 0) {
-        if(spawnedFireSpitters == 0){
-            spawnedFireSpitters = 1;
-            
-            fire1 = spawn_object(o, MODEL_BOWLING_BALL, bhvFireSpitter);
-            fire1->oPosY += heightFromGround;
-            fire1->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
-            fire1->oFireSpitterActive = 0;
-
-            fire2 = spawn_object(o, MODEL_BOWLING_BALL, bhvFireSpitter);
-            fire2->oPosY = fire1->oPosY;
-            fire2->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
-            fire2->oFireSpitterActive = 0;
-
-            fire3 = spawn_object(o, MODEL_BOWLING_BALL, bhvFireSpitter);
-            fire3->oPosY = fire1->oPosY;
-            fire3->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
-            fire3->oFireSpitterActive = 0;
-
-            fire4 = spawn_object(o, MODEL_BOWLING_BALL, bhvFireSpitter);
-            fire4->oPosY = fire1->oPosY;
-            fire4->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
-            fire4->oFireSpitterActive = 0;
-        }
-        
+    if (o->oBehParams2ndByte != 0) {        
         gSecondCameraFocus = o;
         cur_obj_scale(2.0f);
         if (o->oSubAction == 0) {
@@ -194,7 +195,7 @@ void king_whomp_on_ground(void) {
         if (cur_obj_is_mario_ground_pounding_platform()) {
             Vec3f pos;
             o->oHealth--;
-            gMarioStates[0].healCounter += 4;
+            gMarioStates[0].healCounter += 12;
             // gMarioStates[0].hurtCounter -= 4;
             cur_obj_play_sound_2(SOUND_OBJ2_WHOMP_SOUND_SHORT);
             cur_obj_play_sound_2(SOUND_OBJ_KING_WHOMP_DEATH);
@@ -352,6 +353,8 @@ void bhv_whomp_loop(void) {
     }
     
     if(o->oBehParams2ndByte != 0){
+        // spawnedFireSpitters = 0;
+        fire1->oPosY = fireHeight;
         angle += 1500;
 
         // 0
@@ -394,10 +397,10 @@ void bhv_whomp_loop(void) {
         sprintf(hp, "%d", o->oHealth);
         print_text(60, 50, hp);
 
-        char dfsfdfd[100], fefe[100];
-        sprintf(dfsfdfd, "%d", gMarioStates[0].healCounter);
-        print_text(60, 180, dfsfdfd);
-        sprintf(fefe, "%d", gMarioStates[0].hurtCounter);
-        print_text(60, 160, fefe);
+        // char dfsfdfd[100], fefe[100];
+        // sprintf(dfsfdfd, "%d", gMarioStates[0].healCounter);
+        // print_text(60, 180, dfsfdfd);
+        // sprintf(fefe, "%d", spawnedFireSpitters);
+        // print_text(60, 160, fefe);
     }
 }

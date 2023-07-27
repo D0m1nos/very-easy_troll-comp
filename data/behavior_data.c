@@ -3317,6 +3317,7 @@ const BehaviorScript bhvWhompKingBoss[] = {
     BEGIN(OBJ_LIST_SURFACE),
     SET_INT(oBehParams2ndByte, WHOMP_BP_KING),
     SET_INT(oHealth, 4),
+    CALL_NATIVE(whomp_king_init),
     GOTO(bhvSmallWhomp + 1 + 1),
 };
 
