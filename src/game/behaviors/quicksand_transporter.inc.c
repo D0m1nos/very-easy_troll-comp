@@ -1,66 +1,75 @@
 char text[30];
-u8 soundPlayed = 0;
+u8 soundPlayed;
+
+#include "game/print.h"
+
+void timer_quicksand(u32 limit, u32 currentTime){
+    if(currentTime % 30 == 0){
+        sprintf(text, "%d", limit-(currentTime/30));
+        play_sound(SOUND_GENERAL_BIG_CLOCK, gGlobalSoundSource);
+    }
+    
+    if(currentTime > (limit*30)){
+        sprintf(text, "%d", 3);
+    }
+
+    print_text(220,110,text);
+}
 
 void bhv_quicksand_transporter_push_back(void){
     
     // set mario to idle state every frame to prevent escape
-    set_mario_action(&gMarioStates[0], ACT_IDLE, 0);
+    set_mario_action(&gMarioStates[0], ACT_READING_NPC_DIALOG, 0);
 
     if(o->oTimer == 0){ // first frame -> raise mario, make him face forwards
+        stop_background_music(SEQUENCE_ARGS(4, SEQ_SAND_CANYON));
         gMarioStates[0].pos[1] += 250.0f;
-        gMarioStates[0].faceAngle[0] = 0;
-        gMarioStates[0].faceAngle[1] = 16384;
-        gMarioStates[0].faceAngle[2] = 0;
     } else if(o->oTimer <= (30 * 3)){
-        gMarioStates[0].vel[0] = 0.0f;
-        gMarioStates[0].vel[1] = 0.0f;
-        gMarioStates[0].vel[2] = 0.0f;
-        gMarioStates[0].forwardVel = 0.0f;
-
-        if(o->oTimer%30==0){
-            sprintf(text, "%d", 4-(o->oTimer/30));
-            //TODO: play sound clock ticking
-            play_sound(SOUND_GENERAL_BIG_CLOCK, gGlobalSoundSource);
-            //TODO: play sound mario screaming
-        }
-
-        print_text(220,110,text);
-    } else if(o->oTimer <= (30 * 8)){ // push mario back for 4 seconds
+        timer_quicksand(3, o->oTimer-1);
+        
+    } else { 
         if(soundPlayed == 0){
-            play_sound(SOUND_GENERAL_SCREAM, gGlobalSoundSource);
+            play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_DUCK_TALES_MOON), 0);
             soundPlayed = 1;
         }
-        gMarioStates[0].vel[0] = -50.0f;
-        gMarioStates[0].vel[1] = 0.0f;
-        gMarioStates[0].vel[2] = 0.0f;
-        gMarioStates[0].forwardVel = -50.0f;
-        gMarioStates[0].pos[0] -= 50.0f;
-    } else {
-        o->oAction = QUICKSAND_TRANSPORTER_PUSH_DOWN;
-    }
 
-    // char text[30];
-    // sprintf(text, "%f", gMarioStates[0].pos[1]);
-    // print_text(50, 50, text);
+        if(gMarioStates[0].pos[0] > -2400.0f) { // fino a X: -2470
+            gMarioStates[0].pos[0] -= 30.0f;
+            if(gMarioStates[0].pos[2] > 0.0f){ // fino a Z: 0
+                gMarioStates[0].pos[2] -= 10.0f;
+            } else {
+                gMarioStates[0].pos[2] += 10.0f;
+            }
+        } else {
+            gMarioStates[0].pos[0] = -2400.0f; 
+            gMarioStates[0].pos[2] = 0.0f;       
+            o->oAction = QUICKSAND_TRANSPORTER_PUSH_DOWN;
+        }
+        
+    }
 }
 
 void bhv_quicksand_transporter_push_down(void){
 
     // set mario to idle state every frame to prevent escape
-    set_mario_action(&gMarioStates[0], ACT_IDLE, 0);
+    set_mario_action(&gMarioStates[0], ACT_READING_NPC_DIALOG, 0);
 
-    if(o->oTimer <= 60){ // push mario down for 2 seconds
-        gMarioStates[0].vel[0] = 0.0f;
-        gMarioStates[0].vel[1] = -20.0f;
-        gMarioStates[0].vel[2] = 0.0f;
+    print_text(60, 140, ""); // ???????????
+
+    if(gMarioStates[0].pos[1] > 50.0f){ // fino a Y: 50
         gMarioStates[0].pos[1] -= 20.0f;
     } else {
+        gMarioStates[0].pos[1] = 50.0f;
+        set_mario_action(&gMarioStates[0], ACT_IDLE, 0);
         o->oAction = QUICKSAND_TRANSPORTER_END;
     }
+
+   
     
 }
 
 void bhv_quicksand_transporter_init(void){
+    soundPlayed = 0;
     o->oAction = QUICKSAND_TRANSPORTER_NULL;
 }
 
@@ -80,9 +89,7 @@ void bhv_quicksand_transporter_loop(void){
             bhv_quicksand_transporter_push_down();
             break;
         case QUICKSAND_TRANSPORTER_END:
-            // o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
             o->oAction = QUICKSAND_TRANSPORTER_NULL;
-            // obj_mark_for_deletion(o);
             break;
     }
 

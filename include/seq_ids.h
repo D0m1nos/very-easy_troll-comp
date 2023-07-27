@@ -49,6 +49,7 @@ enum SeqId {
     SEQ_GARDEN_GRIDLOCK,              // 0x24
     SEQ_REMINESCENCE,                 // 0x25
     SEQ_BRAWL_BREAKS,                 // 0x26
+    SEQ_DUCK_TALES_MOON,              // 0x27
     SEQ_COUNT
 };
 

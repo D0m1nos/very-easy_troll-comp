@@ -300,6 +300,7 @@ u8 sBackgroundMusicDefaultVolume[] = {
     80,  // SEQ_GARDEN_GRIDLOCK
     80,  // SEQ_REMINESCENCE
     80,  // SEQ_BRAWL_BREAKS
+    80,  // SEQ_DUCK_TALES_MOON
 };
 
 STATIC_ASSERT(ARRAY_COUNT(sBackgroundMusicDefaultVolume) == SEQ_COUNT,
