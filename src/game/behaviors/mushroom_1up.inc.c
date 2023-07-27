@@ -3,13 +3,13 @@
 void bhv_1up_interact(void) {
     if (obj_check_if_collided_with_object(o, gMarioObject)) {
         play_sound(SOUND_GENERAL_COLLECT_1UP, gGlobalSoundSource); //TODO: play buzzer sound smm2
-// #ifdef MUSHROOMS_HEAL
-//         gMarioState->healCounter   = 31;
+#ifdef MUSHROOMS_HEAL
+        gMarioState->healCounter   = 31;
 // #ifdef BREATH_METER
 //         gMarioState->breathCounter = 31;
 // #endif
-// #endif
-        gMarioState->hurtCounter = 100;
+#endif
+        // gMarioState->hurtCounter = 100;
         gMarioState->numLives++;
 #ifdef SAVE_NUM_LIVES
         save_file_set_num_lives(gMarioState->numLives);
