@@ -569,8 +569,10 @@ void bhv_challenge_done_loop(void);
 void bhv_survival_loop(void);
 void bhv_actually_rotating_platform_loop(void);
 void whomp_king_init(void);
-// void bhv_infinite_respawner_loop(void);
-// void create_infinite_respawner(ModelID32 model, const BehaviorScript *behToSpawn, s32 minSpawnDist);
+void bhv_1k_coin_star_loop(void);
+void bhv_1k_coin_star_100_coins(void);
+void bhv_1k_coin_star_200_coins(void);
+void bhv_1k_coin_star_300_coins(void);
 
 Gfx *geo_move_mario_part_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx);
 

@@ -2058,11 +2058,12 @@ Ready...set...\n\
 //Go//// Don't Go"))
 
 DEFINE_DIALOG(DIALOG_165, 1, 5, 30, 200, _("\
-I take no responsibility\n\
-whatsoever for those who\n\
-get dizzy and pass out\n\
-from running around\n\
-this post."))
+dawdwadasdassdasda\n\
+dededed\n\
+adadaaa\n\
+ergerger\n\
+hhhhhhhhhhhhhhhhhh\n\
+looooooooooooooooollll"))
 
 DEFINE_DIALOG(DIALOG_166, 1, 1, 30, 200, _("\
  Crazy? \n\

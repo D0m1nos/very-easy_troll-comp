@@ -1313,7 +1313,11 @@ s32 lvl_set_current_level(UNUSED s16 initOrUpdate, s32 levelNum) {
     sWarpCheckpointActive = FALSE;
     gCurrLevelNum = levelNum;
     gCurrCourseNum = gLevelToCourseNumTable[levelNum - 1];
-	if (gCurrLevelNum == LEVEL_WF) return 0;
+	if (gCurrLevelNum == LEVEL_WF){
+        gMarioState->numCoins = 0;
+        gHudDisplay.coins = 0;
+        return 0;
+    } 
 
     if (gCurrDemoInput != NULL || gCurrCreditsEntry != NULL || gCurrCourseNum == COURSE_NONE) {
         return FALSE;

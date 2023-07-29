@@ -551,5 +551,6 @@ extern const BehaviorScript bhvNothing[];
 extern const BehaviorScript bhvChallengeDone[];
 extern const BehaviorScript bhvChallengeSurvival[];
 extern const BehaviorScript bhvActuallyRotatingPlatform[];
+extern const BehaviorScript bhv1kCoinStar[];
 
 #endif // BEHAVIOR_DATA_H

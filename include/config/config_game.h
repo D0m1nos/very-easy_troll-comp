@@ -24,13 +24,13 @@
 #define MAX_NUM_LIVES   100
 
 // This can be 0..32767.
-#define MAX_NUM_COINS   999
+#define MAX_NUM_COINS   1000
 
 // Air/breath meter is separate from health meter when underwater.
 // #define BREATH_METER
 
 // Number of coins to spawn the "100 coin" star. If you remove the define altogether, then there won't be a 100 coin star at all.
-#define X_COIN_STAR 100
+// #define X_COIN_STAR 100
 
 // Stars don't kick you out of the level (does not play nicely with vanilla).
 // #define NON_STOP_STARS

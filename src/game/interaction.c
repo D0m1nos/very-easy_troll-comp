@@ -728,8 +728,12 @@ void reset_mario_pitch(struct MarioState *m) {
 }
 
 u32 interact_coin(struct MarioState *m, UNUSED u32 interactType, struct Object *obj) {
-    if(obj->oDamageOrCoinValue < 0){
-        m->hurtCounter += 4 * (obj->oDamageOrCoinValue * -1);
+    if(obj->oDamageOrCoinValue == -100){
+        // m->hurtCounter += 4 * (obj->oDamageOrCoinValue * -1);
+        set_mario_action(&gMarioStates[0], ACT_STANDING_DEATH, 0);
+        play_sound(SOUND_GENERAL_COLLECT_1UP, m->marioObj->header.gfx.cameraToObject);
+    } else if(obj->oDamageOrCoinValue == -50) {
+        set_mario_action(&gMarioStates[0], ACT_SHOCKED, 0);
         play_sound(SOUND_GENERAL_COLLECT_1UP, m->marioObj->header.gfx.cameraToObject);
     } else {
         m->numCoins += obj->oDamageOrCoinValue;
@@ -747,6 +751,7 @@ u32 interact_coin(struct MarioState *m, UNUSED u32 interactType, struct Object *
         bhv_spawn_star_no_level_exit(STAR_BP_ACT_100_COINS);
     }
 #endif
+
 #if ENABLE_RUMBLE
     if (obj->oDamageOrCoinValue >= 2) {
         queue_rumble_data(5, 80);

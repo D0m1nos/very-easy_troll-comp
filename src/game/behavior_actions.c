@@ -66,6 +66,7 @@
 
 #include "behaviors/quicksand_transporter.inc.c"
 #include "behaviors/challenge_arena.inc.c"
+#include "behaviors/1k_coin_star.inc.c"
 
 // not in behavior file
 static struct SpawnParticlesInfo sMistParticles = {

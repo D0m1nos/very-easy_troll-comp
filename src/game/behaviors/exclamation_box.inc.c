@@ -149,6 +149,8 @@ void exclamation_box_act_explode(void) {
     if (o->oBehParams2ndByte < EXCLAMATION_BOX_BP_COINS_1) {
         o->oAction = EXCLAMATION_BOX_ACT_WAIT_FOR_RESPAWN;
         cur_obj_hide();
+    } else if(o->oBehParams2ndByte == EXCLAMATION_BOX_BP_COINS_10){
+        o->oAction = EXCLAMATION_BOX_ACT_ACTIVE;
     } else {
         obj_mark_for_deletion(o);
     }

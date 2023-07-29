@@ -1022,7 +1022,7 @@ const BehaviorScript bhvEvilYellowCoinWithChild[] = {
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     CALL_NATIVE(bhv_init_room),
     CALL_NATIVE(bhv_yellow_coin_child_init),
-    SET_INT(oDamageOrCoinValue, -100), //TODO: kill instantly, water animation
+    SET_INT(oDamageOrCoinValue, -50), //TODO: kill instantly, water animation
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_yellow_coin_loop),
     END_LOOP(),
@@ -6218,5 +6218,16 @@ const BehaviorScript bhvChallengeSurvival[] = {
     BEGIN(OBJ_LIST_GENACTOR),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_survival_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhv1kCoinStar[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    // OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    // BILLBOARD(),
+    // SET_HITBOX_WITH_OFFSET(/*Radius*/ 500, /*Height*/ 500, /*Downwards offset*/ 0),
+    BEGIN_LOOP(),
+        // SET_INT(oIntangibleTimer, 0),
+        CALL_NATIVE(bhv_1k_coin_star_loop),
     END_LOOP(),
 };
