@@ -2014,41 +2014,11 @@ hack, ... etc etc...\n\
 have fun"))
 
 DEFINE_DIALOG(DIALOG_168, 1, 1, 30, 200, _("\
-hahahaa\n\
-very lon\n\
-g dialog\n\
-eeeeeee\n\
-s\n\
-.\n\
-\n\
-\n\
-\n\
-\n\
-\n\
-\n\
-\n\
-\n\
-\n\
-\n\
-\n\
-almost done\n\
-\n\
-\n\
-\n\
-\n\
-\n\
-\n\
-\n\
-\n\
-maybe\n\
-\n\
-\n\
-\n\
-ok done"))
-
-DEFINE_DIALOG(DIALOG_169, 1, 4, 30, 200, _("\
-test test test\n\
-lolllll\n\
-aaaa\n\
-\n\
 "))
+
+DEFINE_DIALOG(DIALOG_169, 1, 2, 95, 200, _("\
+be careful about\n\
+squishma\n\
+what's squishma?\n\
+\n\
+squishmario"))
