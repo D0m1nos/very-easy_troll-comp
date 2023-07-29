@@ -1051,8 +1051,8 @@ const BehaviorScript bhvThreeCoinsSpawn[] = {
 const BehaviorScript bhvTenCoinsSpawn[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
-    BEGIN_REPEAT(10),
-        SPAWN_CHILD(/*Model*/ MODEL_YELLOW_COIN, /*Behavior*/ bhvSingleCoinGetsSpawned),
+    BEGIN_REPEAT(15),
+        SPAWN_CHILD(/*Model*/ MODEL_BLUE_COIN, /*Behavior*/ bhvSingleCoinGetsSpawnedBetter),
     END_REPEAT(),
     DEACTIVATE(),
 };
@@ -1063,6 +1063,19 @@ const BehaviorScript bhvSingleCoinGetsSpawned[] = {
     BILLBOARD(),
     CALL_NATIVE(bhv_coin_init),
     SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 30, /*Gravity*/ -400, /*Bounciness*/ -70, /*Drag strength*/ 1000, /*Friction*/ 1000, /*Buoyancy*/ 200, /*Unused*/ 0, 0),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_coin_loop),
+        ADD_INT(oAnimState, 1),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvSingleCoinGetsSpawnedBetter[] = {
+    BEGIN(OBJ_LIST_LEVEL),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    BILLBOARD(),
+    CALL_NATIVE(bhv_coin_init),
+    SET_INT(oDamageOrCoinValue, 5),
+    SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 30, /*Gravity*/ -400, /*Bounciness*/ -30, /*Drag strength*/ -110, /*Friction*/ 10000, /*Buoyancy*/ 0, /*Unused*/ 0, 0),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_coin_loop),
         ADD_INT(oAnimState, 1),
@@ -6223,11 +6236,7 @@ const BehaviorScript bhvChallengeSurvival[] = {
 
 const BehaviorScript bhv1kCoinStar[] = {
     BEGIN(OBJ_LIST_GENACTOR),
-    // OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
-    // BILLBOARD(),
-    // SET_HITBOX_WITH_OFFSET(/*Radius*/ 500, /*Height*/ 500, /*Downwards offset*/ 0),
     BEGIN_LOOP(),
-        // SET_INT(oIntangibleTimer, 0),
         CALL_NATIVE(bhv_1k_coin_star_loop),
     END_LOOP(),
 };

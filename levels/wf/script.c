@@ -111,6 +111,7 @@ const LevelScript level_wf_entry[] = {
 		OBJECT(MODEL_YELLOW_COIN, 8799, 1811, -36, 0, 0, 0, (80 << 16), bhvEvilYellowCoinWithChild),
 		OBJECT(MODEL_HEART, 5374, 713, -509, 0, 0, 0, (0x08 << 16), bhvRecoveryHeart),
 		OBJECT(MODEL_AMP, 6438, 2148, -50, 0, 0, 0, 0x00000000, bhvHomingAmp),
+		OBJECT(MODEL_WOODEN_SIGNPOST, -981, 100, -214, 0, 90, 0, (15 << 16), bhvMessagePanel),
 		OBJECT(MODEL_NONE, 7483, 2301, -269, 0, 0, 0, 0x00000000, bhvQuicksandTransporter),
 		OBJECT(MODEL_NONE, 7310, 805, 18, 0, 0, 0, (0 << 16), bhvChallengeDone),
 		OBJECT(MODEL_NONE, 24, 201, 15, 0, 90, 0, 0x000A0000, bhvSpinAirborneWarp),

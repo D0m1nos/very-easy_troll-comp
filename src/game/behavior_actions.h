@@ -573,6 +573,13 @@ void bhv_1k_coin_star_loop(void);
 void bhv_1k_coin_star_100_coins(void);
 void bhv_1k_coin_star_200_coins(void);
 void bhv_1k_coin_star_300_coins(void);
+// void bhv_1k_coin_star_400_coins(void);
+void bhv_1k_coin_star_500_coins(void);
+// void bhv_1k_coin_star_600_coins(void);
+void bhv_1k_coin_star_700_coins(void);
+// void bhv_1k_coin_star_800_coins(void);
+// void bhv_1k_coin_star_900_coins(void);
+void bhv_1k_coin_star_1000_coins(void);
 
 Gfx *geo_move_mario_part_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx);
 

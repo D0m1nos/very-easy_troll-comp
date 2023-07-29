@@ -12,157 +12,97 @@
 #define SCRAM "scram--"
 #endif
 
-DEFINE_DIALOG(DIALOG_000, 1, 6, 30, 200, _("\
-Wow! You're smack in the\n\
-middle of the battlefield.\n\
-You'll find the Power\n\
-Stars that Bowser stole\n\
-inside the painting\n\
-worlds.\n\
-First, talk to the\n\
-Bob-omb Buddy. (Press [B]\n\
-to talk.) He'll certainly\n\
-help you out, and so will\n\
-his " COMRADES " in other\n\
-areas.\n\
-To read signs, stop, face\n\
-them and press [B]. Press [A]\n\
-or [B] to scroll ahead. You\n\
-can talk to some other\n\
-characters by facing them\n\
-and pressing [B]."))
+// 100 coins
+DEFINE_DIALOG(DIALOG_000, 1, 4, 95, 200, _("\
+It looks like you're trying\n\
+to get the 100 coin star.\n\
+Unfortunately I ran out\n\
+of those, but don't\n\
+get your hopes down\n\
+because I have the NEW\n\
+200 coin star! I'll give\n\
+it to you as soon as you\n\
+get 200 coins!"))
 
+// 200 coins
 DEFINE_DIALOG(DIALOG_001, 1, 4, 95, 200, _("\
-Watch out! If you wander\n\
-around here, you're liable\n\
-to be " PLASTERED " by a\n\
-water bomb!\n\
-Those enemy Bob-ombs love\n\
-to fight, and they're\n\
-always finding ways to\n\
-attack.\n\
-This meadow has become\n\
-a battlefield ever since\n\
-the Big Bob-omb got his\n\
-paws on the Power Star.\n\
-Can you recover the Star\n\
-for us? Cross the bridge\n\
-and go left up the path\n\
-to find the Big Bob-omb.\n\
-Please come back to see\n\
-me after you've retrieved\n\
-the Power Star!"))
+"))
 
+// 300 coins
 DEFINE_DIALOG(DIALOG_002, 1, 4, 95, 200, _("\
-Hey, you! It's dangerous\n\
-ahead, so listen up! Take\n\
-my advice.\n\
-\n\
-Cross the two\n\
-bridges ahead, then\n\
-watch for falling\n\
-water bombs.\n\
-The Big Bob-omb at the\n\
-top of the mountain is\n\
-very powerful--don't let\n\
-him grab you!\n\
-We're Bob-omb Buddies,\n\
-and we're on your side.\n\
-You can talk to us\n\
-whenever you'd like to!"))
+Alright, listen. I'm\n\
+gonna be honest, I\n\
+lost the 300 coin star.\n\
+I promise I will get\n\
+you one OR you can get\n\
+a shiny 500 coin star!\n\
+It's better and more\n\
+powerful than the\n\
+previous ones!"))
 
-DEFINE_DIALOG(DIALOG_003, 1, 5, 95, 200, _("\
-Thank you, Mario! The Big\n\
-Bob-omb is nothing but a\n\
-big dud now! But the\n\
-battle for the castle has\n\
-just begun.\n\
-Other enemies are holding\n\
-the other Power Stars. If\n\
-you recover more Stars,\n\
-you can open new doors\n\
-that lead to new worlds!\n\
-My Bob-omb Buddies are\n\
-waiting for you. Be sure\n\
-to talk to them--they'll\n\
-set up cannons for you."))
+// 400 coins
+DEFINE_DIALOG(DIALOG_003, 1, 4, 95, 200, _("\
+"))
 
-DEFINE_DIALOG(DIALOG_004, 1, 3, 95, 200, _("\
-We're peace-loving\n\
-Bob-ombs, so we don't use\n\
-cannons.\n\
-But if you'd like\n\
-to blast off, we don't\n\
-mind. Help yourself.\n\
-We'll prepare all of the\n\
-cannons in this course for\n\
-you to use. Bon Voyage!"))
+// 500 coins
+DEFINE_DIALOG(DIALOG_004, 1, 4, 95, 200, _("\
+Sorry Chief, looks like\n\
+the 500 coin star was\n\
+in way higher demand than\n\
+I expected... Don't worry\n\
+though, I'm about to\n\
+receive a brand new\n\
+stock of 700 coin stars!\n\
+It should be ready\n\
+when you get back."))
 
-DEFINE_DIALOG(DIALOG_005, 1, 3, 30, 200, _("\
-Hey, Mario! Is it true\n\
-that you beat the Big\n\
-Bob-omb? Cool!\n\
-You must be strong. And\n\
-pretty fast. So, how fast\n\
-are you, anyway?\n\
-Fast enough to beat me...\n\
-Koopa the Quick? I don't\n\
-think so. Just try me.\n\
-How about a race to the\n\
-mountaintop, where the\n\
-Big Bob-omb was?\n\
-Whaddya say? When I say\n\
-『Go,』 let the race begin!\n\
-\n\
-Ready....\n\
-\n\
-//Go!////Don't Go"))
+// 600 coins
+//! used for 200 coins
+DEFINE_DIALOG(DIALOG_005, 1, 4, 95, 200, _("\
+Uh, bad news...\n\
+I JUST ran out of 200\n\
+coin stars... But don't\n\
+give up yet because\n\
+I still have a 300 coin\n\
+star! Get 300 coins\n\
+and it's all yours!"))
 
-DEFINE_DIALOG(DIALOG_006, 1, 3, 30, 200, _("\
-Hey!!! Don't try to " SCAM_ME
-"You've gotta run\n\
-the whole course.\n\
-Later. Look me up when\n\
-you want to race for\n\
-real."))
+// 700 coins
+DEFINE_DIALOG(DIALOG_006, 1, 4, 95, 200, _("\
+Ok, look... I know this\n\
+sounds bad. Remember the\n\
+700 coin stars? I had\n\
+them laying around my\n\
+pet chain chomp and...\n\
+next thing I know\n\
+it ate all of them...\n\
+I'm sorry.\n\
+Least I can do is\n\
+offer you a 2000 coin\n\
+star for a discounted\n\
+price of 1000."))
 
-DEFINE_DIALOG(DIALOG_007, 1, 5, 30, 200, _("\
-Hufff...fff...pufff...\n\
-Whoa! You...really...are...\n\
-fast! A human blur!\n\
-Here you go--you've won\n\
-it, fair and square!"))
+// 800 coins
+DEFINE_DIALOG(DIALOG_007, 1, 4, 95, 200, _("\
+900"))
 
-DEFINE_DIALOG(DIALOG_008, 1, 4, 30, 200, _("\
-BEWARE OF CHAIN CHOMP\n\
-Extreme Danger!\n\
-Get close and press [C]^\n\
-for a better look.\n\
-Scary, huh?\n\
-See the Red Coin on top\n\
-of the stake?\n\
-\n\
-When you collect eight of\n\
-them, a Power Star will\n\
-appear in the meadow\n\
-across the bridge."))
+// 900 coins
+DEFINE_DIALOG(DIALOG_008, 1, 4, 95, 200, _("\
+1000"))
 
-DEFINE_DIALOG(DIALOG_009, 1, 5, 30, 200, _("\
-Long time, no see! Wow,\n\
-have you gotten fast!\n\
-Have you been training\n\
-on the sly, or is it the\n\
-power of the Stars?\n\
-I've been feeling down\n\
-about losing the last\n\
-race. This is my home\n\
-course--how about a\n\
-rematch?\n\
-The goal is in\n\
-Windswept Valley.\n\
-Ready?\n\
-\n\
-//Go//// Don't Go"))
+// 1000 coins
+DEFINE_DIALOG(DIALOG_009, 1, 4, 95, 200, _("\
+You aga... ahem Hey!\n\
+already back for that\n\
+1000 coin star?\n\
+Listen, I just got pulled\n\
+aside from the\n\
+higher ups... They caught\n\
+wind of our little deal\n\
+and were NOT happy at all.\n\
+Sorry to say but, without\n\
+a job, I have no more\n\
+stars to offer."))
 
 DEFINE_DIALOG(DIALOG_010, 1, 4, 30, 200, _("\
 You've stepped on the\n\
@@ -219,15 +159,9 @@ Do you want to Save?\n\
 \n\
 //You Bet//Not Now"))
 
-DEFINE_DIALOG(DIALOG_015, 1, 4, 30, 200, _("\
-You can punch enemies to\n\
-knock them down. Press [A]\n\
-to jump, [B] to punch.\n\
-Press [A] then [B] to Kick.\n\
-To pick something up,\n\
-press [B], too. To throw\n\
-something you're holding,\n\
-press [B] again."))
+DEFINE_DIALOG(DIALOG_015, 1, 2, 95, 200, _("\
+Infinite coins!!!!\n\
+Get them while they last!"))
 
 DEFINE_DIALOG(DIALOG_016, 1, 3, 30, 200, _("\
 Hop on the shiny shell and\n\
