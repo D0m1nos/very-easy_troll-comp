@@ -32,7 +32,7 @@ void bhv_collect_star_init(void) {
 void bhv_collect_star_loop(void) {
     o->oFaceAngleYaw += 0x800;    
 
-    if(dist_between_objects(o, gMarioObject) <= 500.0f){
+    if(dist_between_objects(o, gMarioObject) <= 575.0f){
         o->oPosY -= 40.0f;
         if(o->oPosY <= 400.0f){
             o->oPosY = 400.0f;

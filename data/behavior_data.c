@@ -6188,7 +6188,7 @@ const BehaviorScript bhvQuicksandTransporter[] = {
     BEGIN(OBJ_LIST_GENACTOR),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     BILLBOARD(),
-    SET_HITBOX_WITH_OFFSET(/*Radius*/ 1000, /*Height*/ 130, /*Downwards offset*/ 0),
+    SET_HITBOX_WITH_OFFSET(/*Radius*/ 758, /*Height*/ 130, /*Downwards offset*/ 0),
     SET_FLOAT(oGraphYOffset, 30),
     CALL_NATIVE(bhv_quicksand_transporter_init),
     BEGIN_LOOP(),
