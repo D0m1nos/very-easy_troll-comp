@@ -553,5 +553,6 @@ extern const BehaviorScript bhvChallengeSurvival[];
 extern const BehaviorScript bhvActuallyRotatingPlatform[];
 extern const BehaviorScript bhv1kCoinStar[];
 extern const BehaviorScript bhvSingleCoinGetsSpawnedBetter[];
+extern const BehaviorScript bhvThwompMessagePanel[];
 
 #endif // BEHAVIOR_DATA_H

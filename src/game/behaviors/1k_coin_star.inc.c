@@ -40,7 +40,7 @@ void bhv_1k_coin_star_100_coins(void){
             o->oAction = 2;
         }
     } else {
-        if(cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP, DIALOG_FLAG_NONE, CUTSCENE_DIALOG, DIALOG_000)){
+        if(cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP, DIALOG_FLAG_NONE, CUTSCENE_DIALOG, DIALOG_170)){
             dialogDone = 1;
         }
     }
@@ -53,7 +53,7 @@ void bhv_1k_coin_star_200_coins(void){
             o->oAction = 3;
         }
     } else {
-        if(cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP, DIALOG_FLAG_NONE, CUTSCENE_DIALOG, DIALOG_005)){
+        if(cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP, DIALOG_FLAG_NONE, CUTSCENE_DIALOG, DIALOG_171)){
             dialogDone = 1;
         }
     }
@@ -66,7 +66,7 @@ void bhv_1k_coin_star_300_coins(void){
             o->oAction = 4;
         }
     } else {
-        if(cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP, DIALOG_FLAG_NONE, CUTSCENE_DIALOG, DIALOG_002)){
+        if(cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP, DIALOG_FLAG_NONE, CUTSCENE_DIALOG, DIALOG_172)){
             dialogDone = 1;
         }
     }
@@ -92,7 +92,7 @@ void bhv_1k_coin_star_500_coins(void){
             o->oAction = 5;
         }
     } else {
-        if(cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP, DIALOG_FLAG_NONE, CUTSCENE_DIALOG, DIALOG_004)){
+        if(cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP, DIALOG_FLAG_NONE, CUTSCENE_DIALOG, DIALOG_173)){
             dialogDone = 1;
         }
     }
@@ -118,7 +118,7 @@ void bhv_1k_coin_star_700_coins(void){
             o->oAction = 6;
         }
     } else {
-        if(cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP, DIALOG_FLAG_NONE, CUTSCENE_DIALOG, DIALOG_006)){
+        if(cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP, DIALOG_FLAG_NONE, CUTSCENE_DIALOG, DIALOG_174)){
             dialogDone = 1;
         }
     }
@@ -154,7 +154,7 @@ void bhv_1k_coin_star_1000_coins(void){
     if(dialogDone == 1){
         dialogDone = 1;
     } else {
-        if(cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP, DIALOG_FLAG_NONE, CUTSCENE_DIALOG, DIALOG_009)){
+        if(cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP, DIALOG_FLAG_NONE, CUTSCENE_DIALOG, DIALOG_175)){
             dialogDone = 1;
         }
     }

@@ -580,6 +580,8 @@ void bhv_1k_coin_star_700_coins(void);
 // void bhv_1k_coin_star_800_coins(void);
 // void bhv_1k_coin_star_900_coins(void);
 void bhv_1k_coin_star_1000_coins(void);
+void bhv_message_panel_interaction(void);
+void grindel_fast_thwomp_act_falling(void);
 
 Gfx *geo_move_mario_part_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx);
 
