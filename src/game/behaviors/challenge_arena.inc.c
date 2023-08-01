@@ -1,5 +1,5 @@
 char time[40];
-char text_time[30] = "TIME: ", text_done[30] = "DONE";
+char text_time[30] = "TIME: ", text_done[30] = "ENTER THE PIPE";
 char test[100], test2[100], test3[100], test4[100];
 u8 marioStopped = 0;
 u8 previousAction;

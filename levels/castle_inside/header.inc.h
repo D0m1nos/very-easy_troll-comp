@@ -45,7 +45,7 @@ extern Vtx castle_inside_dl_Icosphere_007_mesh_layer_1_vtx_0[19];
 extern Gfx castle_inside_dl_Icosphere_007_mesh_layer_1_tri_0[];
 extern Vtx castle_inside_dl_Icosphere_008_mesh_layer_1_vtx_0[19];
 extern Gfx castle_inside_dl_Icosphere_008_mesh_layer_1_tri_0[];
-extern Vtx castle_inside_dl_Plane_001_mesh_layer_1_vtx_0[148];
+extern Vtx castle_inside_dl_Plane_001_mesh_layer_1_vtx_0[183];
 extern Gfx castle_inside_dl_Plane_001_mesh_layer_1_tri_0[];
 extern Vtx castle_inside_dl_Plane_003_mesh_layer_1_vtx_0[264];
 extern Gfx castle_inside_dl_Plane_003_mesh_layer_1_tri_0[];
