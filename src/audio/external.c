@@ -302,6 +302,9 @@ u8 sBackgroundMusicDefaultVolume[] = {
     80,  // SEQ_REMINESCENCE
     80,  // SEQ_BRAWL_BREAKS
     80,  // SEQ_DUCK_TALES_MOON
+    60,  // SEQ_EASTERN_MIDNIGHT
+    58,  // SEQ_UWA_SO_TEMPERATE
+    80,  // SEQ_UWA
 };
 
 STATIC_ASSERT(ARRAY_COUNT(sBackgroundMusicDefaultVolume) == SEQ_COUNT,

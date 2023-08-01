@@ -39,5 +39,8 @@
     "24_garden_gridlock": ["26_garden_gridlock"],
     "25_reminiscence": ["27_reminiscence"],
     "26_brawl_breaks": ["28_brawl_breaks"],
-    "27_duck_tales_moon": ["11"]
+    "27_duck_tales_moon": ["11"],
+    "28_eastern_midnight": ["0C"],
+    "29_uwa_so_temperate": ["0C"],
+    "2A_uwa": ["29_uwa"]
 }

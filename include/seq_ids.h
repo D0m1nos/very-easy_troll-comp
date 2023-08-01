@@ -50,6 +50,9 @@ enum SeqId {
     SEQ_REMINESCENCE,                 // 0x25
     SEQ_BRAWL_BREAKS,                 // 0x26
     SEQ_DUCK_TALES_MOON,              // 0x27
+    SEQ_EASTERN_MIDNIGHT,             // 0x28
+    SEQ_UWA_SO_TEMPERATE,             // 0x29
+    SEQ_UWA,                          // 0x2A
     SEQ_COUNT
 };
 

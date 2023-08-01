@@ -76,7 +76,7 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_NONE, 392, 365, 1386, 0, 90, 0, (0x12 << 16), bhvPaintingDeathWarp),
 		TERRAIN(castle_inside_area_1_collision),
 		MACRO_OBJECTS(castle_inside_area_1_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_REMINESCENCE),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_UWA),
 		TERRAIN_TYPE(TERRAIN_SNOW),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
