@@ -6260,3 +6260,14 @@ const BehaviorScript bhvThwompMessagePanel[] = {
         // SET_INT(oInteractStatus, INT_STATUS_NONE),
     END_LOOP(),
 };
+
+const BehaviorScript bhvToad[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_PERSISTENT_RESPAWN | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_ANIMATIONS(oAnimations, toad_seg6_anims_0600FB58),
+    ANIMATE(TOAD_ANIM_WEST_WAVING_BOTH_ARMS),
+    CALL_NATIVE(bhv_init_room),
+    SET_INT(oOpacity, 255),
+    SET_FLOAT(oDrawingDistance, 20000),
+    BREAK(),
+};
