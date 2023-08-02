@@ -78,4 +78,4 @@
 // #define DISABLE_BLJ
 
 // Re-enables upwarping when entering water. Forces you to only enter water from the top.
-#define WATER_PLUNGE_UPWARP
+// #define WATER_PLUNGE_UPWARP

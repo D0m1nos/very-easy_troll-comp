@@ -2095,7 +2095,7 @@ guides, without them I\n\
 wouldn't even have known\n\
 where to start.\n\
 I also want to thank\n\
-Simpleflips and the\n\
+SimpleFlips and the\n\
 organizers that put\n\
 together this competition\n\
 that sparked my interest\n\
