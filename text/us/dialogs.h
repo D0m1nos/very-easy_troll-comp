@@ -2067,14 +2067,44 @@ A Rubber Room.\n\
 A Rubber Room With Rats.\n\
 And Rats Make Me Crazy\n"))
 
-DEFINE_DIALOG(DIALOG_167, 1, 4, 30, 200, _("\
-hello this is my first \n\
-hack, ... etc etc...\n\
+DEFINE_DIALOG(DIALOG_167, 1, 6, 30, 200, _("\
+Hello and welcome to\n\
+'very easy', my first rom\n\
+hack made for the\n\
+troll hack competition.\n\
+As the name implies\n\
+this hack is very easy\n\
+having only 1 star!\n\
+(maybe) :)\n\
+Don't have much to say,\n\
+I hope you enjoy it!\n\
 \n\
-have fun"))
+\n\
+One last thing,\n\
+I don't know what\n\
+happened to that toad,\n\
+he started acting like\n\
+this since he touched\n\
+one of those crystals."))
 
-DEFINE_DIALOG(DIALOG_168, 1, 1, 30, 200, _("\
-"))
+DEFINE_DIALOG(DIALOG_168, 1, 6, 30, 200, _("\
+I want to personally thank\n\
+all the people that made\n\
+the various tutorials and\n\
+guides, without them I\n\
+wouldn't even have known\n\
+where to start.\n\
+I also want to thank\n\
+Simpleflips and the\n\
+organizers that put\n\
+together this competition\n\
+that sparked my interest\n\
+in making rom hacks.\n\
+And finally a big thanks\n\
+to the team behind\n\
+HackerSM64 and\n\
+the original Mario 64\n\
+decompilation."))
 
 DEFINE_DIALOG(DIALOG_169, 1, 2, 95, 200, _("\
 be careful about\n\
