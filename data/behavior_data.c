@@ -2228,6 +2228,19 @@ const BehaviorScript bhvFlameBouncing[] = {
     END_LOOP(),
 };
 
+const BehaviorScript bhvFlameBouncingCustom[] = {
+    BEGIN(OBJ_LIST_LEVEL),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    SET_INTERACT_TYPE(INTERACT_FLAME),
+    BILLBOARD(),
+    // CALL_NATIVE(bhv_flame_bouncing_init),
+    // SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 0, /*Gravity*/ -400, /*Bounciness*/ -70, /*Drag strength*/ 0, /*Friction*/ 0, /*Buoyancy*/ 0, /*Unused*/ 0, 0),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_flame_bouncing_custom_loop),
+        ANIMATE_TEXTURE(oAnimState, 2),
+    END_LOOP(),
+};
+
 const BehaviorScript bhvFlameMovingForwardGrowing[] = {
     BEGIN(OBJ_LIST_LEVEL),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
@@ -3937,6 +3950,19 @@ const BehaviorScript bhvCirclingAmp[] = {
         CALL_NATIVE(bhv_circling_amp_loop),
     END_LOOP(),
 };
+
+// const BehaviorScript bhvStillAmp[] = {
+//     BEGIN(OBJ_LIST_GENACTOR),
+//     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_MOVE_XZ_USING_FVEL | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+//     LOAD_ANIMATIONS(oAnimations, dAmpAnimsList),
+//     ANIMATE(AMP_ANIM_DEFAULT),
+//     SET_FLOAT(oGraphYOffset, 40),
+//     SET_INT(oIntangibleTimer, 0),
+//     CALL_NATIVE(bhv_circling_amp_init),
+//     BEGIN_LOOP(),
+//         CALL_NATIVE(bhv_circling_amp_loop),
+//     END_LOOP(),
+// };
 
 const BehaviorScript bhvButterfly[] = {
     BEGIN(OBJ_LIST_DEFAULT),

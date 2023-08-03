@@ -12,10 +12,10 @@ static struct ObjectHitbox sAmpHitbox = {
     /* damageOrCoinValue: */ 1,
     /* health:            */ 0,
     /* numLootCoins:      */ 0,
-    /* radius:            */ 40,
+    /* radius:            */ 80,
     /* height:            */ 50,
-    /* hurtboxRadius:     */ 50,
-    /* hurtboxHeight:     */ 60,
+    /* hurtboxRadius:     */ 90,
+    /* hurtboxHeight:     */ 80,
 };
 
 /**
@@ -243,11 +243,52 @@ void bhv_circling_amp_init(void) {
 
         case AMP_BP_ROT_RADIUS_0:
             break;
+
+        case 4:
+            o->oAmpRadiusOfRotation = 250.0f;
+            break;
+        case 5:
+            o->oAmpRadiusOfRotation = 400.0f;
+            break;
+        case 6:
+            o->oAmpRadiusOfRotation = 550.0f;
+            break;
+        case 7:
+            o->oAmpRadiusOfRotation = 700.0f;
+            break;
+        case 8:
+            o->oAmpRadiusOfRotation = 850.0f;
+            break;
+        case 9:
+            o->oAmpRadiusOfRotation = 1000.0f;
+            break;
+        case 10:
+            o->oAmpRadiusOfRotation = 1150.0f;
+            break;
+        case 11:
+            o->oAmpRadiusOfRotation = 1300.0f;
+            break;
+        case 12:
+            o->oAmpRadiusOfRotation = 1450.0f;
+            break;
+        case 13:
+            o->oAmpRadiusOfRotation = 1600.0f;
+            break;
+        case 14:
+            o->oAmpRadiusOfRotation = 1750.0f;
+            break;
+        case 15:
+            o->oAmpRadiusOfRotation = 1900.0f;
+            break;
+        case 16:
+            o->oAmpRadiusOfRotation = 2050.0f;
+            break;
     }
 
     // Choose a random point along the amp's circle.
     // The amp's move angle represents its angle along the circle.
-    o->oMoveAngleYaw = random_u16();
+    // o->oMoveAngleYaw = random_u16();
+    // o->oMoveAngleYaw = 0;
 
     o->oAction = AMP_ACT_IDLE;
 }
@@ -284,6 +325,30 @@ static void fixed_circling_amp_idle_loop(void) {
     // the "amp buzzing" sound.
 }
 
+static void circling_amp_idle_nonstop_loop(void) {
+    o->oPosX = o->oHomeX + sins(o->oMoveAngleYaw) * o->oAmpRadiusOfRotation;
+    o->oPosZ = o->oHomeZ + coss(o->oMoveAngleYaw) * o->oAmpRadiusOfRotation;
+    o->oPosY = o->oHomeY + coss(o->oAmpYPhase * 0x8B0) * 30.0f;
+    o->oMoveAngleYaw += 0x400;
+    o->oFaceAngleYaw = o->oMoveAngleYaw + 0x4000;
+
+    obj_set_hitbox(o, &sAmpHitbox);
+
+    if (o->oInteractStatus & INT_STATUS_INTERACTED) {
+        // This function is used for both normal amps and homing amps,
+        // AMP_ACT_ATTACK_COOLDOWN == HOMING_AMP_ACT_ATTACK_COOLDOWN
+        // o->oAction = AMP_ACT_ATTACK_COOLDOWN;
+
+        // Clear interact status
+        o->oInteractStatus = INT_STATUS_NONE;
+    }
+
+    // Oscillate
+    o->oAmpYPhase++;
+
+    cur_obj_play_sound_1(SOUND_AIR_AMP_BUZZ);
+}
+
 /**
  * Main update function for regular circling amps.
  */
@@ -314,12 +379,26 @@ static void circling_amp_idle_loop(void) {
  * and calls the common amp cooldown function when the amp is cooling down.
  */
 void bhv_circling_amp_loop(void) {
+
     switch (o->oAction) {
         case AMP_ACT_IDLE:
             if (o->oBehParams2ndByte == AMP_BP_ROT_RADIUS_0) {
                 fixed_circling_amp_idle_loop();
-            } else {
+            } else if(o->oBehParams2ndByte <= 3) {
                 circling_amp_idle_loop();
+            } else {
+                circling_amp_idle_nonstop_loop();
+                if(o->oTimer > 30){
+                    o->oVelY += -30.0f;
+                    o->oHomeY += o->oVelY;
+                    if (o->oHomeY < 180.0f) {
+                        o->oHomeY = 180.0f;
+                        o->oVelY = 0.0f;
+                    }
+                }
+                if(o->oTimer > 270){
+                    obj_mark_for_deletion(o);
+                }
             }
             break;
 

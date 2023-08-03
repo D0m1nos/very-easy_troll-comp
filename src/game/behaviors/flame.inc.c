@@ -60,3 +60,30 @@ void bhv_flame_gravity_loop(void) {
         obj_mark_for_deletion(o);
     }
 }
+
+struct ObjectHitbox sGrowingBowserFlameHitboxCustom = {
+    /* interactType:      */ INTERACT_FLAME,
+    /* downOffset:        */ 20,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 10,
+    /* height:            */ 40,
+    /* hurtboxRadius:     */ 0,
+    /* hurtboxHeight:     */ 0,
+};
+
+void bhv_flame_bouncing_custom_loop(void) {
+
+    o->oForwardVel = 15.0f;
+    o->oGravity = -2.0f;
+    // o->oBounciness = -2.0f;
+    obj_set_hitbox(o, &sGrowingBowserFlameHitboxCustom);
+    cur_obj_update_floor_and_walls();
+    cur_obj_move_standard(15);
+
+    if (o->oTimer > (30*5)) {
+        obj_mark_for_deletion(o);
+    }
+
+}

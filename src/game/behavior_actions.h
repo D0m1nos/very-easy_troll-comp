@@ -589,6 +589,7 @@ void bhv_star_boss_ground_pound(void);
 void bhv_star_boss_duplication(void);
 void bhv_flame_gravity_loop(void);
 void bhv_star_boss_starting(void);
+void bhv_flame_bouncing_custom_loop(void);
 
 Gfx *geo_move_mario_part_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx);
 

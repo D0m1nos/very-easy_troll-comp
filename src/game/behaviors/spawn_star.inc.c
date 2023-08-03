@@ -14,8 +14,20 @@ static struct ObjectHitbox sCollectStarHitbox = {
     /* hurtboxHeight:     */ 0,
 };
 
+f32 maxHeight = 1050.0f;
+u8 groundPoundState = 0;
+u8 spinVel = 0;
+u8 roundDone = 0;
+
 void bhv_collect_star_init(void) {
+    
     o->oAction = 0;
+    maxHeight = 1050.0f;
+    groundPoundState = 0;
+    spinVel = 0;
+    roundDone = 0;
+    cur_obj_become_intangible();
+
     s8 starId = GET_BPARAM1(o->oBehParams);
 #ifdef GLOBAL_STAR_IDS
     u8 currentLevelStarFlags = save_file_get_star_flags((gCurrSaveFileNum - 1), COURSE_NUM_TO_INDEX(starId / 7));
@@ -56,13 +68,21 @@ ObjActionFunc sStarBossActions[] = {
     bhv_star_boss_duplication
 };
 
-f32 maxHeight = 900.0f;
-u8 groundPoundState = 0;
-u8 spinVel = 0;
-
 void bhv_collect_star_boss_loop(void) {
+    if(roundDone == 0){
+        cur_obj_become_intangible();
+        gMarioStates[0].challengeRound = 7;
+    } else {
+        cur_obj_become_tangible();
+        gMarioStates[0].challengeRound = 8;
+    }
+
     if(o->oPosY > maxHeight){
         o->oPosY = maxHeight;
+    }
+
+    if(o->oTimer % 150 == 0 && gMarioStates[0].healCounter < 32){
+        gMarioStates[0].healCounter += 4;
     }
 
     cur_obj_call_action_function(sStarBossActions);
@@ -80,8 +100,8 @@ void bhv_star_boss_idle(void) {
 
     if(lateral_dist_between_objects(o, gMarioObject) <= 700.0f){
         o->oPosY += 80.0f;
-        if(o->oPosY >= 900.0f){
-            o->oPosY = 900.0f;
+        if(o->oPosY >= maxHeight){
+            o->oPosY = maxHeight;
             spinVel = 0;
             o->oAction = 1;
         }
@@ -118,19 +138,19 @@ void bhv_star_boss_flame_rain(void) {
     if(o->oTimer % (30-(spinVel*2)) == 0 && spinVel < 5){
         play_sound(SOUND_OBJ_BOWSER_SPINNING, gGlobalSoundSource);
         spinVel++;
-    }
+    } else {
+        // z: -1600 -> 2300 | x: -500 -> 3500
+        if(o->oTimer % 10 == 0){
+            for (i = 0; i < 10; i++) {
+                randomPosX = random_float() * 3500.0f - 400.0f; 
+                randomPosZ = random_float() * 3600.0f - 1500.0f; 
 
-    // z: -1600 -> 2300 | x: -500 -> 3500
-    if(o->oTimer % 10 == 0){
-        for (i = 0; i < 10; i++) {
-            randomPosX = random_float() * 3500.0f - 400.0f; 
-            randomPosZ = random_float() * 3600.0f - 1500.0f; 
-
-            enemy = spawn_object(o, MODEL_RED_FLAME_SHADOW, bhvFlameGravity);
-            
-            enemy->oPosX = randomPosX;
-            enemy->oPosY = o->oPosY+50.0f;
-            enemy->oPosZ = randomPosZ;
+                enemy = spawn_object(o, MODEL_BLUE_FLAME, bhvFlameGravity);
+                
+                enemy->oPosX = randomPosX;
+                enemy->oPosY = o->oPosY+50.0f;
+                enemy->oPosZ = randomPosZ;
+            }
         }
     }
 
@@ -140,11 +160,27 @@ void bhv_star_boss_flame_rain(void) {
     }
 }
 
+void spawn_circle_flame(s32 offset, f32 bounciness) {
+    u8 i;
+    struct Object *flame;
+
+    for(i = 0; i < 40; i++){
+        flame = spawn_object(o, MODEL_RED_FLAME_SHADOW, bhvFlameBouncingCustom);
+        flame->oMoveAngleYaw = (2048 * i) + offset;
+        flame->oBounciness = bounciness;
+        // flame->oBounciness = (random_float()*-1) - 1.2f;
+        obj_scale(flame, 7.0f);
+    }
+}
+
 void bhv_star_boss_ground_pound(void) {
+
+    o->oFaceAngleYaw += 0x800;
 
     if(o->oTimer > 30) {
         switch(groundPoundState){
             case 0:
+                //down
                 o->oVelY += -20.0f;
                 o->oPosY += o->oVelY;
                 if (o->oPosY < o->oHomeY) {
@@ -152,12 +188,13 @@ void bhv_star_boss_ground_pound(void) {
                     o->oVelY = 0.0f;
                     cur_obj_shake_screen(SHAKE_POS_SMALL);
                     cur_obj_play_sound_2(SOUND_OBJ_THWOMP);
-                    //spawn flames
+                    spawn_circle_flame(0, -1.8f);
                     groundPoundState++;
                 }
                 break;
             case 1:
-                o->oVelY += +20.0f;
+                //up
+                o->oVelY += +10.0f;
                 o->oPosY += o->oVelY;
                 if (o->oPosY > maxHeight) {
                     o->oPosY = maxHeight;
@@ -166,6 +203,7 @@ void bhv_star_boss_ground_pound(void) {
                 }
                 break;
             case 2:
+                //down
                 o->oVelY += -30.0f;
                 o->oPosY += o->oVelY;
                 if (o->oPosY < o->oHomeY) {
@@ -173,12 +211,13 @@ void bhv_star_boss_ground_pound(void) {
                     o->oVelY = 0.0f;
                     cur_obj_shake_screen(SHAKE_POS_SMALL);
                     cur_obj_play_sound_2(SOUND_OBJ_THWOMP);
-                    //spawn flames
+                    spawn_circle_flame(1024, -1.8f);
                     groundPoundState++;
                 }
                 break;
             case 3:
-                o->oVelY += +30.0f;
+                //up
+                o->oVelY += +15.0f;
                 o->oPosY += o->oVelY;
                 if (o->oPosY > maxHeight) {
                     o->oPosY = maxHeight;
@@ -187,6 +226,7 @@ void bhv_star_boss_ground_pound(void) {
                 }
                 break;
             case 4:
+                //down
                 o->oVelY += -40.0f;
                 o->oPosY += o->oVelY;
                 if (o->oPosY < o->oHomeY) {
@@ -194,12 +234,13 @@ void bhv_star_boss_ground_pound(void) {
                     o->oVelY = 0.0f;
                     cur_obj_shake_screen(SHAKE_POS_SMALL);
                     cur_obj_play_sound_2(SOUND_OBJ_THWOMP);
-                    //spawn flames
+                    spawn_circle_flame(0, -2.0f);
                     groundPoundState++;
                 }
                 break;
             case 5:
-                o->oVelY += +40.0f;
+                //up
+                o->oVelY += +20.0f;
                 o->oPosY += o->oVelY;
                 if (o->oPosY > maxHeight) {
                     o->oPosY = maxHeight;
@@ -215,14 +256,38 @@ void bhv_star_boss_ground_pound(void) {
 }
 
 void bhv_star_boss_duplication(void) {
+    u8 i;
+    struct Object *amp;
 
-    // obj_turn_toward_object(o, gMarioObject, O_MOVE_ANGLE_YAW_INDEX,   0x1000);
-    // obj_turn_toward_object(o, gMarioObject, O_MOVE_ANGLE_PITCH_INDEX, 0x400);
+    o->oFaceAngleYaw += 0x800;
 
-    if(o->oTimer > 30){
+    if(o->oTimer == 75) {
+        for (i = 0; i < 13; i++) {
+            amp = spawn_object(o, MODEL_STAR, bhvCirclingAmp);
+            amp->oBehParams2ndByte = i+4;
+        }
+        for (i = 0; i < 13; i++) {
+            amp = spawn_object(o, MODEL_STAR, bhvCirclingAmp);
+            amp->oBehParams2ndByte = i+4;
+            amp->oMoveAngleYaw += 32000;
+        }
+    }
+
+    if(o->oTimer > 360){
         spinVel = 0;
+        
+        if(maxHeight > 150.0f){
+            maxHeight -= 150.0f;
+        } else {
+            maxHeight = 150.0f;
+        }
+
+        if(roundDone == 0) {
+            roundDone = 1;
+            play_sound(SOUND_GENERAL2_RIGHT_ANSWER, gGlobalSoundSource);
+        }
+
         o->oAction = 2;
-        maxHeight -= 150.0f;
     }
 }
 

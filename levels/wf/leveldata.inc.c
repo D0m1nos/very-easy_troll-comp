@@ -22,4 +22,7 @@
 #include "levels/wf/area_8/collision.inc.c"
 #include "levels/wf/area_8/macro.inc.c"
 #include "levels/wf/area_8/spline.inc.c"
+#include "levels/wf/area_9/collision.inc.c"
+#include "levels/wf/area_9/macro.inc.c"
+#include "levels/wf/area_9/spline.inc.c"
 #include "levels/wf/model.inc.c"

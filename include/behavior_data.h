@@ -557,5 +557,6 @@ extern const BehaviorScript bhvThwompMessagePanel[];
 extern const BehaviorScript bhvToad[];
 extern const BehaviorScript bhvStarBoss[];
 extern const BehaviorScript bhvFlameGravity[];
+extern const BehaviorScript bhvFlameBouncingCustom[];
 
 #endif // BEHAVIOR_DATA_H

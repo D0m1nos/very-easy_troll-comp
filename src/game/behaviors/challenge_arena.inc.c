@@ -75,7 +75,11 @@ void bhv_challenge_arena_round_6(void){
         play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_BRAWL_BREAKS), 0);
     }
 
-    print_text(30, 30, "6/5 GRAB THE STAR");
+    if(gMarioStates[0].challengeRound == 7) {
+        print_text(30, 30, "6/5 ?????");
+    } else if(gMarioStates[0].challengeRound == 8) {
+        print_text(30, 30, "6/5 GRAB THE STAR");
+    }
 }
 
 
@@ -99,6 +103,7 @@ void bhv_challenge_arena_loop(void){
             o->oAction = CHALLENGE_ROUND_5;
             break;
         case 7:
+        case 8:
             o->oAction = CHALLENGE_ROUND_6;
             break;
     }
