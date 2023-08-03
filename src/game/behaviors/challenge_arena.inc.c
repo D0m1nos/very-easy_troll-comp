@@ -70,21 +70,20 @@ void bhv_challenge_arena_round_5(void){
     print_text(30, 30, "5/5 DEFEAT WHOMP");
 }
 
+void bhv_challenge_arena_round_6(void){
+    if(o->oTimer == 0){
+        play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_BRAWL_BREAKS), 0);
+    }
+
+    print_text(30, 30, "6/5 GRAB THE STAR");
+}
+
 
 void bhv_challenge_arena_init(void){
    o->oAction = CHALLENGE_NULL; 
 }
 
 void bhv_challenge_arena_loop(void){
-
-    // sprintf(test, "%f", gMarioStates[0].forwardVel);
-    // print_text(30, 140, test);
-    // sprintf(test, "%f", gMarioStates[0].pos[0]);
-    // print_text(30, 120, test);
-    // sprintf(test, "%f", gMarioStates[0].pos[1]);
-    // print_text(30, 100, test);
-    // sprintf(test, "%f", gMarioStates[0].pos[2]);
-    // print_text(30, 80, test);
 
     switch(gMarioStates[0].challengeRound){
         case 2:
@@ -98,6 +97,9 @@ void bhv_challenge_arena_loop(void){
             break;
         case 5:
             o->oAction = CHALLENGE_ROUND_5;
+            break;
+        case 7:
+            o->oAction = CHALLENGE_ROUND_6;
             break;
     }
 
@@ -124,6 +126,9 @@ void bhv_challenge_arena_loop(void){
         case CHALLENGE_ROUND_5:
             bhv_challenge_arena_round_5();
             break;
+        case CHALLENGE_ROUND_6:
+            bhv_challenge_arena_round_6();
+            break;
         case CHALLENGE_END:
             break;
     }
@@ -131,7 +136,9 @@ void bhv_challenge_arena_loop(void){
     if(previousAction != o->oAction){
         gMarioStates[0].healCounter = 31;
         gMarioStates[0].hurtCounter = 0;
-        play_sound(SOUND_GENERAL2_RIGHT_ANSWER, gGlobalSoundSource);
+        if(o->oAction != CHALLENGE_ROUND_6){
+            play_sound(SOUND_GENERAL2_RIGHT_ANSWER, gGlobalSoundSource);
+        }
     }
 
     previousAction = o->oAction;

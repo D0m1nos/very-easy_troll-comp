@@ -52,3 +52,11 @@ void bhv_moving_flame_particle_loop(void) {
 
     cur_obj_scale(o->header.gfx.scale[0]);
 }
+
+void bhv_flame_gravity_loop(void) {
+    cur_obj_move_standard(-15);
+
+    if(o->oPosY < 10.0f) {
+        obj_mark_for_deletion(o);
+    }
+}

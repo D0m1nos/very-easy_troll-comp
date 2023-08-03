@@ -1,5 +1,7 @@
 // spawn_star.inc.c
 
+#include "include/seq_ids.h"
+
 static struct ObjectHitbox sCollectStarHitbox = {
     /* interactType:      */ INTERACT_STAR_OR_KEY,
     /* downOffset:        */ 0,
@@ -13,6 +15,7 @@ static struct ObjectHitbox sCollectStarHitbox = {
 };
 
 void bhv_collect_star_init(void) {
+    o->oAction = 0;
     s8 starId = GET_BPARAM1(o->oBehParams);
 #ifdef GLOBAL_STAR_IDS
     u8 currentLevelStarFlags = save_file_get_star_flags((gCurrSaveFileNum - 1), COURSE_NUM_TO_INDEX(starId / 7));
@@ -42,6 +45,184 @@ void bhv_collect_star_loop(void) {
     if (o->oInteractStatus & INT_STATUS_INTERACTED) {
         obj_mark_for_deletion(o);
         o->oInteractStatus = INT_STATUS_NONE;
+    }
+}
+
+ObjActionFunc sStarBossActions[] = {
+    bhv_star_boss_idle,
+    bhv_star_boss_starting,
+    bhv_star_boss_flame_rain,
+    bhv_star_boss_ground_pound,
+    bhv_star_boss_duplication
+};
+
+f32 maxHeight = 900.0f;
+u8 groundPoundState = 0;
+u8 spinVel = 0;
+
+void bhv_collect_star_boss_loop(void) {
+    if(o->oPosY > maxHeight){
+        o->oPosY = maxHeight;
+    }
+
+    cur_obj_call_action_function(sStarBossActions);
+
+    if (o->oInteractStatus & INT_STATUS_INTERACTED) {
+        obj_mark_for_deletion(o);
+        o->oInteractStatus = INT_STATUS_NONE;
+    }
+}
+
+void bhv_star_boss_idle(void) {
+    o->oHomeY = 5.0f;
+
+    o->oFaceAngleYaw += 0x800;
+
+    if(lateral_dist_between_objects(o, gMarioObject) <= 700.0f){
+        o->oPosY += 80.0f;
+        if(o->oPosY >= 900.0f){
+            o->oPosY = 900.0f;
+            spinVel = 0;
+            o->oAction = 1;
+        }
+    }
+
+}
+
+void bhv_star_boss_starting(void) {
+    if(o->oTimer == 0){
+        stop_background_music(SEQUENCE_ARGS(4, SEQ_SAND_CANYON));
+    }
+
+    o->oFaceAngleYaw += 1100 * spinVel;
+    
+    if(o->oTimer % (30-(spinVel*2)) == 0 && spinVel < 10){
+        play_sound(SOUND_OBJ_BOWSER_SPINNING, gGlobalSoundSource);
+        spinVel++;
+    }
+
+    if(spinVel == 10){
+        spawn_object(gMarioObject, MODEL_NONE, bhvChallengeArena);
+        spinVel = 5;
+        o->oAction = 2;
+    }
+}
+
+void bhv_star_boss_flame_rain(void) {
+    f32 randomPosX, randomPosZ;
+    u8 i;
+    struct Object *enemy;
+
+    o->oFaceAngleYaw += 2200 * spinVel;
+    
+    if(o->oTimer % (30-(spinVel*2)) == 0 && spinVel < 5){
+        play_sound(SOUND_OBJ_BOWSER_SPINNING, gGlobalSoundSource);
+        spinVel++;
+    }
+
+    // z: -1600 -> 2300 | x: -500 -> 3500
+    if(o->oTimer % 10 == 0){
+        for (i = 0; i < 10; i++) {
+            randomPosX = random_float() * 3500.0f - 400.0f; 
+            randomPosZ = random_float() * 3600.0f - 1500.0f; 
+
+            enemy = spawn_object(o, MODEL_RED_FLAME_SHADOW, bhvFlameGravity);
+            
+            enemy->oPosX = randomPosX;
+            enemy->oPosY = o->oPosY+50.0f;
+            enemy->oPosZ = randomPosZ;
+        }
+    }
+
+    if(o->oTimer > (30*10)){
+        groundPoundState = 0;
+        o->oAction = 3;
+    }
+}
+
+void bhv_star_boss_ground_pound(void) {
+
+    if(o->oTimer > 30) {
+        switch(groundPoundState){
+            case 0:
+                o->oVelY += -20.0f;
+                o->oPosY += o->oVelY;
+                if (o->oPosY < o->oHomeY) {
+                    o->oPosY = o->oHomeY;
+                    o->oVelY = 0.0f;
+                    cur_obj_shake_screen(SHAKE_POS_SMALL);
+                    cur_obj_play_sound_2(SOUND_OBJ_THWOMP);
+                    //spawn flames
+                    groundPoundState++;
+                }
+                break;
+            case 1:
+                o->oVelY += +20.0f;
+                o->oPosY += o->oVelY;
+                if (o->oPosY > maxHeight) {
+                    o->oPosY = maxHeight;
+                    o->oVelY = 0.0f;
+                    groundPoundState++;
+                }
+                break;
+            case 2:
+                o->oVelY += -30.0f;
+                o->oPosY += o->oVelY;
+                if (o->oPosY < o->oHomeY) {
+                    o->oPosY = o->oHomeY;
+                    o->oVelY = 0.0f;
+                    cur_obj_shake_screen(SHAKE_POS_SMALL);
+                    cur_obj_play_sound_2(SOUND_OBJ_THWOMP);
+                    //spawn flames
+                    groundPoundState++;
+                }
+                break;
+            case 3:
+                o->oVelY += +30.0f;
+                o->oPosY += o->oVelY;
+                if (o->oPosY > maxHeight) {
+                    o->oPosY = maxHeight;
+                    o->oVelY = 0.0f;
+                    groundPoundState++;
+                }
+                break;
+            case 4:
+                o->oVelY += -40.0f;
+                o->oPosY += o->oVelY;
+                if (o->oPosY < o->oHomeY) {
+                    o->oPosY = o->oHomeY;
+                    o->oVelY = 0.0f;
+                    cur_obj_shake_screen(SHAKE_POS_SMALL);
+                    cur_obj_play_sound_2(SOUND_OBJ_THWOMP);
+                    //spawn flames
+                    groundPoundState++;
+                }
+                break;
+            case 5:
+                o->oVelY += +40.0f;
+                o->oPosY += o->oVelY;
+                if (o->oPosY > maxHeight) {
+                    o->oPosY = maxHeight;
+                    o->oVelY = 0.0f;
+                    groundPoundState++;
+                }
+                break;
+            case 6:
+                o->oAction = 4;
+                break;
+        }
+    }
+}
+
+void bhv_star_boss_duplication(void) {
+
+    // obj_turn_toward_object(o, gMarioObject, O_MOVE_ANGLE_YAW_INDEX,   0x1000);
+    // obj_turn_toward_object(o, gMarioObject, O_MOVE_ANGLE_PITCH_INDEX, 0x400);
+
+    if(o->oTimer > 30){
+        spinVel = 0;
+        o->oAction = 2;
+        maxHeight -= 150.0f;
     }
 }
 

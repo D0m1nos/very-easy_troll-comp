@@ -2733,6 +2733,7 @@ enum oActionsChallengeArena {
     CHALLENGE_ROUND_3,
     CHALLENGE_ROUND_4,
     CHALLENGE_ROUND_5,
+    CHALLENGE_ROUND_6,
     CHALLENGE_END
 };
 

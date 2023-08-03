@@ -18,10 +18,9 @@ void timer_quicksand(u32 limit, u32 currentTime){
 
 void bhv_quicksand_transporter_push_back(void){
     
-    // set mario to idle state every frame to prevent escape
     set_mario_action(&gMarioStates[0], ACT_READING_NPC_DIALOG, 0);
 
-    if(o->oTimer == 0){ // first frame -> raise mario, make him face forwards
+    if(o->oTimer == 0){
         stop_background_music(SEQUENCE_ARGS(4, SEQ_SAND_CANYON));
         gMarioStates[0].pos[1] += 250.0f;
     } else if(o->oTimer <= (30 * 3)){
@@ -51,7 +50,6 @@ void bhv_quicksand_transporter_push_back(void){
 
 void bhv_quicksand_transporter_push_down(void){
 
-    // set mario to idle state every frame to prevent escape
     set_mario_action(&gMarioStates[0], ACT_READING_NPC_DIALOG, 0);
 
     print_text(60, 140, ""); // ???????????

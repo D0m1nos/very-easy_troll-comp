@@ -582,6 +582,13 @@ void bhv_1k_coin_star_700_coins(void);
 void bhv_1k_coin_star_1000_coins(void);
 void bhv_message_panel_interaction(void);
 void grindel_fast_thwomp_act_falling(void);
+void bhv_collect_star_boss_loop(void);
+void bhv_star_boss_idle(void);
+void bhv_star_boss_flame_rain(void);
+void bhv_star_boss_ground_pound(void);
+void bhv_star_boss_duplication(void);
+void bhv_flame_gravity_loop(void);
+void bhv_star_boss_starting(void);
 
 Gfx *geo_move_mario_part_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx);
 

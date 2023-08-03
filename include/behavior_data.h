@@ -555,5 +555,7 @@ extern const BehaviorScript bhv1kCoinStar[];
 extern const BehaviorScript bhvSingleCoinGetsSpawnedBetter[];
 extern const BehaviorScript bhvThwompMessagePanel[];
 extern const BehaviorScript bhvToad[];
+extern const BehaviorScript bhvStarBoss[];
+extern const BehaviorScript bhvFlameGravity[];
 
 #endif // BEHAVIOR_DATA_H

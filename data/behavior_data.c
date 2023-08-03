@@ -1306,6 +1306,24 @@ const BehaviorScript bhvFlame[] = {
     END_LOOP(),
 };
 
+const BehaviorScript bhvFlameGravity[] = {
+    BEGIN(OBJ_LIST_LEVEL),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    BILLBOARD(),
+    SET_HOME(),
+    SCALE(/*Unused*/ 0, /*Field*/ 700),
+    SET_INTERACT_TYPE(INTERACT_FLAME),
+    SET_HITBOX_WITH_OFFSET(/*Radius*/ 50, /*Height*/ 25, /*Downwards offset*/ 25),
+    SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 30, /*Gravity*/ -400, /*Bounciness*/ -70, /*Drag strength*/ 1000, /*Friction*/ 1000, /*Buoyancy*/ 200, /*Unused*/ 0, 0),
+    SET_INT(oIntangibleTimer, 0),
+    CALL_NATIVE(bhv_init_room),
+    BEGIN_LOOP(),
+        SET_INT(oInteractStatus, INT_STATUS_NONE),
+        CALL_NATIVE(bhv_flame_gravity_loop),
+        ANIMATE_TEXTURE(oAnimState, 2),
+    END_LOOP(),
+};
+
 const BehaviorScript bhvAnotherElavator[] = {
     BEGIN(OBJ_LIST_SURFACE),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
@@ -4653,6 +4671,16 @@ const BehaviorScript bhvStar[] = {
     END_LOOP(),
 };
 
+const BehaviorScript bhvStarBoss[] = {
+    BEGIN(OBJ_LIST_LEVEL),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    CALL_NATIVE(bhv_init_room),
+    CALL_NATIVE(bhv_collect_star_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_collect_star_boss_loop),
+    END_LOOP(),
+};
+
 const BehaviorScript bhvStarSpawnCoordinates[] = {
     BEGIN(OBJ_LIST_LEVEL),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
@@ -6203,7 +6231,7 @@ const BehaviorScript bhvChallengeArena[] = {
     BEGIN(OBJ_LIST_GENACTOR),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     BILLBOARD(),
-    SET_HITBOX_WITH_OFFSET(/*Radius*/ 1000, /*Height*/ 500, /*Downwards offset*/ 0),
+    SET_HITBOX_WITH_OFFSET(/*Radius*/ 1000, /*Height*/ 1000, /*Downwards offset*/ 0),
     SET_FLOAT(oGraphYOffset, 30),
     CALL_NATIVE(bhv_challenge_arena_init),
     BEGIN_LOOP(),
