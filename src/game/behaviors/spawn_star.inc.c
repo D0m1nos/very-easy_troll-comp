@@ -81,7 +81,7 @@ void bhv_collect_star_boss_loop(void) {
         o->oPosY = maxHeight;
     }
 
-    if(o->oTimer % 150 == 0 && gMarioStates[0].healCounter < 32){
+    if(o->oTimer % 180 == 0 && gMarioStates[0].healCounter < 32){
         gMarioStates[0].healCounter += 4;
     }
 
@@ -262,11 +262,11 @@ void bhv_star_boss_duplication(void) {
     o->oFaceAngleYaw += 0x800;
 
     if(o->oTimer == 75) {
-        for (i = 0; i < 13; i++) {
+        for (i = 0; i < 14; i++) {
             amp = spawn_object(o, MODEL_STAR, bhvCirclingAmp);
             amp->oBehParams2ndByte = i+4;
         }
-        for (i = 0; i < 13; i++) {
+        for (i = 0; i < 14; i++) {
             amp = spawn_object(o, MODEL_STAR, bhvCirclingAmp);
             amp->oBehParams2ndByte = i+4;
             amp->oMoveAngleYaw += 32000;

@@ -170,8 +170,8 @@ void bhv_survival_loop(void) {
     struct Object *enemy;
     if(o->oTimer < (30*10)){
         if(o->oTimer % 30 == 0){
-            randomPosX = random_float() * 3303.0f - 335.0f; // da -335 a +3303
-            randomPosZ = random_float() * 2315.0f - 1585.0f; // da -1585 a +2315
+            randomPosX = random_float() * 3638.0f - 335.0f; // da -335 a +3303
+            randomPosZ = random_float() * 3900.0f - 1585.0f; // da -1585 a +2315
             enemy = spawn_object(o, MODEL_GOOMBA, bhvGoomba);
             
             enemy->oPosX = randomPosX;
@@ -180,8 +180,8 @@ void bhv_survival_loop(void) {
         }
     } else if(o->oTimer < (30*20)) {
         if(o->oTimer % 30 == 0){
-            randomPosX = random_float() * 3303.0f - 335.0f; // da -335 a +3303
-            randomPosZ = random_float() * 2315.0f - 1585.0f; // da -1585 a +2315
+            randomPosX = random_float() * 3638.0f - 335.0f; // da -335 a +3303
+            randomPosZ = random_float() * 3900.0f - 1585.0f; // da -1585 a +2315
             enemy = spawn_object(o, MODEL_CHUCKYA, bhvChuckya);
             
             enemy->oPosX = randomPosX;

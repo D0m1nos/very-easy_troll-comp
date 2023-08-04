@@ -283,6 +283,9 @@ void bhv_circling_amp_init(void) {
         case 16:
             o->oAmpRadiusOfRotation = 2050.0f;
             break;
+        case 17:
+            o->oAmpRadiusOfRotation = 100.0f;
+            break;
     }
 
     // Choose a random point along the amp's circle.

@@ -1640,7 +1640,7 @@ u32 interact_grabbable(struct MarioState *m, u32 interactType, struct Object *ob
     }
 
     if (script != bhvBowser) {
-        push_mario_out_of_object(m, obj, -5.0f);
+        push_mario_out_of_object(m, obj, -10.0f);
     }
 
     return FALSE;
