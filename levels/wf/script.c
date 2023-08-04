@@ -312,6 +312,7 @@ const LevelScript level_wf_entry[] = {
 		OBJECT(MODEL_WOODEN_SIGNPOST, 686, 64, 863, 0, -133, 0, (15 << 16), bhvMessagePanel),
 		OBJECT(MODEL_1UP, 3388, 70, -51, 0, 0, 0, 0x00000000, bhv1Up),
 		OBJECT(MODEL_1UP, 5671, 295, -8, 0, 0, 0, 0x00000000, bhv1Up),
+		OBJECT(MODEL_HEART, 7853, 713, -508, 0, 0, 0, (0x08 << 16), bhvRecoveryHeart),
 		OBJECT(MODEL_NONE, 6460, 2142, 695, 0, 90, 0, 0x00000000, bhvFlamethrower),
 		OBJECT(MODEL_NONE, 7203, 2142, 286, 0, 0, 0, 0x00000000, bhvFlamethrower),
 		OBJECT(MODEL_NONE, 6395, 2142, -512, 0, 0, 0, 0x00000000, bhvFlamethrower),

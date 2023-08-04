@@ -2090,10 +2090,10 @@ one of those crystals."))
 DEFINE_DIALOG(DIALOG_168, 1, 6, 30, 200, _("\
 I want to personally thank\n\
 all the people that made\n\
-the various tutorials and\n\
-guides, without them I\n\
-wouldn't even have known\n\
-where to start.\n\
+the various tutorials,\n\
+tools and guides, without\n\
+them I wouldn't even have\n\
+known where to start.\n\
 I also want to thank\n\
 SimpleFlips and the\n\
 organizers that put\n\

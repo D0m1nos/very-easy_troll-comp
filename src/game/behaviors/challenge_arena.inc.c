@@ -66,7 +66,9 @@ void bhv_challenge_arena_round_4(void){
 }
 
 void bhv_challenge_arena_round_5(void){
-    // timer(60, o->oTimer);
+    if(o->oTimer % 150 == 0 && gMarioStates[0].healCounter < 32){
+        gMarioStates[0].healCounter += 4;
+    }
     print_text(30, 30, "5/5 DEFEAT WHOMP");
 }
 

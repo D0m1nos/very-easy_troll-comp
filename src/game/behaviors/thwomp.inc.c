@@ -91,6 +91,7 @@ void bhv_message_panel_interaction(void) {
             cur_obj_play_sound_2(SOUND_OBJ_THWOMP);
             gMarioStates[0].healCounter = 0;
             gMarioStates[0].hurtCounter = 100;
+            set_mario_action(&gMarioStates[0], ACT_STANDING_DEATH, 0);
         }
     }
 }

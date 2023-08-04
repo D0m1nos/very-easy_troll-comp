@@ -81,10 +81,6 @@ void bhv_collect_star_boss_loop(void) {
         o->oPosY = maxHeight;
     }
 
-    if(o->oTimer % 180 == 0 && gMarioStates[0].healCounter < 32){
-        gMarioStates[0].healCounter += 4;
-    }
-
     cur_obj_call_action_function(sStarBossActions);
 
     if (o->oInteractStatus & INT_STATUS_INTERACTED) {
