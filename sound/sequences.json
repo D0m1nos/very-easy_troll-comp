@@ -42,5 +42,7 @@
     "27_duck_tales_moon": ["11"],
     "28_eastern_midnight": ["0C"],
     "29_uwa_so_temperate": ["0C"],
-    "2A_uwa": ["29_uwa"]
+    "2A_uwa": ["29_uwa"],
+    "2B_ouroboros": ["0C"],
+    "2C_refluxio": ["25"]
 }

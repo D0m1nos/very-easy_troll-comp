@@ -305,6 +305,8 @@ u8 sBackgroundMusicDefaultVolume[] = {
     60,  // SEQ_EASTERN_MIDNIGHT
     58,  // SEQ_UWA_SO_TEMPERATE
     80,  // SEQ_UWA
+    68,  // SEQ_OUROBOROS
+    60,  // SEQ_REFLUXIO
 };
 
 STATIC_ASSERT(ARRAY_COUNT(sBackgroundMusicDefaultVolume) == SEQ_COUNT,

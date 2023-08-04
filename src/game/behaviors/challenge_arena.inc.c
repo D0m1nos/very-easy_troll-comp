@@ -72,7 +72,7 @@ void bhv_challenge_arena_round_5(void){
 
 void bhv_challenge_arena_round_6(void){
     if(o->oTimer == 0){
-        play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_BRAWL_BREAKS), 0);
+        play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_REFLUXIO), 0);
     }
 
     if(gMarioStates[0].challengeRound == 7) {

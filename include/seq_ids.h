@@ -53,6 +53,8 @@ enum SeqId {
     SEQ_EASTERN_MIDNIGHT,             // 0x28
     SEQ_UWA_SO_TEMPERATE,             // 0x29
     SEQ_UWA,                          // 0x2A
+    SEQ_OUROBOROS,                    // 0x2B
+    SEQ_REFLUXIO,                     // 0x2C
     SEQ_COUNT
 };
 
