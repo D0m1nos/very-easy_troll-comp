@@ -55,6 +55,7 @@ enum SeqId {
     SEQ_OUROBOROS,                    // 0x2A
     SEQ_REFLUXIO,                     // 0x2B
     SEQ_NATIVE_FAITH,                 // 0x2C
+    SEQ_REFLUXIO_2,                   // 0x2D
     SEQ_COUNT
 };
 

@@ -19,6 +19,8 @@ u8 groundPoundState = 0;
 u8 spinVel = 0;
 u8 roundDone = 0;
 
+u8 starGone = 0;
+
 void bhv_collect_star_init(void) {
     
     o->oAction = 0;
@@ -26,6 +28,7 @@ void bhv_collect_star_init(void) {
     groundPoundState = 0;
     spinVel = 0;
     roundDone = 0;
+    starGone = 0;
     cur_obj_become_intangible();
 
     s8 starId = GET_BPARAM1(o->oBehParams);
@@ -45,9 +48,14 @@ void bhv_collect_star_init(void) {
 }
 
 void bhv_collect_star_loop(void) {
-    o->oFaceAngleYaw += 0x800;    
+    o->oFaceAngleYaw += 0x800;
+    cur_obj_become_intangible();
 
-    if(dist_between_objects(o, gMarioObject) <= 575.0f){
+    if(dist_between_objects(o, gMarioObject) <= 300.0f){
+        starGone = 1;
+    }
+
+    if(starGone == 1){
         o->oPosY -= 40.0f;
         if(o->oPosY <= 400.0f){
             o->oPosY = 400.0f;
@@ -94,7 +102,11 @@ void bhv_star_boss_idle(void) {
 
     o->oFaceAngleYaw += 0x800;
 
-    if(lateral_dist_between_objects(o, gMarioObject) <= 700.0f){
+    if(lateral_dist_between_objects(o, gMarioObject) <= 500.0f){
+        starGone = 1;
+    }
+
+    if(starGone == 1) {
         o->oPosY += 80.0f;
         if(o->oPosY >= maxHeight){
             o->oPosY = maxHeight;

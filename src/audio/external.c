@@ -307,6 +307,7 @@ u8 sBackgroundMusicDefaultVolume[] = {
     68,  // SEQ_OUROBOROS
     60,  // SEQ_REFLUXIO
     58,  // SEQ_NATIVE_FAITH
+    58,  // SEQ_REFLUXIO_2
 };
 
 STATIC_ASSERT(ARRAY_COUNT(sBackgroundMusicDefaultVolume) == SEQ_COUNT,
