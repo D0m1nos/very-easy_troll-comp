@@ -51,10 +51,10 @@ enum SeqId {
     SEQ_BRAWL_BREAKS,                 // 0x26
     SEQ_DUCK_TALES_MOON,              // 0x27
     SEQ_EASTERN_MIDNIGHT,             // 0x28
-    SEQ_UWA_SO_TEMPERATE,             // 0x29
-    SEQ_UWA,                          // 0x2A
-    SEQ_OUROBOROS,                    // 0x2B
-    SEQ_REFLUXIO,                     // 0x2C
+    SEQ_UWA,                          // 0x29
+    SEQ_OUROBOROS,                    // 0x2A
+    SEQ_REFLUXIO,                     // 0x2B
+    SEQ_NATIVE_FAITH,                 // 0x2C
     SEQ_COUNT
 };
 
