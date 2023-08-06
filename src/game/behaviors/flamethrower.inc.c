@@ -90,6 +90,59 @@ void bhv_flamethrower_loop(void) {
     }
 }
 
+struct Object *flame;
+
+void bhv_infinite_flamethrower_loop(void) {
+    if (o->oAction == FLAMETHROWER_ACT_IDLE) {
+#ifdef ENABLE_VANILLA_LEVEL_SPECIFIC_CHECKS
+        if (gCurrLevelNum != LEVEL_BBH || gMarioOnMerryGoRound)
+#endif
+        {
+            if (o->oDistanceToMario < 2000.0f) {
+                o->oAction = FLAMETHROWER_ACT_BLOW_FIRE;
+            }
+        }
+    } else if (o->oAction == FLAMETHROWER_ACT_BLOW_FIRE) {
+        ModelID32 model = MODEL_RED_FLAME;
+        f32 flameVel = 95.0f;
+
+        f32 flameTimeRemaining = 1;
+
+        flameTimeRemaining = 15;
+
+        o->oFlameThowerTimeRemaining = flameTimeRemaining;
+
+        struct Object *flame = spawn_object_relative(o->oBehParams2ndByte, 0, 0, 0, o, model, bhvInfiniteFlamethrowerFlame);
+        flame->oForwardVel = flameVel;
+
+        cur_obj_play_sound_1(SOUND_AIR_BLOW_FIRE);
+    }
+}
+
+void bhv_infinite_flamethrower_flame_loop(void) {
+    f32 scale;
+    s32 remainingTime;
+
+    if (o->oTimer == 0) {
+        o->oAnimState = (s32)(random_float() * 10.0f);
+        obj_translate_xyz_random(o, 10.0f);
+    }
+
+    scale = o->oTimer * (o->oForwardVel - 20.0f) / 100.0f + 1.0f;
+
+    remainingTime = o->parentObj->oFlameThowerTimeRemaining;
+
+    cur_obj_scale(scale);
+
+    cur_obj_move_using_fvel_and_gravity();
+
+    if (o->oTimer > remainingTime) {
+        obj_mark_for_deletion(o);
+    }
+
+    o->oInteractStatus = INT_STATUS_NONE;
+}
+
 void bhv_rr_rotating_bridge_platform_loop(void) {
     o->oMoveAngleYaw -= 0x80;
     o->oAngleVelYaw = -0x80;

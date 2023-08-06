@@ -32,16 +32,31 @@ void bhv_quicksand_transporter_push_back(void){
             soundPlayed = 1;
         }
 
-        if(gMarioStates[0].pos[0] > -2400.0f) { // fino a X: -2470
+        // fino a X: -2233
+        if(gMarioStates[0].pos[0] > -2233.0f && gMarioStates[0].pos[0] != -2233.0f) {
             gMarioStates[0].pos[0] -= 30.0f;
-            if(gMarioStates[0].pos[2] > 0.0f){ // fino a Z: 0
+        } else {
+            gMarioStates[0].pos[0] = -2233.0f;
+        }
+
+        // fino a Z: -36
+        if(gMarioStates[0].pos[2] != -36.0f) {
+            if(gMarioStates[0].pos[2] > 0.0f){ 
                 gMarioStates[0].pos[2] -= 10.0f;
+                if(gMarioStates[0].pos[2] < -36.0f) {
+                    gMarioStates[0].pos[2] = -36.0f;
+                }
             } else {
                 gMarioStates[0].pos[2] += 10.0f;
+                if(gMarioStates[0].pos[2] > -36.0f) {
+                    gMarioStates[0].pos[2] = -36.0f;
+                }
             }
         } else {
-            gMarioStates[0].pos[0] = -2400.0f; 
-            gMarioStates[0].pos[2] = 0.0f;       
+            gMarioStates[0].pos[2] = -36.0f;
+        }
+
+        if(gMarioStates[0].pos[0] == -2233.0f && gMarioStates[0].pos[2] == -36.0f) {       
             o->oAction = QUICKSAND_TRANSPORTER_PUSH_DOWN;
         }
         
