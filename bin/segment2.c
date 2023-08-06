@@ -1630,6 +1630,10 @@ ALIGNED8 static const Texture texture_font_char_eu_colon[] = {
 #include "textures/segment2/font_graphics.06410.ia1.inc.c"
 };
 
+// ALIGNED8 static const Texture texture_font_char_eu_colon[] = {
+//     #include "textures/segment2/font_graphics.custom.colon.ia4.inc.c"
+// };
+
 ALIGNED8 static const Texture texture_font_char_EU_slash[] = {
 #include "textures/segment2/font_graphics.06420.ia1.inc.c"
 };
@@ -1704,6 +1708,55 @@ ALIGNED8 static const Texture texture_font_char_eu_eszeet[] = {
 
 // US Small Font
 #else
+ALIGNED8 static const Texture texture_font_char_us_left_right_arrow[] = {
+#include "textures/segment2/font_graphics.06880.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_coin[] = {
+#include "textures/segment2/font_graphics.06900.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_multiply[] = {
+#include "textures/segment2/font_graphics.06940.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_close_open_parentheses[] = {
+#include "textures/segment2/font_graphics.069C0.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_tilde[] = {
+#include "textures/segment2/font_graphics.06A40.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_percent[] = {
+#include "textures/segment2/font_graphics.06AC0.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_interpunct[] = {
+#include "textures/segment2/font_graphics.06B00.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_star_filled[] = {
+#include "textures/segment2/font_graphics.06C00.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_star_hollow[] = {
+#include "textures/segment2/font_graphics.06C40.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_double_quote_open[] = {
+#include "textures/segment2/font_graphics.06C80.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_double_quote_close[] = {
+#include "textures/segment2/font_graphics.06CC0.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_ellipsis[] = {
+#include "textures/segment2/font_graphics.06D00.ia4.inc.c"
+};
+
+#ifndef NEW_FONT
 ALIGNED8 static const Texture texture_font_char_us_0[] = {
 #include "textures/segment2/font_graphics.05900.ia4.inc.c"
 };
@@ -1952,48 +2005,20 @@ ALIGNED8 static const Texture texture_font_char_us_z[] = {
 #include "textures/segment2/font_graphics.06840.ia4.inc.c"
 };
 
-ALIGNED8 static const Texture texture_font_char_us_left_right_arrow[] = {
-#include "textures/segment2/font_graphics.06880.ia4.inc.c"
-};
-
 ALIGNED8 static const Texture texture_font_char_us_exclamation[] = {
 #include "textures/segment2/font_graphics.068C0.ia4.inc.c"
-};
-
-ALIGNED8 static const Texture texture_font_char_us_coin[] = {
-#include "textures/segment2/font_graphics.06900.ia4.inc.c"
-};
-
-ALIGNED8 static const Texture texture_font_char_us_multiply[] = {
-#include "textures/segment2/font_graphics.06940.ia4.inc.c"
 };
 
 ALIGNED8 static const Texture texture_font_char_us_open_parentheses[] = {
 #include "textures/segment2/font_graphics.06980.ia4.inc.c"
 };
 
-ALIGNED8 static const Texture texture_font_char_us_close_open_parentheses[] = {
-#include "textures/segment2/font_graphics.069C0.ia4.inc.c"
-};
-
 ALIGNED8 static const Texture texture_font_char_us_close_parentheses[] = {
 #include "textures/segment2/font_graphics.06A00.ia4.inc.c"
 };
 
-ALIGNED8 static const Texture texture_font_char_us_tilde[] = {
-#include "textures/segment2/font_graphics.06A40.ia4.inc.c"
-};
-
 ALIGNED8 static const Texture texture_font_char_us_period[] = {
 #include "textures/segment2/font_graphics.06A80.ia4.inc.c"
-};
-
-ALIGNED8 static const Texture texture_font_char_us_percent[] = {
-#include "textures/segment2/font_graphics.06AC0.ia4.inc.c"
-};
-
-ALIGNED8 static const Texture texture_font_char_us_interpunct[] = {
-#include "textures/segment2/font_graphics.06B00.ia4.inc.c"
 };
 
 ALIGNED8 static const Texture texture_font_char_us_comma[] = {
@@ -2008,26 +2033,6 @@ ALIGNED8 static const Texture texture_font_char_us_question[] = {
 #include "textures/segment2/font_graphics.06BC0.ia4.inc.c"
 };
 
-ALIGNED8 static const Texture texture_font_char_us_star_filled[] = {
-#include "textures/segment2/font_graphics.06C00.ia4.inc.c"
-};
-
-ALIGNED8 static const Texture texture_font_char_us_star_hollow[] = {
-#include "textures/segment2/font_graphics.06C40.ia4.inc.c"
-};
-
-ALIGNED8 static const Texture texture_font_char_us_double_quote_open[] = {
-#include "textures/segment2/font_graphics.06C80.ia4.inc.c"
-};
-
-ALIGNED8 static const Texture texture_font_char_us_double_quote_close[] = {
-#include "textures/segment2/font_graphics.06CC0.ia4.inc.c"
-};
-
-ALIGNED8 static const Texture texture_font_char_us_ellipsis[] = {
-#include "textures/segment2/font_graphics.06D00.ia4.inc.c"
-};
-
 ALIGNED8 static const Texture texture_font_char_us_slash[] = {
 #include "textures/segment2/font_graphics.06D40.ia4.inc.c"
 };
@@ -2035,7 +2040,298 @@ ALIGNED8 static const Texture texture_font_char_us_slash[] = {
 ALIGNED8 static const Texture texture_font_char_us_ampersand[] = {
 #include "textures/segment2/font_graphics.06D80.ia4.inc.c"
 };
+#else
+/*
+ * START OF NEW FONT *
+ */
+ALIGNED8 static const Texture texture_font_char_us_exclamation[] = {
+	#include "textures/segment2/font_graphics.custom.exclamation.ia4.inc.c"
+};
 
+ALIGNED8 static const Texture texture_font_char_us_ampersand[] = {
+	#include "textures/segment2/font_graphics.custom.ampersand.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_apostrophe[] = {
+	#include "textures/segment2/font_graphics.custom.apostrophe.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_open_parentheses[] = {
+	#include "textures/segment2/font_graphics.custom.open_parentheses.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_close_parentheses[] = {
+	#include "textures/segment2/font_graphics.custom.close_parentheses.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_comma[] = {
+	#include "textures/segment2/font_graphics.custom.comma.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_period[] = {
+	#include "textures/segment2/font_graphics.custom.period.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_slash[] = {
+	#include "textures/segment2/font_graphics.custom.slash.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_0[] = {
+	#include "textures/segment2/font_graphics.custom.0.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_1[] = {
+	#include "textures/segment2/font_graphics.custom.1.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_2[] = {
+	#include "textures/segment2/font_graphics.custom.2.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_3[] = {
+	#include "textures/segment2/font_graphics.custom.3.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_4[] = {
+	#include "textures/segment2/font_graphics.custom.4.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_5[] = {
+	#include "textures/segment2/font_graphics.custom.5.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_6[] = {
+	#include "textures/segment2/font_graphics.custom.6.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_7[] = {
+	#include "textures/segment2/font_graphics.custom.7.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_8[] = {
+	#include "textures/segment2/font_graphics.custom.8.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_9[] = {
+	#include "textures/segment2/font_graphics.custom.9.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_question[] = {
+	#include "textures/segment2/font_graphics.custom.question.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_A[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_A.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_B[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_B.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_C[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_C.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_D[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_D.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_E[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_E.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_F[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_F.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_G[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_G.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_H[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_H.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_I[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_I.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_J[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_J.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_K[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_K.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_L[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_L.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_M[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_M.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_N[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_N.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_O[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_O.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_P[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_P.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_Q[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_Q.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_R[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_R.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_S[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_S.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_T[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_T.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_U[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_U.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_V[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_V.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_W[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_W.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_X[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_X.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_Y[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_Y.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_Z[] = {
+	#include "textures/segment2/font_graphics.custom.uppercase_Z.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_a[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_a.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_b[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_b.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_c[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_c.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_d[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_d.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_e[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_e.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_f[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_f.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_g[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_g.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_h[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_h.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_i[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_i.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_j[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_j.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_k[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_k.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_l[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_l.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_m[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_m.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_n[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_n.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_o[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_o.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_p[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_p.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_q[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_q.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_r[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_r.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_s[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_s.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_t[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_t.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_u[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_u.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_v[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_v.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_w[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_w.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_x[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_x.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_y[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_y.ia4.inc.c"
+};
+
+ALIGNED8 static const Texture texture_font_char_us_z[] = {
+	#include "textures/segment2/font_graphics.custom.lowercase_z.ia4.inc.c"
+};
+
+/*
+ * END OF NEW FONT *
+ */
+#endif
 ALIGNED8 static const Texture texture_font_char_us_button_A[] = {
 #include "textures/segment2/font_graphics.06DC0.ia4.inc.c"
 };
