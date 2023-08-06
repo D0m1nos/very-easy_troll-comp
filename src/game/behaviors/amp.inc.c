@@ -332,7 +332,7 @@ static void circling_amp_idle_nonstop_loop(void) {
     o->oPosX = o->oHomeX + sins(o->oMoveAngleYaw) * o->oAmpRadiusOfRotation;
     o->oPosZ = o->oHomeZ + coss(o->oMoveAngleYaw) * o->oAmpRadiusOfRotation;
     o->oPosY = o->oHomeY + coss(o->oAmpYPhase * 0x8B0) * 30.0f;
-    o->oMoveAngleYaw += 0x400;
+    o->oMoveAngleYaw += 0x280;
     o->oFaceAngleYaw = o->oMoveAngleYaw + 0x4000;
 
     obj_set_hitbox(o, &sAmpHitbox);

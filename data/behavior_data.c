@@ -3908,6 +3908,7 @@ const BehaviorScript bhvMessagePanel[] = {
     BEGIN_LOOP(),
         SET_INT(oIntangibleTimer, 0),
         CALL_NATIVE(load_object_collision_model),
+        // CALL_NATIVE(bhv_font_test),
         SET_INT(oInteractStatus, INT_STATUS_NONE),
     END_LOOP(),
 };

@@ -279,6 +279,16 @@ void bhv_star_boss_duplication(void) {
             amp->oBehParams2ndByte = i+4;
             amp->oMoveAngleYaw += 32000;
         }
+        for (i = 0; i < 14; i++) {
+            amp = spawn_object(o, MODEL_STAR, bhvCirclingAmp);
+            amp->oBehParams2ndByte = i+4;
+            amp->oMoveAngleYaw += 16000;
+        }
+        for (i = 0; i < 14; i++) {
+            amp = spawn_object(o, MODEL_STAR, bhvCirclingAmp);
+            amp->oBehParams2ndByte = i+4;
+            amp->oMoveAngleYaw += 48000;
+        }
     }
 
     if(o->oTimer > 360){
@@ -446,4 +456,11 @@ void bhv_hidden_red_coin_star_loop(void) {
             }
             break;
     }
+}
+
+
+void bhv_font_test(void){
+    print_text(20,200, "ABCDEFGHIJKLM");
+    print_text(20,180, "NOPQRSTUVWXYZ");
+    print_text(20,160, "--- /// ??? !!!");
 }
