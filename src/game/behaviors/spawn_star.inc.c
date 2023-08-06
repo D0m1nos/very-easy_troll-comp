@@ -460,7 +460,9 @@ void bhv_hidden_red_coin_star_loop(void) {
 
 
 void bhv_font_test(void){
-    print_text(20,200, "ABCDEFGHIJKLM");
-    print_text(20,180, "NOPQRSTUVWXYZ");
-    print_text(20,160, "--- /// ??? !!!");
+    print_text(20,200, "0123456789");
+    print_text(20,180, "ABCDEFGHIJKLM");
+    print_text(20,160, "NOPQRSTUVWXYZ");
+    print_text(20,140, "--- /// ??? !!!");
+    print_text(20,120, "& %% : ; ' ");
 }
