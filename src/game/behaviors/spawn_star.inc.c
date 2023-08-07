@@ -4,16 +4,28 @@
 #include "levels/wf/header.inc.h"
 #include "game/print.h"
 
-struct sPuppySpline splineCutscene[] = {
-    {{ -457, 17, 293 }, 0, 30 },
-    {{ -193, 272, 199 }, 1, 30 },
-    {{ 59, 512, 137 }, 2, 30 },
-    {{ 341, 653, 160 }, 3, 30 },
-    {{ 636, 804, 136 }, 4, 30 },
-    {{ 840, 871, 149 }, 5, 30 },
-    {{ 1024, 1006, 140 }, 6, 30 },
-    {{ 1230, 1140, 142 }, 7, 30 },
-    {{ 1415, 1207, 138 }, -1, 30 },
+struct sPuppySpline splineCutsceneCamera[] = {
+    {{ 1011, 17, 313 }, 0, 21 },
+    {{ 1049, 626, 130 }, 1, 21 },
+    {{ 1221, 1092, -82 }, 2, 39 },
+    {{ 1674, 1065, -220 }, 3, 39 },
+    {{ 2006, 1052, 265 }, 4, 39 },
+    {{ 1967, 1120, 772 }, 5, 39 },
+    {{ 1214, 1255, 1118 }, 6, 39 },
+    {{ 702, 980, -4 }, 7, 39 },
+    {{ 1334, 870, -495 }, -1, 39 },
+};
+
+struct sPuppySpline splineCutsceneFocus[] = {
+    {{ 1212, 17, 313 }, 0, 21 },
+    {{ 1303, 626, 155 }, 1, 21 },
+    {{ 1408, 1092, 18 }, 2, 39 },
+    {{ 1636, 1065, 65 }, 3, 39 },
+    {{ 1825, 1052, 302 }, 4, 39 },
+    {{ 1726, 1120, 540 }, 5, 39 },
+    {{ 1436, 1255, 711 }, 6, 39 },
+    {{ 1046, 980, 306 }, 7, 39 },
+    {{ 1359, 870, -75 }, -1, 39 },
 };
 
 
@@ -33,8 +45,9 @@ f32 maxHeight = 1050.0f;
 u8 groundPoundState = 0;
 u8 spinVel = 0;
 u8 roundDone = 0;
-
 u8 starGone = 0;
+u32 tempTimer = 0;
+u8 actuallyStarted = 0;
 
 void bhv_collect_star_init(void) {
     
@@ -44,6 +57,8 @@ void bhv_collect_star_init(void) {
     spinVel = 0;
     roundDone = 0;
     starGone = 0;
+    tempTimer = 0;
+    actuallyStarted = 0;
     cur_obj_become_intangible();
 
     s8 starId = GET_BPARAM1(o->oBehParams);
@@ -122,53 +137,76 @@ void bhv_star_boss_idle(void) {
     }
 
     if(starGone == 1) {
-        o->oPosY += 80.0f;
-        if(o->oPosY >= maxHeight){
-            o->oPosY = maxHeight;
-            spinVel = 0;
-            o->oAction = 1;
-        }
+        o->oAction = 1;
     }
 
 }
 
 s32 boss_cutscene(void) {
-    return puppycam_move_spline(splineCutscene, splineCutscene, PUPPYSPLINE_FOLLOW, 0);
+    return puppycam_move_spline(splineCutsceneCamera, splineCutsceneFocus, PUPPYSPLINE_FOLLOW, 0);
     // return puppycam_move_spline(splineCutscene, NULL, PUPPYSPLINE_NONE, 0);
 }
 
+//! remove
+char joj[100];
+char salito[100];
+//! remove
+
 void bhv_star_boss_starting(void) {
+    //TODO: press A to skip
+
     if(o->oTimer == 0){
         stop_background_music(SEQUENCE_ARGS(4, SEQ_SAND_CANYON));
+        o->oFaceAngleYaw = 16000;
     }
 
-    puppycam_activate_cutscene(&boss_cutscene, TRUE);
+    puppycam_activate_cutscene(&boss_cutscene, 1); //TODO: disable mario movement (set action)
 
-    o->oFaceAngleYaw += 1100 * spinVel;
+    if(o->oPosY != maxHeight){
+        o->oPosY += 20.0f;
+        if(o->oPosY >= maxHeight){
+            o->oPosY = maxHeight;
+            spinVel = 0;
+            sprintf(salito, "salito: %d", o->oTimer);
+        }
+    } else {
+        o->oFaceAngleYaw += 733 * spinVel; // 11000 max
     
-    if(o->oTimer % (30-(spinVel*2)) == 0 && spinVel < 10){
-        play_sound(SOUND_OBJ_BOWSER_SPINNING, gGlobalSoundSource);
-        spinVel++;
-    }
+        if(o->oTimer % (30-(spinVel*1)) == 0 && spinVel < 15){
+            play_sound(SOUND_OBJ_BOWSER_SPINNING, gGlobalSoundSource);
+            spinVel++;
+        }
 
-    if(spinVel == 10){
-        spawn_object(gMarioObject, MODEL_NONE, bhvChallengeArena);
-        spinVel = 5;
-        o->oAction = 2;
+        //! remove
+        sprintf(joj, "timer: %d", o->oTimer);
+        print_text(60,120,joj);
+        //! remove
+
+        if(spinVel == 15){ // 132 frame
+            if(tempTimer == 0){
+                tempTimer = o->oTimer;
+            }
+            if(o->oTimer - tempTimer == 60){
+                spawn_object(gMarioObject, MODEL_NONE, bhvChallengeArena);
+                o->oAction = 2;
+            } else { // fermo per 2 sec
+                o->oFaceAngleYaw = 16000;
+                //TODO: play sound? / shake screen?
+            }
+        }
     }
 }
 
 void bhv_star_boss_flame_rain(void) {
+    print_text(60,120,joj);
+    print_text(60,140,salito);
+    
     f32 randomPosX, randomPosZ;
     u8 i;
     struct Object *enemy;
-
-    o->oFaceAngleYaw += 2200 * spinVel;
     
-    if(o->oTimer % (30-(spinVel*2)) == 0 && spinVel < 5){
-        play_sound(SOUND_OBJ_BOWSER_SPINNING, gGlobalSoundSource);
-        spinVel++;
-    } else {
+    if(o->oTimer > 30){
+        o->oFaceAngleYaw += 3000;
         // z: -1600 -> 2300 | x: -500 -> 3500
         if(o->oTimer % 10 == 0){
             for (i = 0; i < 10; i++) {

@@ -2104,7 +2104,12 @@ And finally a big thanks\n\
 to the team behind\n\
 HackerSM64 and\n\
 the original Mario 64\n\
-decompilation."))
+decompilation.\n\
+\n\
+Oh and also my brother\n\
+for helping me write\n\
+these dialogues because\n\
+my english is bad lol."))
 
 DEFINE_DIALOG(DIALOG_169, 1, 2, 95, 200, _("\
 be careful about\n\

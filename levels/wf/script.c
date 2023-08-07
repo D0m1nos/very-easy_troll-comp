@@ -269,7 +269,7 @@ const LevelScript level_wf_entry[] = {
 		WARP_NODE(0x0A, LEVEL_BOB, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF0, LEVEL_PSS, 0x01, 0x0A, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xF1, LEVEL_WF, 0x09, 0x08, WARP_NO_CHECKPOINT),
-		OBJECT(MODEL_STAR, 1486, 203, 273, 0, 0, 0, (0 << 24), bhvStarBoss),
+		OBJECT(MODEL_STAR, 1486, 203, 273, 0, -90, 0, (0 << 24), bhvStarBoss),
 		OBJECT(MODEL_NONE, 0, 200, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		MARIO_POS(0x01, 0, -91724, 0, -50875),
 		TERRAIN(wf_area_8_collision),
