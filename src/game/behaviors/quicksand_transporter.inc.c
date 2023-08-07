@@ -19,6 +19,8 @@ void timer_quicksand(u32 limit, u32 currentTime){
 void bhv_quicksand_transporter_push_back(void){
     
     set_mario_action(&gMarioStates[0], ACT_READING_NPC_DIALOG, 0);
+    enable_time_stop();
+    o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP;
 
     if(o->oTimer == 0){
         stop_background_music(SEQUENCE_ARGS(4, SEQ_SAND_CANYON));
@@ -28,13 +30,14 @@ void bhv_quicksand_transporter_push_back(void){
         
     } else { 
         if(soundPlayed == 0){
-            play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_DUCK_TALES_MOON), 0);
+            // play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_DUCK_TALES_MOON), 0);
+            play_sound(SOUND_MARIO_WAAAOOOW, gGlobalSoundSource);
             soundPlayed = 1;
         }
 
         // fino a X: -2233
         if(gMarioStates[0].pos[0] > -2233.0f && gMarioStates[0].pos[0] != -2233.0f) {
-            gMarioStates[0].pos[0] -= 30.0f;
+            gMarioStates[0].pos[0] -= 110.0f;
         } else {
             gMarioStates[0].pos[0] = -2233.0f;
         }
@@ -69,8 +72,12 @@ void bhv_quicksand_transporter_push_down(void){
 
     print_text(60, 140, ""); // ???????????
 
+    if(o->oTimer == 0) {
+        play_sound(SOUND_MARIO_MAMA_MIA, gGlobalSoundSource);
+    }
+
     if(gMarioStates[0].pos[1] > 50.0f){ // fino a Y: 50
-        gMarioStates[0].pos[1] -= 20.0f;
+        gMarioStates[0].pos[1] -= 60.0f;
     } else {
         gMarioStates[0].pos[1] = 50.0f;
         set_mario_action(&gMarioStates[0], ACT_IDLE, 0);

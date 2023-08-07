@@ -202,7 +202,9 @@ void bhv_1up_sliding_loop(void) {
 }
 
 void bhv_1up_loop(void) {
+    o->activeFlags |= ACTIVE_FLAG_UNIMPORTANT;
     bhv_1up_interact();
+    koopa_shell_spawn_sparkles(5.0f);
     set_object_visibility(o, 3000);
 }
 

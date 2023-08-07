@@ -31,7 +31,7 @@
 // #define PUPPYPRINT
 
 // custom font (Px437_EverexME_5x8)
-#define NEW_FONT
+// #define NEW_FONT
 
 // Disables AA (Improves console performance but causes visible seams between unconnected geometry).
 // #define DISABLE_AA
