@@ -41,7 +41,7 @@ void survive_timer(u32 limit, u32 currentTime){
 
 void bhv_challenge_arena_round_1(void){
     timer(8, o->oTimer);
-    print_text(30, 30, "1/5 PICK A PIPE");
+    print_text(30, 30, "1/5 ENTER THE PIPE");
 }
 
 void bhv_challenge_arena_round_2(void){

@@ -4,6 +4,8 @@ const GeoLayout wf_area_8_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 1478, -28, 368, wf_dl_Cylinder_009_mesh_layer_1),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 1478, -28, 368, wf_dl_Cylinder_024_mesh_layer_1),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 1478, -28, 368, wf_dl_Cylinder_025_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };

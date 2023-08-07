@@ -1,6 +1,21 @@
 // spawn_star.inc.c
 
 #include "include/seq_ids.h"
+#include "levels/wf/header.inc.h"
+#include "game/print.h"
+
+struct sPuppySpline splineCutscene[] = {
+    {{ -457, 17, 293 }, 0, 30 },
+    {{ -193, 272, 199 }, 1, 30 },
+    {{ 59, 512, 137 }, 2, 30 },
+    {{ 341, 653, 160 }, 3, 30 },
+    {{ 636, 804, 136 }, 4, 30 },
+    {{ 840, 871, 149 }, 5, 30 },
+    {{ 1024, 1006, 140 }, 6, 30 },
+    {{ 1230, 1140, 142 }, 7, 30 },
+    {{ 1415, 1207, 138 }, -1, 30 },
+};
+
 
 static struct ObjectHitbox sCollectStarHitbox = {
     /* interactType:      */ INTERACT_STAR_OR_KEY,
@@ -117,10 +132,17 @@ void bhv_star_boss_idle(void) {
 
 }
 
+s32 boss_cutscene(void) {
+    return puppycam_move_spline(splineCutscene, splineCutscene, PUPPYSPLINE_FOLLOW, 0);
+    // return puppycam_move_spline(splineCutscene, NULL, PUPPYSPLINE_NONE, 0);
+}
+
 void bhv_star_boss_starting(void) {
     if(o->oTimer == 0){
         stop_background_music(SEQUENCE_ARGS(4, SEQ_SAND_CANYON));
     }
+
+    puppycam_activate_cutscene(&boss_cutscene, TRUE);
 
     o->oFaceAngleYaw += 1100 * spinVel;
     
