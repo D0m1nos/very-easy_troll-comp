@@ -32,8 +32,8 @@ extern const Collision wf_area_8_collision[];
 extern const MacroObject wf_area_8_macro_objs[];
 #include "src/game/camera.h"
 
-extern struct CutsceneSplinePoint wf_area_8_spline_focus[];
-extern struct CutsceneSplinePoint wf_area_8_spline_Follow[];
+extern struct CutsceneSplinePoint wf_area_8_spline_camera[];
+extern struct CutsceneSplinePoint wf_area_8_spline_camera_001[];
 extern const GeoLayout wf_area_9_geo[];
 extern const GeoLayout wf_area_9[];
 extern const Collision wf_area_9_collision[];

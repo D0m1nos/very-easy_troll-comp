@@ -5,27 +5,61 @@
 #include "game/print.h"
 
 struct sPuppySpline splineCutsceneCamera[] = {
-    {{ 1011, 17, 313 }, 0, 21 },
-    {{ 1049, 626, 130 }, 1, 21 },
-    {{ 1221, 1092, -82 }, 2, 39 },
-    {{ 1674, 1065, -220 }, 3, 39 },
-    {{ 2006, 1052, 265 }, 4, 39 },
-    {{ 1967, 1120, 772 }, 5, 39 },
-    {{ 1214, 1255, 1118 }, 6, 39 },
-    {{ 702, 980, -4 }, 7, 39 },
-    {{ 1334, 870, -495 }, -1, 39 },
+    {{ 477, 45, 31 }, 0, 20 },
+    {{ 477, 45, 31 }, 1, 20 },
+    {{ 477, 129, 31 }, 2, 20 },
+    {{ 530, 553, -3 }, 3, 20 },
+    {{ 773, 1214, -128 }, 4, 40 },
+    {{ 3331, 1248, -1181 }, 5, 100 },
+    {{ -635, 1099, 1936 }, 6, 10 },
+    {{ 2761, 1253, 199 }, 7, 100 },
+    {{ 2175, 1282, -392 }, 8, 10 },
+    {{ 1185, 1183, -531 }, 9, 25 },
+    {{ 601, 1315, 483 }, 10, 20 },
+    {{ 879, 1313, 597 }, 11, 25 },
+    {{ 1070, 1313, 638 }, 12, 20 },
+    {{ 1319, 1313, 692 }, 13, 10 },
+    {{ 1629, 1313, 628 }, 14, 10 },
+    {{ 1844, 1313, 514 }, 15, 10 },
+    {{ 1888, 1313, 489 }, 16, 10 },
+    {{ 1923, 1313, 462 }, 17, 10 },
+    {{ 2032, 1313, 344 }, 18, 10 },
+    {{ 2084, 1313, 257 }, 19, 10 },
+    {{ 2093, 1313, 130 }, 20, 10 },
+    {{ 2031, 1313, 28 }, 21, 10 },
+    {{ 1945, 1313, -10 }, 22, 10 },
+    {{ 1841, 1313, -8 }, 23, 10 },
+    {{ 1726, 1301, -14 }, 24, 10 },
+    {{ 1647, 1306, -14 }, -1, 10 },
 };
 
 struct sPuppySpline splineCutsceneFocus[] = {
-    {{ 1212, 17, 313 }, 0, 21 },
-    {{ 1303, 626, 155 }, 1, 21 },
-    {{ 1408, 1092, 18 }, 2, 39 },
-    {{ 1636, 1065, 65 }, 3, 39 },
-    {{ 1825, 1052, 302 }, 4, 39 },
-    {{ 1726, 1120, 540 }, 5, 39 },
-    {{ 1436, 1255, 711 }, 6, 39 },
-    {{ 1046, 980, 306 }, 7, 39 },
-    {{ 1359, 870, -75 }, -1, 39 },
+    {{ 717, -1, 51 }, 0, 20 },
+    {{ 717, -1, 51 }, 1, 20 },
+    {{ 717, 303, 51 }, 2, 20 },
+    {{ 758, 758, 25 }, 3, 20 },
+    {{ 944, 1143, -71 }, 4, 40 },
+    {{ 2906, 1170, -879 }, 5, 100 },
+    {{ -136, 1055, 1512 }, 6, 10 },
+    {{ 2469, 1174, 179 }, 7, 100 },
+    {{ 2019, 1196, -274 }, 8, 10 },
+    {{ 1260, 1120, -381 }, 9, 25 },
+    {{ 812, 1221, 397 }, 10, 20 },
+    {{ 1025, 1219, 484 }, 11, 25 },
+    {{ 1328, 1219, 530 }, 12, 20 },
+    {{ 1467, 1219, 522 }, 13, 10 },
+    {{ 1574, 1219, 501 }, 14, 10 },
+    {{ 1665, 1219, 472 }, 15, 10 },
+    {{ 1726, 1219, 443 }, 16, 10 },
+    {{ 1791, 1219, 394 }, 17, 10 },
+    {{ 1853, 1219, 333 }, 18, 10 },
+    {{ 1876, 1219, 268 }, 19, 10 },
+    {{ 1886, 1219, 191 }, 20, 10 },
+    {{ 1852, 1219, 133 }, 21, 10 },
+    {{ 1778, 1219, 100 }, 22, 10 },
+    {{ 1695, 1219, 98 }, 23, 10 },
+    {{ 1626, 1219, 101 }, 24, 10 },
+    {{ 1550, 1219, 107 }, -1, 10 },
 };
 
 
@@ -147,27 +181,23 @@ s32 boss_cutscene(void) {
     // return puppycam_move_spline(splineCutscene, NULL, PUPPYSPLINE_NONE, 0);
 }
 
-//! remove
-char joj[100];
-char salito[100];
-//! remove
+
 
 void bhv_star_boss_starting(void) {
     //TODO: press A to skip
 
     if(o->oTimer == 0){
+        puppycam_activate_cutscene(&boss_cutscene, 1); //TODO: disable mario movement (set action)
         stop_background_music(SEQUENCE_ARGS(4, SEQ_SAND_CANYON));
         o->oFaceAngleYaw = 16000;
     }
 
-    puppycam_activate_cutscene(&boss_cutscene, 1); //TODO: disable mario movement (set action)
 
     if(o->oPosY != maxHeight){
         o->oPosY += 20.0f;
         if(o->oPosY >= maxHeight){
             o->oPosY = maxHeight;
             spinVel = 0;
-            sprintf(salito, "salito: %d", o->oTimer);
         }
     } else {
         o->oFaceAngleYaw += 733 * spinVel; // 11000 max
@@ -177,20 +207,21 @@ void bhv_star_boss_starting(void) {
             spinVel++;
         }
 
-        //! remove
-        sprintf(joj, "timer: %d", o->oTimer);
-        print_text(60,120,joj);
-        //! remove
-
-        if(spinVel == 15){ // 132 frame
+        if(spinVel == 15){
             if(tempTimer == 0){
                 tempTimer = o->oTimer;
             }
-            if(o->oTimer - tempTimer == 60){
+            if(o->oTimer - tempTimer == 150){
                 spawn_object(gMarioObject, MODEL_NONE, bhvChallengeArena);
                 o->oAction = 2;
-            } else { // fermo per 2 sec
-                o->oFaceAngleYaw = 16000;
+            } else { 
+                o->oFaceAngleYaw += 1000;
+                if(o->oTimer - tempTimer == 30){
+                    cur_obj_shake_screen(SHAKE_POS_SMALL);
+                }
+                if(o->oTimer - tempTimer == 60){
+                    cur_obj_play_sound_2(SOUND_OBJ_BOWSER_LAUGH);
+                }
                 //TODO: play sound? / shake screen?
             }
         }
@@ -198,8 +229,6 @@ void bhv_star_boss_starting(void) {
 }
 
 void bhv_star_boss_flame_rain(void) {
-    print_text(60,120,joj);
-    print_text(60,140,salito);
     
     f32 randomPosX, randomPosZ;
     u8 i;
