@@ -21,16 +21,16 @@ struct sPuppySpline splineCutsceneCamera[] = {
     {{ 1319, 1313, 692 }, 13, 10 },
     {{ 1629, 1313, 628 }, 14, 10 },
     {{ 1844, 1313, 514 }, 15, 10 },
-    {{ 1888, 1313, 489 }, 16, 10 },
-    {{ 1923, 1313, 462 }, 17, 10 },
+    {{ 1918, 1313, 463 }, 16, 10 },
+    {{ 1976, 1313, 409 }, 17, 10 },
     {{ 2032, 1313, 344 }, 18, 10 },
     {{ 2084, 1313, 257 }, 19, 10 },
     {{ 2093, 1313, 130 }, 20, 10 },
     {{ 2031, 1313, 28 }, 21, 10 },
-    {{ 1945, 1313, -10 }, 22, 10 },
-    {{ 1841, 1313, -8 }, 23, 10 },
-    {{ 1726, 1301, -14 }, 24, 10 },
-    {{ 1647, 1306, -14 }, -1, 10 },
+    {{ 2224, 1313, -114 }, 22, 10 },
+    {{ 2367, 1313, -194 }, 23, 10 },
+    {{ 2634, 1301, -329 }, 24, 10 },
+    {{ 2687, 742, -354 }, -1, 10 },
 };
 
 struct sPuppySpline splineCutsceneFocus[] = {
@@ -55,11 +55,11 @@ struct sPuppySpline splineCutsceneFocus[] = {
     {{ 1853, 1219, 333 }, 18, 10 },
     {{ 1876, 1219, 268 }, 19, 10 },
     {{ 1886, 1219, 191 }, 20, 10 },
-    {{ 1852, 1219, 133 }, 21, 10 },
-    {{ 1778, 1219, 100 }, 22, 10 },
-    {{ 1695, 1219, 98 }, 23, 10 },
-    {{ 1626, 1219, 101 }, 24, 10 },
-    {{ 1550, 1219, 107 }, -1, 10 },
+    {{ 1859, 1219, 78 }, 21, 10 },
+    {{ 1797, 1219, 144 }, 22, 10 },
+    {{ 1719, 1219, 201 }, 23, 10 },
+    {{ 1621, 1219, 245 }, 24, 10 },
+    {{ 1594, 932, 254 }, -1, 10 },
 };
 
 
@@ -82,6 +82,7 @@ u8 roundDone = 0;
 u8 starGone = 0;
 u32 tempTimer = 0;
 u8 actuallyStarted = 0;
+u8 skipped = 0;
 
 void bhv_collect_star_init(void) {
     
@@ -93,6 +94,7 @@ void bhv_collect_star_init(void) {
     starGone = 0;
     tempTimer = 0;
     actuallyStarted = 0;
+    skipped = 0;
     cur_obj_become_intangible();
 
     s8 starId = GET_BPARAM1(o->oBehParams);
@@ -177,19 +179,33 @@ void bhv_star_boss_idle(void) {
 }
 
 s32 boss_cutscene(void) {
+    if(gMarioStates[0].canSkip == 1){
+        print_text(120, 20, "PRESS A TO SKIP");
+        if(gPlayer1Controller->buttonPressed & A_BUTTON){
+            skipped = 1;
+            return TRUE;
+        }
+    }
     return puppycam_move_spline(splineCutsceneCamera, splineCutsceneFocus, PUPPYSPLINE_FOLLOW, 0);
-    // return puppycam_move_spline(splineCutscene, NULL, PUPPYSPLINE_NONE, 0);
 }
 
 
 
 void bhv_star_boss_starting(void) {
-    //TODO: press A to skip
+
+    set_mario_action(&gMarioStates[0], ACT_READING_NPC_DIALOG, 0);
 
     if(o->oTimer == 0){
-        puppycam_activate_cutscene(&boss_cutscene, 1); //TODO: disable mario movement (set action)
+        gMarioStates[0].pos[1] = 20.0f;
+        puppycam_activate_cutscene(&boss_cutscene, 1);
         stop_background_music(SEQUENCE_ARGS(4, SEQ_SAND_CANYON));
         o->oFaceAngleYaw = 16000;
+    }
+
+    if(skipped == 1){
+        skipped = 0;
+        o->oPosY = maxHeight;
+        o->oAction = 2;
     }
 
 
@@ -212,7 +228,6 @@ void bhv_star_boss_starting(void) {
                 tempTimer = o->oTimer;
             }
             if(o->oTimer - tempTimer == 150){
-                spawn_object(gMarioObject, MODEL_NONE, bhvChallengeArena);
                 o->oAction = 2;
             } else { 
                 o->oFaceAngleYaw += 1000;
@@ -222,17 +237,22 @@ void bhv_star_boss_starting(void) {
                 if(o->oTimer - tempTimer == 60){
                     cur_obj_play_sound_2(SOUND_OBJ_BOWSER_LAUGH);
                 }
-                //TODO: play sound? / shake screen?
             }
         }
     }
 }
 
 void bhv_star_boss_flame_rain(void) {
-    
     f32 randomPosX, randomPosZ;
     u8 i;
     struct Object *enemy;
+
+    if(actuallyStarted == 0){
+        actuallyStarted = 1;
+        gMarioStates[0].canSkip = 1;
+        spawn_object(gMarioObject, MODEL_NONE, bhvChallengeArena);
+        set_mario_action(&gMarioStates[0], ACT_IDLE, 0);
+    }
     
     if(o->oTimer > 30){
         o->oFaceAngleYaw += 3000;
