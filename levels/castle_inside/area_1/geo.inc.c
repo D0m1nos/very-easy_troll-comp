@@ -11,7 +11,7 @@ const GeoLayout castle_inside_area_1_geo[] = {
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, -919, 94, -820, -4, -136, -21, castle_inside_dl_Cube_007_mesh_layer_1),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, -1529, 286, 6799, 37, -152, 7, castle_inside_dl_Icosphere_001_mesh_layer_1),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, -3839, 1729, -3250, 37, 3, 7, castle_inside_dl_Icosphere_002_mesh_layer_1),
-		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 2285, 3884, 7864, 45, -33, 144, castle_inside_dl_Icosphere_003_mesh_layer_1),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 1903, 2005, 7797, 36, 174, 6, castle_inside_dl_Icosphere_003_mesh_layer_1),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, -3500, 2032, -3753, 37, 31, 7, castle_inside_dl_Icosphere_004_mesh_layer_1),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, -63, 3347, -4415, 135, -3, 3, castle_inside_dl_Icosphere_005_mesh_layer_1),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 3120, 640, -3573, 54, -21, 8, castle_inside_dl_Icosphere_006_mesh_layer_1),

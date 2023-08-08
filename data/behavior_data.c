@@ -1010,7 +1010,7 @@ const BehaviorScript bhvEvilYellowCoin[] = {
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     CALL_NATIVE(bhv_init_room),
     CALL_NATIVE(bhv_yellow_coin_init),
-    SET_INT(oDamageOrCoinValue, -100), //TODO: kill instantly
+    SET_INT(oDamageOrCoinValue, -100),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_yellow_coin_loop),
     END_LOOP(),
@@ -1022,7 +1022,7 @@ const BehaviorScript bhvEvilYellowCoinWithChild[] = {
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     CALL_NATIVE(bhv_init_room),
     CALL_NATIVE(bhv_yellow_coin_child_init),
-    SET_INT(oDamageOrCoinValue, -50), //TODO: kill instantly, water animation
+    SET_INT(oDamageOrCoinValue, -50),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_yellow_coin_loop),
     END_LOOP(),

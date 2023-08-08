@@ -71,6 +71,8 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_WOODEN_SIGNPOST, 23, 100, 1031, 0, -90, 0, (167 << 16), bhvMessagePanel),
 		OBJECT(MODEL_TOAD, -5910, 1565, 1451, 0, 84, 0, 0x00000000, bhvToad),
 		OBJECT(MODEL_TOAD, -1743, 1374, 6161, 0, 167, 0, 0x00000000, bhvToad),
+		OBJECT(MODEL_TOAD, -1426, 105, -1337, 0, 45, 0, 0x00000000, bhvToad),
+		OBJECT(MODEL_TOAD, -550, 105, -1306, 0, -36, 0, 0x00000000, bhvToad),
 		OBJECT(MODEL_NONE, -449, 200, 966, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		MARIO_POS(0x01, 0, -449, 200, 966),
 		OBJECT(MODEL_BITS_WARP_PIPE, 393, 100, 1554, 0, 0, 0, (0x03 << 16), bhvWarpPipe),

@@ -246,6 +246,11 @@ void bhv_star_boss_flame_rain(void) {
     f32 randomPosX, randomPosZ;
     u8 i;
     struct Object *enemy;
+    ModelID16 model;
+
+    if(actuallyStarted == 1 && o->oTimer == 0){
+        spawn_object(o, MODEL_NONE, bhvThreeCoinsSpawn);
+    }
 
     if(actuallyStarted == 0){
         actuallyStarted = 1;
@@ -258,11 +263,16 @@ void bhv_star_boss_flame_rain(void) {
         o->oFaceAngleYaw += 3000;
         // z: -1600 -> 2300 | x: -500 -> 3500
         if(o->oTimer % 10 == 0){
-            for (i = 0; i < 10; i++) {
+            for (i = 0; i < 20; i++) {
                 randomPosX = random_float() * 3500.0f - 400.0f; 
                 randomPosZ = random_float() * 3600.0f - 1500.0f; 
 
-                enemy = spawn_object(o, MODEL_BLUE_FLAME, bhvFlameGravity);
+                if(i % 2 == 0){
+                    model = MODEL_BLUE_FLAME;
+                } else {
+                    model = MODEL_RED_FLAME;
+                }
+                enemy = spawn_object(o, model, bhvFlameGravity);
                 
                 enemy->oPosX = randomPosX;
                 enemy->oPosY = o->oPosY+50.0f;

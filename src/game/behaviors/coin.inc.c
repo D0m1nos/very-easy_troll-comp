@@ -126,6 +126,8 @@ void bhv_yellow_coin_child_init(void) {
         metal_box->oPosY -= (o->oBehParams2ndByte * 10.0f);
     }
 
+    cur_obj_set_model(MODEL_NONE);
+
     bhv_yellow_coin_init();
 
 }
