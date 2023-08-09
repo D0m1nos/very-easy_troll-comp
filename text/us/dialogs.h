@@ -2078,8 +2078,8 @@ having only 1 star!\n\
 (maybe) :)\n\
 Don't have much to say,\n\
 I hope you enjoy it!\n\
-\n\
-\n\
+To start, read both signs.\n\
+- Dominos\n\
 One last thing,\n\
 I don't know what\n\
 happened to that toad,\n\
