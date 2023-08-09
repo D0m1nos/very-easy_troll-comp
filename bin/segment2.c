@@ -603,7 +603,7 @@ ALIGNED8 static const Texture texture_hud_char_exclamation[] = {
 
 // ALIGNED8 static const Texture texture_hud_char_double_exclamation[] = {
 // #include "textures/segment2/custom.doubleexclamation.rgba16.inc.c"
-// };
+// };texture_hud_char_slash
 
 ALIGNED8 static const Texture texture_hud_char_question[] = {
 #include "textures/segment2/custom.question.rgba16.inc.c"
@@ -629,9 +629,9 @@ ALIGNED8 static const Texture texture_hud_char_percent[] = {
 // #include "textures/segment2/custom.c_button.rgba16.inc.c"
 // };
 
-ALIGNED8 static const Texture texture_hud_char_slash[] = {
-#include "textures/segment2/custom.slash.rgba16.inc.c"
-};
+// ALIGNED8 static const Texture texture_hud_char_slash[] = {
+// #include "textures/segment2/custom.slash.rgba16.inc.c"
+// };
 
 ALIGNED8 static const Texture texture_hud_char_minus[] = {
 #include "textures/segment2/custom.minus.rgba16.inc.c"

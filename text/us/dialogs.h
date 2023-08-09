@@ -2078,7 +2078,13 @@ having only 1 star!\n\
 (maybe) :)\n\
 Don't have much to say,\n\
 I hope you enjoy it!\n\
+\n\
 To start, read both signs.\n\
+Also, if you don't\n\
+like the camera you\n\
+can change it in the\n\
+pause menu.\n\
+\n\
 - Dominos\n\
 One last thing,\n\
 I don't know what\n\
