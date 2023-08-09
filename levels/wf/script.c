@@ -149,7 +149,7 @@ const LevelScript level_wf_entry[] = {
 		MARIO_POS(0x01, 0, 0, 200, 0),
 		TERRAIN(wf_area_2_collision),
 		MACRO_OBJECTS(wf_area_2_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_NATIVE_FAITH),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_BOUNCE_BOUNCE),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
@@ -163,7 +163,7 @@ const LevelScript level_wf_entry[] = {
 		MARIO_POS(0x01, 0, 0, 200, 0),
 		TERRAIN(wf_area_3_collision),
 		MACRO_OBJECTS(wf_area_3_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_NATIVE_FAITH),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_BOUNCE_BOUNCE),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
@@ -185,7 +185,7 @@ const LevelScript level_wf_entry[] = {
 		OBJECT(MODEL_BITS_WARP_PIPE, 13717, 8077, 416, 0, 0, 0, (0xB1 << 16), bhvWarpPipe),
 		TERRAIN(wf_area_4_collision),
 		MACRO_OBJECTS(wf_area_4_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_NATIVE_FAITH),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_BOUNCE_BOUNCE),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
@@ -214,7 +214,7 @@ const LevelScript level_wf_entry[] = {
 		MARIO_POS(0x01, 0, -82205, 0, -32017),
 		TERRAIN(wf_area_5_collision),
 		MACRO_OBJECTS(wf_area_5_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_NATIVE_FAITH),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_BOUNCE_BOUNCE),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
@@ -241,7 +241,7 @@ const LevelScript level_wf_entry[] = {
 		OBJECT(MODEL_BITS_WARP_PIPE, 15331, 5972, 379, 0, 0, 0, (0xB1 << 16), bhvWarpPipe),
 		TERRAIN(wf_area_6_collision),
 		MACRO_OBJECTS(wf_area_6_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_NATIVE_FAITH),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_BOUNCE_BOUNCE),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
@@ -259,7 +259,7 @@ const LevelScript level_wf_entry[] = {
 		MARIO_POS(0x01, 0, -82205, 0, -50875),
 		TERRAIN(wf_area_7_collision),
 		MACRO_OBJECTS(wf_area_7_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_NATIVE_FAITH),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_BOUNCE_BOUNCE),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */

@@ -45,5 +45,6 @@
     "2A_ouroboros": ["0C"],
     "2B_refluxio": ["25"],
     "2C_native_faith": ["25"],
-    "2D_refluxio_2": ["25"]
+    "2D_refluxio_2": ["25"],
+    "2E_bounce_bounce_cut": ["2A_bounce_bounce_cut"]
 }
