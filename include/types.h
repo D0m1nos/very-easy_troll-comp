@@ -489,6 +489,8 @@ struct MarioState {
              s16 wallYaw;
              u8 challengeRound;
              u8 canSkip;
+             u8 firstSignRead;
+             u8 secondSignRead;
     // -- HackerSM64 MarioState fields end --
 };
 

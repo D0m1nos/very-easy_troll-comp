@@ -585,3 +585,23 @@ void bhv_font_test(void){
     print_text(20,140, "--- /// ??? !!!");
     print_text(20,120, "& %% : ; ' ");
 }
+
+u8 pipeSpawned = 0;
+struct Object *pipe;
+void bhv_check_signs_init(void) {
+    pipeSpawned = 0;
+}
+
+void bhv_check_signs_loop(void) {
+    if(pipeSpawned == 0 && gMarioStates[0].firstSignRead == 1 && gMarioStates[0].secondSignRead == 1){
+        pipeSpawned = 1;
+        play_sound(SOUND_GENERAL_ACTIVATE_CAP_SWITCH, gGlobalSoundSource);
+        pipe = spawn_object_relative(0x03, 0, 0, 0, o, MODEL_BITS_WARP_PIPE, bhvWarpPipe);
+        pipe->oHomeX = 393.0f;
+        pipe->oHomeY = 100.0f;
+        pipe->oHomeZ = 1554.0f;
+        pipe->oPosX = 393.0f;
+        pipe->oPosY = 100.0f;
+        pipe->oPosZ = 1554.0f;
+    }
+}

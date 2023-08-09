@@ -1373,6 +1373,12 @@ void render_dialog_entries(void) {
         handle_dialog_text_and_pages_INFINITE(0, dialog, lowerBound);
     } else {
         handle_dialog_text_and_pages(0, dialog, lowerBound);
+        if(gDialogID == 167){
+            gMarioStates[0].firstSignRead = 1;
+        }
+        if(gDialogID == 168){
+            gMarioStates[0].secondSignRead = 1;
+        }
     }
 
     if (gLastDialogPageStrPos == -1 && gLastDialogResponse == 1) {

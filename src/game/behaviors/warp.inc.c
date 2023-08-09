@@ -1,5 +1,4 @@
 // warp.inc.c
-
 void bhv_warp_loop(void) {
     if (o->oTimer == 0) {
         u16 radius = GET_BPARAM1(o->oBehParams);

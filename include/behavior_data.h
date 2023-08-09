@@ -560,5 +560,6 @@ extern const BehaviorScript bhvFlameGravity[];
 extern const BehaviorScript bhvFlameBouncingCustom[];
 extern const BehaviorScript bhvInfiniteFlamethrower[];
 extern const BehaviorScript bhvInfiniteFlamethrowerFlame[];
+extern const BehaviorScript bhvMessagePanelSpawnPipe[];
 
 #endif // BEHAVIOR_DATA_H
