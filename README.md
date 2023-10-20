@@ -1,3 +1,9 @@
+# very easy
+Thanks to everyone that voted during the stream this hack placed sixth in the competition!
+Play the hack [here](https://romhacking.com/hack/very-easy) and view the results of the competition [here](https://romhacking.com/competitions/b8e988e1-56ed-428e-af64-7c4907f68a53)!
+
+Original README below.
+
 # ![](https://i.imgur.com/CeOukzk.gif) HackerSM64 ![](https://i.imgur.com/s0LUbTo.gif)
 
 **AFTER CLONING THE REPO, CHECK OUT THE `include/config` FOLDER BEFORE ANYTHING ELSE! THERE'S A LOT OF STUFF IN THIS REPO THAT CAN BE TOGGLED THERE.**
